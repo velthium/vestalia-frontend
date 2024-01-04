@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { DesmosClient, GasPrice, Profiles } from '@desmoslabs/desmjs';
+import { OfflineSignerAdapter, SigningMode } from "@desmoslabs/desmjs";
 
-const DesmosProfileSaver = () => {
+const DesmosProfileCreator = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [saveResult, setSaveResult] = useState(null);
   const [error, setError] = useState(null);
@@ -11,8 +12,10 @@ const DesmosProfileSaver = () => {
     setError(null);
 
     try {
-      // Replace with your actual signer
-      const signer = ...;
+      const mnemonic = "vocal solid animal toast someone invite grape snap praise husband iron lawsuit";
+
+      // Remplacez ceci par votre propre signer
+      const signer = await OfflineSignerAdapter.fromMnemonic(SigningMode.DIRECT, mnemonic);
 
       const client = await DesmosClient.connectWithSigner('https://rpc.mainnet.desmos.network', signer, {
         gasPrice: GasPrice.fromString("0.01udsm"),
@@ -21,12 +24,12 @@ const DesmosProfileSaver = () => {
       const saveProfile = {
         typeUrl: Profiles.v3.MsgSaveProfileTypeUrl,
         value: {
-          creator: "desmos1...", // Replace with your Desmos address
+          creator: "desmos1htyqkum6esle9zx7f4e3cfrmzwmyhn4p75pw6c", // Replace with your Desmos address
           bio: "The price of all saiyans",
           dtag: "vegeta",
           nickname: "Vegeta",
-          coverPicture: "https://ipfs.io/ipfs/<CID>", // Replace <CID> with actual IPFS CID
-          profilePicture: "https://ipfs.io/ipfs/<CID>", // Replace <CID> with actual IPFS CID
+          coverPicture: "https://ipfs.io/ipfs/<CID>",
+          profilePicture: "https://ipfs.io/ipfs/<CID>",
         }
       };
 
