@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   return(
     <BrowserRouter>
-      <div className="App">
+      <div className="App container">
         <Header />
         <h1>Welcome to Vestalia</h1>
         <Routes>
