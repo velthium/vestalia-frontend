@@ -8,15 +8,15 @@ import './App.css';
 function App() {
   return(
     <BrowserRouter>
+      <Header />
       <div className="App container">
-        <Header />
         <h1>Welcome to Vestalia</h1>
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/profil" element={<ProfilPage />} />
         </Routes>
-        <Footer />
       </div>
+      <Footer />
     </BrowserRouter>
   )
 }
