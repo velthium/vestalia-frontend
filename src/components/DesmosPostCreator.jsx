@@ -15,7 +15,6 @@ const DesmosPostCreator = () => {
     try {
       const mnemonic = "vocal solid animal toast someone invite grape snap praise husband iron lawsuit";
 
-      // Remplacez ceci par votre propre signer
       const signer = await OfflineSignerAdapter.fromMnemonic(SigningMode.DIRECT, mnemonic);
       
       const client = await DesmosClient.connectWithSigner(
@@ -29,7 +28,7 @@ const DesmosPostCreator = () => {
         typeUrl: Posts.v3.MsgCreatePostTypeUrl,
         value: MsgCreatePost.fromPartial({
           subspaceId: Long.fromNumber(1),
-          author: "desmos1htyqkum6esle9zx7f4e3cfrmzwmyhn4p75pw6c", // Remplacez par votre adresse Desmos
+          author: "desmos1htyqkum6esle9zx7f4e3cfrmzwmyhn4p75pw6c",
           text: postText,
           replySettings: ReplySetting.REPLY_SETTING_EVERYONE
         })
