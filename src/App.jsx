@@ -10,7 +10,6 @@ function App() {
     <BrowserRouter>
       <Header />
       <div className="App container">
-        <h1>Welcome to Vestalia</h1>
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/profil" element={<ProfilPage />} />

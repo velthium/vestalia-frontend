@@ -1,9 +1,11 @@
+import PageTitle from "../components/PageTitle.jsx";
 import React from "react";
-import DesmosProfilCreator from "../components/DesmosProfilCreator.jsx";
 
 function HomePage() {
+
   return (
     <div>
+      <PageTitle title="Vestalia Network" />
     </div>
   );
 }

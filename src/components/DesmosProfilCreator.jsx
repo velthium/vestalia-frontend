@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import { DesmosClient, GasPrice, Profiles } from '@desmoslabs/desmjs';
 import { OfflineSignerAdapter, SigningMode } from "@desmoslabs/desmjs";
+import React, { useState } from 'react';
 
 const DesmosProfileCreator = () => {
   const [isSaving, setIsSaving] = useState(false);
@@ -44,8 +44,21 @@ const DesmosProfileCreator = () => {
 
   return (
     <div>
-      <h2>Save Desmos Profile</h2>
-      <button onClick={handleSaveProfile} disabled={isSaving}>
+      <form className='align-left'>
+        <div className='mb-3'>
+          <label className="form-label" for="fname">Username:</label>
+          <input className="form-control" type="text" placeholder='velthium' />
+        </div>
+        <div className='mb-3'>
+          <label className="form-label" for="fname">Dtag:</label>
+          <input className="form-control" type="text" placeholder='velthium' />
+        </div>
+        <div className='mb-3'>
+          <label className="form-label" for="fname">Bio:</label>
+          <textarea className="form-control" type="text" placeholder="I'm a superhero!" />
+        </div>
+      </form>
+      <button type="button" className="btn btn-info text-light" onClick={handleSaveProfile} disabled={isSaving}>
         {isSaving ? 'Saving...' : 'Save Profile'}
       </button>
       {saveResult && <p>Profile Saved! Result: {JSON.stringify(saveResult)}</p>}

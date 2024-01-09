@@ -1,11 +1,13 @@
+import DesmosProfilCreator from "../components/DesmosProfilCreator.jsx";
+import PageTitle from "../components/PageTitle.jsx";
 import React from "react"
 
 function ConnectPage() {
     return(
-    <div>
-        <p>profil page</p>
-        <DesmosProfilCreator />
-    </div>
+        <div>
+            <PageTitle title="Profil page" />
+            <DesmosProfilCreator />
+        </div>
     );
 }
 
