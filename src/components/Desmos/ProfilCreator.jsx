@@ -6,12 +6,13 @@ import React, { useState } from 'react';
 
 const DesmosProfileCreator = () => {
   const [isSaving, setIsSaving] = useState(false);
-  const [saveResult, setSaveResult] = useState(null);
+  const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
 
   const handleSaveProfile = async (e) => {
     setIsSaving(true);
     setError(null);
+    setSuccess(null);
 
     try {
       e.preventDefault();
@@ -20,7 +21,6 @@ const DesmosProfileCreator = () => {
 
       const mnemonic = "vocal solid animal toast someone invite grape snap praise husband iron lawsuit";
 
-      // Remplacez ceci par votre propre signer
       const signer = await OfflineSignerAdapter.fromMnemonic(SigningMode.DIRECT, mnemonic);
 
       const client = await DesmosClient.connectWithSigner('https://rpc.mainnet.desmos.network', signer, {
@@ -40,7 +40,7 @@ const DesmosProfileCreator = () => {
       };
 
       const result = await client.signAndBroadcast(saveProfile.value.creator, [saveProfile], "auto");
-      setSaveResult(result);
+      setSuccess(result);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -65,7 +65,7 @@ const DesmosProfileCreator = () => {
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
-      {saveResult && <SuccessAlert message={`Profile Saved! Result: ${saveResult}`} />}
+      <SuccessAlert success={success} />
       <ErrorAlert error={error} />
     </div>
   );

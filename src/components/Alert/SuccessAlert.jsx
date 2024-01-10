@@ -1,15 +1,13 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 
-const SuccessAlert = ({ error }) => {
-  const displayError = () => {
-    let errorMessage = "An unexpected error occurred";
+const SuccessAlert = ({ success }) => {
+  const displaySuccess = () => {
+    let successMessage = "Profile created/updated";
 
-    console.log({ error })
-
-    if (response.code === 0) {
+    if (success.code === 0) {
       // Transaction réussie
-      const successMessage = "Transaction réussie. Hash: " + response.transactionHash;
+      const successMessage = "Transaction réussie. Hash: " + success.transactionHash;
       // Afficher le message de succès ou le stocker dans l'état pour l'affichage
       console.log(successMessage);
       // Vous pouvez également explorer 'response.rawLog' pour extraire plus de détails si nécessaire
@@ -17,17 +15,17 @@ const SuccessAlert = ({ error }) => {
 
     Swal.fire({
       icon: "success",
-      title: errorMessage,
-      showConfirmButton: false,
+      title: successMessage,
+      showConfirmButton: true,
       timer: 1500
     });
   };
 
   React.useEffect(() => {
-    if (error) {
-      displayError();
+    if (success) {
+      displaySuccess();
     }
-  }, [error]);
+  }, [success]);
 
   return null;
 };

@@ -19,10 +19,13 @@ function Header() {
           </div>
 
           <ul className="list-unstyled navbar-nav">
+            <li className="nav-item">
+                <Link className="nav-link" to="/create-post">Create Post</Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/profil">Profil</Link>
               </li>
-            </ul>
+          </ul>
       </nav>
     </header>
   );
