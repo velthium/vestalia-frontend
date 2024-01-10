@@ -13,6 +13,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
     "sass": "^1.69.7",
+    "sweetalert2": "^11.10.2",
     "vite": "^5.0.2",
     "web-vitals": "^2.1.4"
   },
