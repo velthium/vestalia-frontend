@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfilPage from './pages/ProfilPage.jsx'
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
+import Header from "./components/Design/Header.jsx";
+import Footer from "./components/Design/Footer.jsx";
 import HomePage from './pages/HomePage.jsx'
 import './App.css';
 

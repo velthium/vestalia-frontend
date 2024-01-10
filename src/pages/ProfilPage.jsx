@@ -1,5 +1,5 @@
-import DesmosProfilCreator from "../components/DesmosProfilCreator.jsx";
-import PageTitle from "../components/PageTitle.jsx";
+import DesmosProfilCreator from "../components/Desmos/ProfilCreator.jsx";
+import PageTitle from "../components/Design/PageTitle.jsx";
 import React from "react"
 
 function ConnectPage() {

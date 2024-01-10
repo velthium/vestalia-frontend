@@ -1,4 +1,4 @@
-import logo from "../assets/images/VestaliaLogo.webp";
+import logo from "../../assets/images/VestaliaLogo.webp";
 import { Link } from "react-router-dom";
 import React from 'react';
 

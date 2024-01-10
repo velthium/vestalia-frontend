@@ -1,6 +1,7 @@
 import { DesmosClient, GasPrice, Profiles } from '@desmoslabs/desmjs';
 import { OfflineSignerAdapter, SigningMode } from "@desmoslabs/desmjs";
-import ErrorAlert from "../components/ErrorAlert.jsx";
+import ErrorAlert from "../Alert/ErrorAlert.jsx";
+import SuccessAlert from "../Alert/SuccessAlert.jsx";
 import React, { useState } from 'react';
 
 const DesmosProfileCreator = () => {
@@ -64,9 +65,8 @@ const DesmosProfileCreator = () => {
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
-      {saveResult && <p>Profile Saved! Result: {JSON.stringify(saveResult)}</p>}
+      {saveResult && <SuccessAlert message={`Profile Saved! Result: ${saveResult}`} />}
       <ErrorAlert error={error} />
-      {error && <p>Error: {error}</p>}
     </div>
   );
 };

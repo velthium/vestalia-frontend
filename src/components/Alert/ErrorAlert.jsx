@@ -5,6 +5,8 @@ const ErrorAlert = ({ error }) => {
   const displayError = () => {
     let errorMessage = "An unexpected error occurred";
 
+    console.log({ error })
+
     if (typeof error == 'string') {
       if (error.includes("has already been created")) {
         errorMessage = "Account with this DTag already exists";

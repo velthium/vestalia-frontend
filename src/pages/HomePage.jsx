@@ -1,4 +1,4 @@
-import PageTitle from "../components/PageTitle.jsx";
+import PageTitle from "../components/Design/PageTitle.jsx";
 import React from "react";
 
 function HomePage() {
