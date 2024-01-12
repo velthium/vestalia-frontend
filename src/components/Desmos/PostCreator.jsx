@@ -1,6 +1,7 @@
 import { DesmosClient, GasPrice, Posts } from '@desmoslabs/desmjs';
 import { OfflineSignerAdapter, SigningMode } from "@desmoslabs/desmjs";
 import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
+import { MsgCreatePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
 import ErrorAlert from "../Alert/ErrorAlert.jsx";
 import SuccessAlert from "../Alert/SuccessAlert.jsx";
 import React, { useState } from 'react';
@@ -8,7 +9,7 @@ import Long from "long";
 
 const DesmosProfileCreator = () => {
   const [isSaving, setIsSaving] = useState(false);
-  const [saveResult, setSaveResult] = useState(null);
+  const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
 
   const handleSaveProfile = async (e) => {
@@ -30,16 +31,17 @@ const DesmosProfileCreator = () => {
 
       const createPost = {
         typeUrl: Posts.v3.MsgCreatePostTypeUrl,
-        value: {
-          subspaceId: Long.fromNumber(21),
-          author: "desmos1htyqkum6esle9zx7f4e3cfrmzwmyhn4p75pw6c",
-          text: formData.get('textpost'),
-          replySettings: ReplySetting.REPLY_SETTING_EVERYONE
-        }
+        value: MsgCreatePost.fromPartial({
+            subspaceId: Long.fromNumber(21),
+            author: "desmos1htyqkum6esle9zx7f4e3cfrmzwmyhn4p75pw6c",
+            text: "testpost #1",
+            replySettings: ReplySetting.REPLY_SETTING_EVERYONE
+        })
       };
 
       const result = await client.signAndBroadcast(createPost.value.author, [createPost], "auto");
-      setSaveResult(result);
+
+      setSuccess(result);
     } catch (err) {
       console.log(err)
       setError(err.message);
@@ -57,7 +59,7 @@ const DesmosProfileCreator = () => {
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
-      {saveResult && <SuccessAlert message={`Profile Saved! Result: ${saveResult}`} />}
+      <SuccessAlert success={success} />
       <ErrorAlert error={error} />
     </div>
   );
