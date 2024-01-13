@@ -4,7 +4,7 @@ import ErrorAlert from "../Alert/ErrorAlert.jsx";
 import SuccessAlert from "../Alert/SuccessAlert.jsx";
 import React, { useState } from 'react';
 
-const DesmosProfileCreator = () => {
+const DesmosProfileCreator = ({ dtag, nickname, bio }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
@@ -53,15 +53,15 @@ const DesmosProfileCreator = () => {
       <form className='align-left' onSubmit={handleSaveProfile}>
         <div className='mb-3'>
           <label className="form-label" htmlFor="fname">Username:</label>
-          <input className="form-control" type="text" name="username" placeholder='velthium' />
+          <input className="form-control" type="text" name="username" value={nickname} placeholder='velthium' />
         </div>
         <div className='mb-3'>
           <label className="form-label" htmlFor="fname">Dtag:</label>
-          <input className="form-control" type="text" name="dtag" placeholder='velthium' />
+          <input className="form-control" type="text" name="dtag" value={dtag} placeholder='velthium' />
         </div>
         <div className='mb-3'>
           <label className="form-label" htmlFor="fname">Bio:</label>
-          <textarea className="form-control" type="text" name="bio" placeholder="I'm a superhero!" />
+          <textarea className="form-control" type="text" name="bio" value={bio} placeholder="I'm a superhero!" />
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
