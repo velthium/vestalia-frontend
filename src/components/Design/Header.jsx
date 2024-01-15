@@ -23,7 +23,7 @@ function Header() {
                 <Link className="nav-link" to="/create-post">Create Post</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/profil">Profil</Link>
+                <Link className="nav-link" to="/profile">Profile</Link>
               </li>
           </ul>
       </nav>
