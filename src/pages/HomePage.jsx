@@ -9,7 +9,6 @@ function HomePage() {
     fetch('https://api.mainnet.desmos.network/desmos/posts/v3/subspaces/21/posts')
       .then(response => response.json())
       .then(data => {
-        console.log(data); // Affiche les données pour vérification
         setPosts(data.posts);
         setPagination(data.pagination);
       })
@@ -17,12 +16,12 @@ function HomePage() {
   }, []);
 
   return (
-    <div class="container">
+    <div className="container">
     <PageTitle title="Vestalia Network" />
     <article>
       {posts.map((post, index) => (
         <div key={index} className="my-3 py-3 border bg-sand">
-          <h3 class="text-start p-2">{ post.text }</h3>
+          <h3 className="text-start p-2">{ post.text }</h3>
         </div>
       ))}
     </article>

@@ -1,8 +1,8 @@
-import DesmosProfilCreator from "../components/Desmos/ProfilCreator.jsx";
+import DesmosProfileCreator from "../components/Desmos/ProfileCreator.jsx";
 import PageTitle from "../components/Design/PageTitle.jsx";
 import React, { useEffect, useState }  from "react"
 
-function ConnectPage() {
+function ProfilePage() {
     const [profileInfo, setProfileInfo] = useState({});
     const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -24,7 +24,7 @@ function ConnectPage() {
         <div>
             <PageTitle title="Profil page" />
             {dataLoaded ? (
-                <DesmosProfilCreator dtag={profileInfo.dtag} nickname={profileInfo.nickname} bio={profileInfo.bio} />
+                <DesmosProfileCreator dtag={profileInfo.dtag} nickname={profileInfo.nickname} bio={profileInfo.bio} />
             ): (
                 <p>Loading...</p>
             )}
@@ -32,4 +32,4 @@ function ConnectPage() {
     );
 }
 
-export default ConnectPage;
+export default ProfilePage;

@@ -53,15 +53,15 @@ const DesmosProfileCreator = ({ dtag, nickname, bio }) => {
       <form className='align-left' onSubmit={handleSaveProfile}>
         <div className='mb-3'>
           <label className="form-label" htmlFor="fname">Username:</label>
-          <input className="form-control" type="text" name="username" value={nickname} placeholder='velthium' />
+          <input className="form-control" type="text" name="username" value={nickname} placeholder='velthium' onChange={handleSaveProfile} />
         </div>
         <div className='mb-3'>
           <label className="form-label" htmlFor="fname">Dtag:</label>
-          <input className="form-control" type="text" name="dtag" value={dtag} placeholder='velthium' />
+          <input className="form-control" type="text" name="dtag" value={dtag} placeholder='velthium' onChange={handleSaveProfile} />
         </div>
         <div className='mb-3'>
           <label className="form-label" htmlFor="fname">Bio:</label>
-          <textarea className="form-control" type="text" name="bio" value={bio} placeholder="I'm a superhero!" />
+          <textarea className="form-control" type="text" name="bio" value={bio} placeholder="I'm a superhero!" onChange={handleSaveProfile} />
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
