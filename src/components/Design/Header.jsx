@@ -1,8 +1,10 @@
 import logo from "../../assets/images/VestaliaLogo.webp";
 import { Link } from "react-router-dom";
-import React from 'react';
+import React, { useState } from 'react';
 
 function Header() {
+  const [isConnected, setIsConnected] = useState(false);
+
   return (
     <header>
       <nav className="mx-5 navbar navbar-expand-lg navbar-light d-flex justify-content-between">
@@ -22,9 +24,15 @@ function Header() {
             <li className="nav-item">
                 <Link className="nav-link" to="/create-post">Create Post</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/profil">Profil</Link>
-              </li>
+              {isConnected ? (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/profile">Profile</Link>
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/auth">Auth</Link>
+                </li>
+              )}
           </ul>
       </nav>
     </header>
