@@ -14,7 +14,7 @@ function AuthPage() {
     return (
         <div className="container">
             <PageTitle title="Connect your Wallet" />
-            <button onClick={handleClick}>Keplr </button>
+            <button  type="button" className="btn btn-primary w-50 m-auto" onClick={handleClick}>Keplr </button>
     </div>
 );
 }

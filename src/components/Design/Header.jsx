@@ -1,9 +1,10 @@
 import logo from "../../assets/images/VestaliaLogo.webp";
+import { AuthContext } from '../../context/AuthContext.jsx';
 import { Link } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 
 function Header() {
-  const [isConnected, setIsConnected] = useState(false);
+  const { isConnected } = useContext(AuthContext);
 
   return (
     <header>
