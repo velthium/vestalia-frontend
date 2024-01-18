@@ -8,10 +8,10 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [isConnected, setIsConnected] = useState(false);
-  const [walletAddress, setWalletAddress] = useState(null);
+  const [WalletSigner, setWalletSigner] = useState(null);
 
   return (
-    <AuthContext.Provider value={{ isConnected, setIsConnected, walletAddress, setWalletAddress }}>
+    <AuthContext.Provider value={{ isConnected, setIsConnected, WalletSigner, setWalletSigner }}>
       {children}
     </AuthContext.Provider>
   );

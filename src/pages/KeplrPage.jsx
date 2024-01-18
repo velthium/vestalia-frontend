@@ -2,10 +2,11 @@ import PageTitle from "../components/Design/PageTitle.jsx";
 import Keplr from "../components/Wallet/Keplr.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
 function KeplrPage() {
 
-  const { isConnected, setIsConnected, walletAddress, setWalletAddress } = useAuth();
+  const { isConnected, setIsConnected, WalletSigner, setWalletSigner } = useAuth();
   const navigate = useNavigate();
 
   const handleClickPreviousPage = () => {
@@ -14,11 +15,12 @@ function KeplrPage() {
 
 async function handleClickKeplr() {
   try {
-    await Keplr();
+    const keplrData = await Keplr();
 
     setIsConnected(true);
+    setWalletSigner(keplrData.signer);
 
-    setWalletAddress(Keplr.signer);
+    navigate("/profile");
 
   }
   catch(error) {
