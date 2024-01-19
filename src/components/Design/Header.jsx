@@ -1,10 +1,16 @@
 import logo from "../../assets/images/VestaliaLogo.webp";
-import { AuthContext } from '../../context/AuthContext.jsx';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import React, { useContext } from 'react';
 
 function Header() {
-  const { isConnected } = useContext(AuthContext);
+  const [isConnected, setIsConnected] = useState(sessionStorage.getItem('isConnected'));
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsConnected(!!sessionStorage.getItem('isConnected'));
+    };
+
+  }, [sessionStorage.getItem('isConnected')]);
 
   return (
     <header>
@@ -22,16 +28,18 @@ function Header() {
           </div>
 
           <ul className="list-unstyled navbar-nav">
-            <li className="nav-item">
-                <Link className="nav-link" to="/create-post">Create Post</Link>
-              </li>
+              {isConnected && (
+                <li className="nav-item">
+                    <Link className="nav-link" to="/create-post">Create Post</Link>
+                  </li>
+              )}
               {isConnected ? (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/profile">Profile</Link>
+                  <Link className="btn btn-success bg-orange" to="/profile">Profile</Link>
                 </li>
               ) : (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/auth">Auth</Link>
+                  <Link className="btn btn-success bg-dark" to="/auth">Connect</Link>
                 </li>
               )}
           </ul>

@@ -1,13 +1,15 @@
 import { DesmosClient, GasPrice, Profiles } from '@desmoslabs/desmjs';
 import { OfflineSignerAdapter, SigningMode } from "@desmoslabs/desmjs";
-import ErrorAlert from "../Alert/ErrorAlert.jsx";
 import SuccessAlert from "../Alert/SuccessAlert.jsx";
+import ErrorAlert from "../Alert/ErrorAlert.jsx";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 
-const DesmosProfileCreator = ({ dtag, nickname, bio }) => {
+const DesmosProfile = ({ dtag, nickname, bio }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSaveProfile = async (e) => {
     setIsSaving(true);
@@ -48,6 +50,11 @@ const DesmosProfileCreator = ({ dtag, nickname, bio }) => {
     }
   };
 
+  const handleClearSessionStorage = () => {
+    sessionStorage.clear();
+    navigate("/");
+  };
+
   return (
     <div>
       <form className='align-left' onSubmit={handleSaveProfile}>
@@ -67,8 +74,9 @@ const DesmosProfileCreator = ({ dtag, nickname, bio }) => {
       </form>
       <SuccessAlert success={success} />
       <ErrorAlert error={error} />
+      <button className="btn btn-danger text-light" onClick={handleClearSessionStorage}>Logout</button>
     </div>
   );
 };
 
-export default DesmosProfileCreator;
+export default DesmosProfile;

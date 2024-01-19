@@ -1,4 +1,3 @@
-import { AuthProvider } from "./context/AuthContext.jsx"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePostPage from './pages/CreatePostPage.jsx'
 import Header from "./components/Design/Header.jsx";
@@ -11,7 +10,6 @@ import './App.css';
 
 function App() {
   return(
-    <AuthProvider>
       <BrowserRouter>
         <Header />
         <div className="App container">
@@ -25,7 +23,6 @@ function App() {
         </div>
         <Footer />
       </BrowserRouter>
-    </AuthProvider>
   )
 }
 

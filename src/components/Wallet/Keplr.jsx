@@ -17,8 +17,6 @@ async function Keplr() {
     gasPrice: GasPrice.fromString("0.01udsm"),
   });
 
-  console.log(client);
-
   return client;
 }
 
