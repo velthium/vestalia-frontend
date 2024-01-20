@@ -1,56 +1,59 @@
 import PageTitle from "../components/Design/PageTitle.jsx";
-import Keplr from "../components/Wallet/Keplr.jsx";
+import { useAuth } from "../context/AuthContext.jsx"
+import Keplr from "../components/Wallet/Keplr.jsx"
 import { useNavigate } from "react-router-dom";
 import React from 'react';
 
-function KeplrPage() {
-  const navigate = useNavigate();
+  function KeplrPage() {
+    const { authData } = useAuth();
+    const navigate = useNavigate();
 
-  const handleClickPreviousPage = () => {
-    navigate("/auth");
-};
+    const handleClickPreviousPage = () => {
+      navigate("/auth");
+  };
 
-async function handleClickKeplr() {
-  try {
-      const keplrData = await Keplr();
-      
-      sessionStorage.setItem('signerData', JSON.stringify(keplrData.signer));
-      sessionStorage.setItem('isConnected', 'true');
+  async function handleClickKeplr() {
+    try {
+        const keplrData = await Keplr();
 
-      try {
-        const response = await fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${keplrData.signer.accountData.address}`);
+        sessionStorage.setItem('walletSigner', JSON.stringify(keplrData));
+        sessionStorage.setItem('isConnected', 'true');
+        window.dispatchEvent( new Event('storage') )
 
-        if (response.ok) {
-          const data = await response.json();
+        try {
+          const response = await fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${keplrData.signer.accountData.address}`);
 
-          const ProfileInfo = {
-            dtag: data.profile.dtag,
-            nickname: data.profile.nickname,
-            bio: data.profile.bio
-          };
+          if (response.ok) {
+            const data = await response.json();
 
-          sessionStorage.setItem('profileInfo', JSON.stringify(ProfileInfo));
-          navigate("/");
+            const ProfileInfo = {
+              dtag: data.profile.dtag,
+              nickname: data.profile.nickname,
+              bio: data.profile.bio
+            };
+
+            sessionStorage.setItem('profileInfo', JSON.stringify(ProfileInfo));
+            navigate("/");
+          }
         }
-      }
-      catch(error) {
-        navigate("/profile");
-      }
+        catch(error) {
+          navigate("/profile");
+        }
+    }
+    catch(error) {
+      console.error("Error connecting Keplr wallet:", error.message);
+    }
   }
-  catch(error) {
-    console.error("Error connecting Keplr wallet:", error.message);
+
+    return (
+      <div className="container">
+          <PageTitle title="Keplr Wallet" />
+          <div className="d-grid gap-5">
+            <button type="button" className="btn btn-primary w-75 m-auto" onClick={handleClickKeplr}>Connect your Keplr Wallet </button>
+            <button type="button" className="btn btn-primary w-25 m-auto" onClick={handleClickPreviousPage}>Back </button>
+          </div>
+    </div>
+  );
   }
-}
 
-  return (
-    <div className="container">
-        <PageTitle title="Keplr Wallet" />
-        <div className="d-grid gap-5">
-          <button type="button" className="btn btn-primary w-75 m-auto" onClick={handleClickKeplr}>Connect your Keplr Wallet </button>
-          <button type="button" className="btn btn-primary w-25 m-auto" onClick={handleClickPreviousPage}>Back </button>
-        </div>
-  </div>
-);
-}
-
-export default KeplrPage;
+  export default KeplrPage;

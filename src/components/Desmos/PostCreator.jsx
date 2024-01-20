@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import Long from "long";
 
 const DesmosProfileCreator = () => {
+  const Signer = JSON.parse(sessionStorage.getItem('signerData'))
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
@@ -21,25 +22,19 @@ const DesmosProfileCreator = () => {
 
       const formData = new FormData(e.target);
 
-      const mnemonic = "vocal solid animal toast someone invite grape snap praise husband iron lawsuit";
-
-      const signer = await OfflineSignerAdapter.fromMnemonic(SigningMode.DIRECT, mnemonic);
-
-      const client = await DesmosClient.connectWithSigner('https://rpc.mainnet.desmos.network', signer, {
-        gasPrice: GasPrice.fromString("0.01udsm"),
-      });
+      const keplrData = await Keplr();
 
       const createPost = {
         typeUrl: Posts.v3.MsgCreatePostTypeUrl,
         value: MsgCreatePost.fromPartial({
             subspaceId: Long.fromNumber(21),
-            author: "desmos1htyqkum6esle9zx7f4e3cfrmzwmyhn4p75pw6c",
+            author: keplrData.signer.accountData.address,
             text: "testpost #1",
             replySettings: ReplySetting.REPLY_SETTING_EVERYONE
         })
       };
 
-      const result = await client.signAndBroadcast(createPost.value.author, [createPost], "auto");
+      const result = await keplrData.signAndBroadcast(createPost.value.author, [createPost], "auto");
 
       setSuccess(result);
     } catch (err) {

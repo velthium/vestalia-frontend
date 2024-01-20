@@ -4,9 +4,7 @@ import React, { useState, useEffect } from "react";
 function HomePage() {
   const [posts, setPosts] = useState([]);
   const [pagination, setPagination] = useState({});
-
-  console.log('Est connecté :', sessionStorage.getItem('isConnected'));
-
+  
   useEffect(() => {
     fetch('https://api.mainnet.desmos.network/desmos/posts/v3/subspaces/21/posts')
       .then(response => response.json())

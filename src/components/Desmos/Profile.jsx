@@ -1,38 +1,39 @@
 import { DesmosClient, GasPrice, Profiles } from '@desmoslabs/desmjs';
-import { OfflineSignerAdapter, SigningMode } from "@desmoslabs/desmjs";
+import { DesmosChains, SigningMode } from "@desmoslabs/desmjs";
+import { KeplrSigner } from "@desmoslabs/desmjs-keplr";
 import SuccessAlert from "../Alert/SuccessAlert.jsx";
+import { useAuth } from '../../context/AuthContext';
 import ErrorAlert from "../Alert/ErrorAlert.jsx";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
+import Keplr from "../Wallet/Keplr.jsx";
 
 const DesmosProfile = ({ dtag, nickname, bio }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
+  const { authData, setAuthData } = useAuth();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSaveProfile = async (e) => {
+    e.preventDefault();
+
     setIsSaving(true);
     setError(null);
     setSuccess(null);
 
     try {
-      e.preventDefault();
 
       const formData = new FormData(e.target);
 
-      const mnemonic = "vocal solid animal toast someone invite grape snap praise husband iron lawsuit";
+      const keplrData = await Keplr();
 
-      const signer = await OfflineSignerAdapter.fromMnemonic(SigningMode.DIRECT, mnemonic);
-
-      const client = await DesmosClient.connectWithSigner('https://rpc.mainnet.desmos.network', signer, {
-        gasPrice: GasPrice.fromString("0.01udsm"),
-      });
-
+      console.log(keplrData.signer.accountData.address)
+      
       const saveProfile = {
         typeUrl: Profiles.v3.MsgSaveProfileTypeUrl,
         value: {
-          creator: "desmos1htyqkum6esle9zx7f4e3cfrmzwmyhn4p75pw6c",
+          creator: keplrData.signer.accountData.address,
           bio: formData.get('bio'),
           dtag: formData.get('dtag'),
           nickname: formData.get('username'),
@@ -41,10 +42,13 @@ const DesmosProfile = ({ dtag, nickname, bio }) => {
         }
       };
 
-      const result = await client.signAndBroadcast(saveProfile.value.creator, [saveProfile], "auto");
+      console.log(saveProfile.value.creator)
+
+      const result = await keplrData.signAndBroadcast(saveProfile.value.creator, [saveProfile], "auto");
+
       setSuccess(result);
     } catch (err) {
-      setError(err.message);
+      setError(err);
     } finally {
       setIsSaving(false);
     }
@@ -52,24 +56,46 @@ const DesmosProfile = ({ dtag, nickname, bio }) => {
 
   const handleClearSessionStorage = () => {
     sessionStorage.clear();
+    window.dispatchEvent( new Event('storage') )
     navigate("/");
   };
 
   return (
     <div>
       <form className='align-left' onSubmit={handleSaveProfile}>
-        <div className='mb-3'>
-          <label className="form-label" htmlFor="fname">Username:</label>
-          <input className="form-control" type="text" name="username" value={nickname} placeholder='Enter a username' onChange={handleSaveProfile} />
-        </div>
-        <div className='mb-3'>
-          <label className="form-label" htmlFor="fname">Dtag:</label>
-          <input className="form-control" type="text" name="dtag" value={dtag} placeholder='Enter a dtag' onChange={handleSaveProfile} />
-        </div>
-        <div className='mb-3'>
-          <label className="form-label" htmlFor="fname">Bio:</label>
-          <textarea className="form-control" type="text" name="bio" value={bio} placeholder="Enter a bio" onChange={handleSaveProfile} />
-        </div>
+      <div className='mb-3'>
+        <label className="form-label" htmlFor="username">Username:</label>
+        <input
+          className="form-control"
+          type="text"
+          name="username"
+          id="username"
+
+          placeholder='Enter a username'
+        />
+      </div>
+      <div className='mb-3'>
+        <label className="form-label" htmlFor="dtag">Dtag:</label>
+        <input
+          className="form-control"
+          type="text"
+          name="dtag"
+          id="dtag"
+
+          placeholder='Enter a dtag'
+        />
+      </div>
+      <div className='mb-3'>
+        <label className="form-label" htmlFor="bio">Bio:</label>
+        <textarea
+          className="form-control"
+          type="text"
+          name="bio"
+          id="bio"
+
+          placeholder="Enter a bio"
+        />
+      </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
       <SuccessAlert success={success} />

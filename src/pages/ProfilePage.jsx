@@ -1,10 +1,12 @@
 import DesmosProfile from "../components/Desmos/Profile.jsx";
 import PageTitle from "../components/Design/PageTitle.jsx";
+import { useAuth } from '../context/AuthContext.jsx';
 import React, { useEffect, useState }  from "react"
 import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
     const navigate = useNavigate();
+    const { authData, setAuthData } = useAuth();
     const [profileInfo, setProfileInfo] = useState({
         dtag: '',
         nickname: '',
@@ -12,10 +14,8 @@ function ProfilePage() {
       });
     const [dataLoaded, setDataLoaded] = useState(false);
 
-    const signerData = JSON.parse(sessionStorage.getItem('signerData'));
-
     useEffect(() => {
-        fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${signerData.accountData.address}`)
+        fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${authData.walletSigner.signer.accountData.address}`)
             .then(response => response.json())
             .then(data => {
                 setProfileInfo({
