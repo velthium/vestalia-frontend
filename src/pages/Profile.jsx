@@ -3,6 +3,7 @@ import PageTitle from "../components/Design/PageTitle.jsx";
 import { useAuth } from '../context/AuthContext.jsx';
 import React, { useEffect, useState }  from "react"
 import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 function ProfilePage() {
     const navigate = useNavigate();
@@ -28,13 +29,12 @@ function ProfilePage() {
             .catch(error => console.error(error));
     }, []);
 
-
     return(
         <div>
             {dataLoaded ? (
                 <div>
                     <PageTitle title="Modify your profile" />
-                    <DesmosProfile dtag={profileInfo.dtag} nickname={profileInfo.nickname} bio={profileInfo.bio} />
+                    <DesmosProfile dtag={profileInfo.dtag} nickname={profileInfo.nickname} bio={profileInfo.bio} wallet={authData.walletSigner.signer.accountData.address}/>
                 </div>
             ): (
                 <div>

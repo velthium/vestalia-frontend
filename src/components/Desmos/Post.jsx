@@ -1,9 +1,9 @@
-import { DesmosClient, GasPrice, Posts } from '@desmoslabs/desmjs';
-import { OfflineSignerAdapter, SigningMode } from "@desmoslabs/desmjs";
 import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
 import { MsgCreatePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
-import ErrorAlert from "../Alert/ErrorAlert.jsx";
 import SuccessAlert from "../Alert/SuccessAlert.jsx";
+import ErrorAlert from "../Alert/ErrorAlert.jsx";
+import { Posts } from '@desmoslabs/desmjs';
+import Keplr from "../Wallet/Keplr.jsx";
 import React, { useState } from 'react';
 import Long from "long";
 
@@ -14,6 +14,7 @@ const DesmosProfileCreator = () => {
   const [error, setError] = useState(null);
 
   const handleSaveProfile = async (e) => {
+    const formData = new FormData(e.target);
     setIsSaving(true);
     setError(null);
 
@@ -29,7 +30,7 @@ const DesmosProfileCreator = () => {
         value: MsgCreatePost.fromPartial({
             subspaceId: Long.fromNumber(21),
             author: keplrData.signer.accountData.address,
-            text: "testpost #1",
+            text: formData.get('textpost'),
             replySettings: ReplySetting.REPLY_SETTING_EVERYONE
         })
       };
