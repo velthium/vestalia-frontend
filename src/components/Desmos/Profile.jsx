@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import Keplr from "../Wallet/Keplr.jsx";
 
-const DesmosProfile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio, wallet: initialWallet }) => {
+const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio, wallet: initialWallet }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
@@ -125,4 +125,4 @@ const DesmosProfile = ({ dtag: initialDtag, nickname: initialNickname, bio: init
   );
 };
 
-export default DesmosProfile;
+export default Profile;

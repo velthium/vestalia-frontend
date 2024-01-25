@@ -1,17 +1,21 @@
 import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
-import { MsgCreatePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
+import { MsgCreatePost, MsgDeletePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
 import SuccessAlert from "../Alert/SuccessAlert.jsx";
 import ErrorAlert from "../Alert/ErrorAlert.jsx";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Posts } from '@desmoslabs/desmjs';
 import Keplr from "../Wallet/Keplr.jsx";
 import React, { useState } from 'react';
 import Long from "long";
 
-const DesmosProfileCreator = () => {
+const Post = () => {
   const Signer = JSON.parse(sessionStorage.getItem('signerData'))
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const { postid } = useParams();
 
   const handleSaveProfile = async (e) => {
     const formData = new FormData(e.target);
@@ -46,6 +50,38 @@ const DesmosProfileCreator = () => {
     }
   };
 
+  const handleDeletePost = async () => {
+    setIsSaving(true);
+    setError(null);
+
+    try {
+      const keplrData = await Keplr();
+
+      const deletePost = {
+        typeUrl: Posts.v3.MsgDeletePostTypeUrl,
+        value: MsgDeletePost.fromPartial({
+          subspaceId: Long.fromNumber(21),
+          postId: Long.fromNumber(postid),
+          signer: keplrData.signer.accountData.address,
+        })
+      };
+
+      console.log(deletePost.value)
+
+      const result = await keplrData.signAndBroadcast(deletePost.value.signer, [deletePost], "auto");
+
+      setSuccess(result);
+
+      navigate(`/user/${keplrData.signer.accountData.address}/posts`);
+
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   return (
     <div>
       <form className='align-left' onSubmit={handleSaveProfile}>
@@ -55,10 +91,11 @@ const DesmosProfileCreator = () => {
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
+      <button className="btn btn-info text-light" onClick={handleDeletePost}>Delete post</button>
       <SuccessAlert success={success} />
       <ErrorAlert error={error} />
     </div>
   );
 };
 
-export default DesmosProfileCreator;
+export default Post;
