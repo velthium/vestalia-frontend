@@ -1,12 +1,12 @@
-import React from 'react';
 import Swal from 'sweetalert2';
+import React from 'react';
 
 const SuccessAlert = ({ success }) => {
   const displaySuccess = () => {
     let successMessage = "";
 
     if (success.code === 0) {
-      successMessage = "Transaction réussie. Hash: " + success.transactionHash;
+      successMessage = "Successful transaction. Hash: " + success.transactionHash;
     }
 
     Swal.fire({

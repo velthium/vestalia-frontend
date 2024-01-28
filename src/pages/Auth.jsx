@@ -1,5 +1,5 @@
-import PageTitle from "../components/Design/PageTitle.jsx";
-import React, { useState, useEffect } from "react";
+import PageTitle from "@/components/Design/PageTitle";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AuthPage() {

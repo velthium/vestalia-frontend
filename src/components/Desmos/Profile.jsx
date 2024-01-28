@@ -1,10 +1,9 @@
-import { Profiles } from '@desmoslabs/desmjs';
-import SuccessAlert from "../Alert/SuccessAlert.jsx";
-import { useAuth } from '../../context/AuthContext';
-import ErrorAlert from "../Alert/ErrorAlert.jsx";
-import { useNavigate } from "react-router-dom";
+import SuccessAlert from "@/components/Alert/SuccessAlert";
+import ErrorAlert from "@/components/Alert/ErrorAlert";
 import React, { useState, useEffect } from 'react';
-import Keplr from "../Wallet/Keplr.jsx";
+import Keplr from "@/components/Wallet/Keplr";
+import { useNavigate } from "react-router-dom";
+import { Profiles } from '@desmoslabs/desmjs';
 
 const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio, wallet: initialWallet }) => {
   const [isSaving, setIsSaving] = useState(false);

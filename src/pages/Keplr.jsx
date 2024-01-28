@@ -1,7 +1,7 @@
-import PageTitle from "../components/Design/PageTitle.jsx";
-import { useAuth } from "../context/AuthContext.jsx"
-import Keplr from "../components/Wallet/Keplr.jsx"
+import PageTitle from "@/components/Design/PageTitle";
+import Keplr from "@/components/Wallet/Keplr"
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/Auth"
 import React from 'react';
 
   function KeplrPage() {

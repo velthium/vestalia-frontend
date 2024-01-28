@@ -1,12 +1,12 @@
-import PostCreator from "../components/Desmos/Post.jsx";
-import PageTitle from "../components/Design/PageTitle.jsx";
+import PageTitle from "@/components/Design/PageTitle";
+import PostCreator from "@/components/Desmos/Post";
 import React from "react";
 
 function EditPost() {
     return(
         <div>
             <PageTitle title="Edit post" />
-            <PostCreator />
+            <PostCreator status="edit"/>
         </div>
     )
 }

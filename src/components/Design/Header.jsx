@@ -1,7 +1,7 @@
-import logo from "../../assets/images/VestaliaLogo.webp";
-import React, { useEffect } from 'react';
+import logo from "@/assets/images/VestaliaLogo.webp";
+import { useAuth } from '@/context/Auth';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import React from 'react';
 
 function Header() {
   const { authData, setAuthData } = useAuth();
@@ -25,6 +25,11 @@ function Header() {
           {authData.isConnected && (
             <li className="nav-item">
               <Link className="nav-link" to="/create-post">Create Post</Link>
+            </li>
+          )}
+          {authData.isConnected && (
+            <li className="nav-item">
+              <Link className="nav-link" to="/create-community">Create Community</Link>
             </li>
           )}
           {authData.isConnected ? (

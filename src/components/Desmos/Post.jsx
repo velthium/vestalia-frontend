@@ -1,15 +1,16 @@
-import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
 import { MsgCreatePost, MsgDeletePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
-import SuccessAlert from "../Alert/SuccessAlert.jsx";
-import ErrorAlert from "../Alert/ErrorAlert.jsx";
+import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
+import SuccessAlert from "@/components/Alert/SuccessAlert";
+import ErrorAlert from "@/components/Alert/ErrorAlert";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Posts } from '@desmoslabs/desmjs';
-import Keplr from "../Wallet/Keplr.jsx";
+import Keplr from "@/components/Wallet/Keplr";
 import React, { useState } from 'react';
 import Long from "long";
 
-const Post = () => {
+const Post = ({ status }) => {
+
   const Signer = JSON.parse(sessionStorage.getItem('signerData'))
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
@@ -17,7 +18,7 @@ const Post = () => {
   const navigate = useNavigate();
   const { postid } = useParams();
 
-  const handleSaveProfile = async (e) => {
+  const handleCreatePost = async (e) => {
     const formData = new FormData(e.target);
     setIsSaving(true);
     setError(null);
@@ -42,6 +43,7 @@ const Post = () => {
       const result = await keplrData.signAndBroadcast(createPost.value.author, [createPost], "auto");
 
       setSuccess(result);
+      navigate(`/`);
     } catch (err) {
       console.log(err)
       setError(err.message);
@@ -84,14 +86,16 @@ const Post = () => {
 
   return (
     <div>
-      <form className='align-left' onSubmit={handleSaveProfile}>
+      <form className='align-left' onSubmit={handleCreatePost}>
         <div className='mb-3'>
           <label className="form-label" htmlFor="fname">Bio:</label>
           <textarea className="form-control" type="text" name="textpost" placeholder="I'm a superhero!" />
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
-      <button className="btn btn-info text-light" onClick={handleDeletePost}>Delete post</button>
+      {status === "edit" && (
+        <button className="btn btn-info text-light" onClick={handleDeletePost}>Delete post</button>
+      )}
       <SuccessAlert success={success} />
       <ErrorAlert error={error} />
     </div>

@@ -1,12 +1,12 @@
-import PostCreator from "../components/Desmos/Post.jsx";
-import PageTitle from "../components/Design/PageTitle.jsx";
+import PageTitle from "@/components/Design/PageTitle";
+import PostCreator from "@/components/Desmos/Post";
 import React from "react";
 
 function CreatePostPage() {
     return(
         <div>
             <PageTitle title="Create Post" />
-            <PostCreator />
+            <PostCreator status="creation" />
         </div>
     )
 }

@@ -9,9 +9,6 @@ const MyPosts = () => {
   const { address } = useParams();
   const authorAddress = "desmos1px9u048n0xz4k7qchkha4wyku2wy2dkhj4thg6";
 
-  console.log("D = " + address)
-  console.log("S = " + authorAddress)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -19,7 +16,7 @@ const MyPosts = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'x-hasura-admin-secret': 'your-admin-secret', // Remplacez par votre secret Hasura
+            'x-hasura-admin-secret': 'your-admin-secret',
           },
           body: JSON.stringify({
             query: `
@@ -63,7 +60,7 @@ const MyPosts = () => {
 
   return (
     <div>
-      <h1>Posts</h1>
+      <h1>My posts</h1>
       <ul className='list-unstyled'>
         {subspaces.map((post) => (
             <li key={post.id} className='m-1 border border-3 p-2 text-start'>

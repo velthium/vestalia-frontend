@@ -1,12 +1,10 @@
-import DesmosProfile from "../components/Desmos/Profile.jsx";
-import PageTitle from "../components/Design/PageTitle.jsx";
-import { useAuth } from '../context/AuthContext.jsx';
+import DesmosProfile from "@/components/Desmos/Profile";
+import PageTitle from "@/components/Design/PageTitle";
 import React, { useEffect, useState }  from "react"
 import { useNavigate } from "react-router-dom";
-import { useParams } from 'react-router-dom';
+import { useAuth } from '@/context/Auth';
 
 function ProfilePage() {
-    const navigate = useNavigate();
     const { authData, setAuthData } = useAuth();
     const [profileInfo, setProfileInfo] = useState({
         dtag: '',
