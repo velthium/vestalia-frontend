@@ -4,6 +4,7 @@ import Header from "@/components/Design/Header";
 import Footer from "@/components/Design/Footer";
 import { AuthProvider } from '@/context/Auth'
 import CreatePost from '@/pages/CreatePost'
+import ReadPost from '@/pages/ReadPost'
 import Community from '@/pages/Community'
 import EditPost from '@/pages/EditPost'
 import MyPosts from '@/pages/MyPosts'
@@ -24,11 +25,12 @@ function App() {
                       <Route path="/auth" element={<Auth />} />
                       <Route path="/auth/keplr" element={<Keplr />} />
                       <Route path="/profile" element={<Profile />} />
-                      <Route path="/create-post" element={<CreatePost />} />
                       <Route path="/edit-post/:postid" element={<EditPost />} />
                       <Route path="/user/:address/posts" element={<MyPosts />} />
                       <Route path="/create-community" element={<CreateCommunity />} />
-                      <Route path="/community/:community-id/:community-name" element={<Community />} />
+                      <Route path="/community/:communityid/:postid" element={<ReadPost />} />
+                      <Route path="/community/:communityid/:communityname" element={<Community />} />
+                      <Route path="/community/:communityid/:communityname/create-post" element={<CreatePost />} />
                   </Routes>
                 </div>
               <Footer />

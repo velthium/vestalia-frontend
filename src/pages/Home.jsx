@@ -20,7 +20,16 @@ function HomePage() {
     fetch('https://api.mainnet.desmos.network/desmos/posts/v3/subspaces/21/posts')
       .then(response => response.json())
       .then(data => {
-        setPosts(data.posts);
+        const postsWithAdditionalProperties = data.posts.map(post => {
+
+          return {
+            ...post,
+            section_name: "Unknown Community",
+          };
+        });
+  
+        // Concatenate the new posts with the existing posts
+        setPosts(prevPosts => [...prevPosts, ...postsWithAdditionalProperties]);
       })
       .catch(error => console.error(error));
   }, []);
@@ -41,12 +50,13 @@ function HomePage() {
       ))}
     </article>
     <article>
+      <a href="">
       {posts.map((post, index) => (
         <div key={index} className="my-3 py-3 border bg-sand">
-
           <h3 className="text-start p-2">{ post.text }</h3>
         </div>
       ))}
+      </a>
     </article>
   </div>
 );

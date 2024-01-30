@@ -1,9 +1,9 @@
 import SuccessAlert from "@/components/Alert/SuccessAlert";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
 import React, { useState, useEffect } from 'react';
-import Keplr from "@/components/Wallet/Keplr";
 import { useNavigate } from "react-router-dom";
 import { Profiles } from '@desmoslabs/desmjs';
+import Keplr from "@/components/Wallet/Keplr";
 
 const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio, wallet: initialWallet }) => {
   const [isSaving, setIsSaving] = useState(false);

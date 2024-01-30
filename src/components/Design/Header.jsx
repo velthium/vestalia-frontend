@@ -24,11 +24,6 @@ function Header() {
         <ul className="list-unstyled navbar-nav">
           {authData.isConnected && (
             <li className="nav-item">
-              <Link className="nav-link" to="/create-post">Create Post</Link>
-            </li>
-          )}
-          {authData.isConnected && (
-            <li className="nav-item">
               <Link className="nav-link" to="/create-community">Create Community</Link>
             </li>
           )}

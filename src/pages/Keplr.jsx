@@ -1,6 +1,6 @@
 import PageTitle from "@/components/Design/PageTitle";
-import Keplr from "@/components/Wallet/Keplr"
 import { useNavigate } from "react-router-dom";
+import Keplr from "@/components/Wallet/Keplr"
 import { useAuth } from "@/context/Auth"
 import React from 'react';
 

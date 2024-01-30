@@ -3,9 +3,9 @@ import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
 import { useNavigate } from "react-router-dom";
+import Keplr from "@/components/Wallet/Keplr";
 import { useParams } from "react-router-dom";
 import { Posts } from '@desmoslabs/desmjs';
-import Keplr from "@/components/Wallet/Keplr";
 import React, { useState } from 'react';
 import Long from "long";
 
@@ -15,6 +15,7 @@ const Post = ({ status }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+  const { communityid } = useParams();
   const navigate = useNavigate();
   const { postid } = useParams();
 
@@ -34,6 +35,7 @@ const Post = ({ status }) => {
         typeUrl: Posts.v3.MsgCreatePostTypeUrl,
         value: MsgCreatePost.fromPartial({
             subspaceId: Long.fromNumber(21),
+            sectionId: communityid,
             author: keplrData.signer.accountData.address,
             text: formData.get('textpost'),
             replySettings: ReplySetting.REPLY_SETTING_EVERYONE
