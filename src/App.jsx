@@ -28,8 +28,8 @@ function App() {
                       <Route path="/edit-post/:postid" element={<EditPost />} />
                       <Route path="/user/:address/posts" element={<MyPosts />} />
                       <Route path="/create-community" element={<CreateCommunity />} />
-                      <Route path="/community/:communityid/:postid" element={<ReadPost />} />
                       <Route path="/community/:communityid/:communityname" element={<Community />} />
+                      <Route path="/community/:communityid/:communityname/:postid" element={<ReadPost />} />
                       <Route path="/community/:communityid/:communityname/create-post" element={<CreatePost />} />
                   </Routes>
                 </div>
