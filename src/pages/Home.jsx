@@ -2,42 +2,68 @@ import PageTitle from "@/components/Design/PageTitle";
 import React, { useState, useEffect } from "react";
 
 function HomePage() {
-  const [data, setData] = useState({ sections: [], posts: [] });
+  const [communities, setCommunities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.mainnet.desmos.network/desmos/subspaces/v3/21/sections')
-      .then(response => response.json())
-      .then(sectionData => {
-        fetch('https://api.mainnet.desmos.network/desmos/posts/v3/subspaces/21/posts')
-          .then(response => response.json())
-          .then(postData => {
-            const postsWithAdditionalProperties = postData.posts.map(post => {
-              const section = sectionData.sections.find(community => community.id === post.section_id);
-              return {
-                section_name: section ? section.name : "Unknown Community",
-                ...post,
-              };
-            });
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/v1/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-hasura-admin-secret': 'your-admin-secret',
+          },
+          body: JSON.stringify({
+            query: `
+              query getPostsAndSections {
+                post {
+                  id
+                  text
+                  section_row_id
+                  subspace_section {
+                    name
+                    id
+                  }
+                }
+                subspace_section {
+                  name
+                  id
+                }
+              }
+            `,
+          }),
+        });
 
-            setData({ sections: sectionData.sections, posts: postsWithAdditionalProperties });
+        const result = await response.json();
 
-          })
-          .catch(error => console.error(error));
-      })
-      .catch(error => console.error(error));
+        if (response.ok) {
+          console.log(result.data.post[2])
+          setPosts(result.data.post)
+          setCommunities(result.data.subspace_section);
+        } else {
+          setError(result.errors);
+        }
+      } catch (err) {
+        console.log(err)
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchData();
   }, []);
 
-
-  
-  console.log(data)
 
   return (
     <div className="container">
       <PageTitle title="Vestalia Network" />
 
       <article className="d-flex overflow-x-scroll">
-        {data.sections.map((community, index) => (
+        {communities.map((community, index) => (
           <div key={index} className="card w-25 m-2 flex-shrink-0">
             <a className="text-decoration-none" href={`/community/${community.id}/${community.name.replace(/\s/g, '')}`}>
               <div className="card-body">
@@ -48,15 +74,13 @@ function HomePage() {
         ))}
       </article>
       <article>
-          {data.posts.map((post, index) => (
-            <a className="text-decoration-none text-dark" href={`/community/${post.section_id}/${post.section_name.replace(/\s/g, '')}/${post.id}`}>
-                <div key={index} className="my-3 border bg-sand  p-2">
-                  <a className="text-decoration-none" href={`/community/${post.section_id}/${post.section_name.replace(/\s/g, '')}`}>
-                    <p className="text-start">{post.section_name}</p>
-                  </a>
-                  <h3 className="text-start">{post.text}</h3>
-                </div>
-            </a>
+          {posts.map((post, index) => (
+              <div key={index} className="my-3 border bg-sand text-start p-2">
+                  <a className="text-decoration-none text-dark" href={`/community/${post.subspace_section.id}/${post.subspace_section.name.replace(/\s/g, '')}/${post.id}`}>
+                  <p>{post.subspace_section.name}</p>
+                  <h5>{post.text}</h5>
+                </a>
+              </div>
           ))}
       </article>
     </div>
