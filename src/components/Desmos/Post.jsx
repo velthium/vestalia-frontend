@@ -90,7 +90,7 @@ const Post = ({ status }) => {
     <div>
       <form className='align-left' onSubmit={handleCreatePost}>
         <div className='mb-3'>
-          <label className="form-label" htmlFor="fname">Bio:</label>
+          <label className="form-label" htmlFor="fname">Post title:</label>
           <textarea className="form-control" type="text" name="textpost" placeholder="I'm a superhero!" />
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>

@@ -1,8 +1,8 @@
 import PageTitle from "@/components/Design/PageTitle";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import { useAuth } from '@/context/Auth';
-import React, { useState, useEffect } from "react";
 
 function Community() {
     const { authData, setAuthData } = useAuth();

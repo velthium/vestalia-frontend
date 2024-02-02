@@ -22,7 +22,6 @@ function HomePage() {
                 post {
                   id
                   text
-                  section_row_id
                   subspace_section {
                     name
                     id

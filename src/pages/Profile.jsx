@@ -1,7 +1,6 @@
 import DesmosProfile from "@/components/Desmos/Profile";
 import PageTitle from "@/components/Design/PageTitle";
 import React, { useEffect, useState }  from "react"
-import { useNavigate } from "react-router-dom";
 import { useAuth } from '@/context/Auth';
 
 function ProfilePage() {
