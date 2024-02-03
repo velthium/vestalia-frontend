@@ -39,7 +39,6 @@ function HomePage() {
         const result = await response.json();
 
         if (response.ok) {
-          console.log(result.data.post[2])
           setPosts(result.data.post)
           setCommunities(result.data.subspace_section);
         } else {
@@ -76,9 +75,9 @@ function HomePage() {
           {posts.map((post, index) => (
               <div key={index} className="my-3 border bg-sand text-start p-2">
                   <a className="text-decoration-none text-dark" href={`/community/${post.subspace_section.id}/${post.subspace_section.name.replace(/\s/g, '')}/${post.id}`}>
-                  <p>{post.subspace_section.name}</p>
-                  <h5>{post.text}</h5>
-                </a>
+                    <p>{post.subspace_section.name}</p>
+                    <h5>{post.text}</h5>
+                  </a>
               </div>
           ))}
       </article>

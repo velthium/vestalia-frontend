@@ -39,7 +39,6 @@ function ReadPost() {
 
 
             if (response.ok) {
-              console.log(result.data.post[0])
               setPost(result.data.post[0])
             } else {
               setError(result.errors);

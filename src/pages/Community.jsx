@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '@/context/Auth';
 
 function Community() {
+    const [loading, setLoading] = useState(true);
     const { authData, setAuthData } = useAuth();
     const [posts, setPosts] = useState([]);
     const { communityname } = useParams();
@@ -15,15 +16,54 @@ function Community() {
         navigate(`/community/${communityid}/${communityname}/create-post`);
     };
 
-    console.log(`https://api.mainnet.desmos.network/desmos/posts/v3/subspaces/21/sections/${communityid}/posts`)
-
     useEffect(() => {
-        fetch(`https://api.mainnet.desmos.network/desmos/posts/v3/subspaces/21/sections/${communityid}/posts`)
-          .then(response => response.json())
-          .then(data => {
-            setPosts(data.posts);
-          })
-          .catch(error => console.error(error));
+        const fetchData = async () => {
+          try {
+            const response = await fetch('http://localhost:8080/v1/graphql', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'x-hasura-admin-secret': 'your-admin-secret',
+              },
+              body: JSON.stringify({
+                query: `
+                  query getPostsFromSection($id: bigint!) {
+                    post(where: {subspace_section: {id: {_eq: $id}}}) {
+                      id
+                      text
+                      subspace_section {
+                        name
+                        id
+                      }
+                    }
+                    subspace_section {
+                      name
+                      id
+                    }
+                  }
+                `,
+                variables: {
+                    id: communityid,
+                  },
+              }),
+            });
+    
+            const result = await response.json();
+    
+            if (response.ok) {
+              setPosts(result.data.post)
+            } else {
+              setError(result.errors);
+            }
+          } catch (err) {
+            console.log(err)
+            setError(err.message);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchData();
       }, []);
 
     return(
@@ -35,8 +75,9 @@ function Community() {
         <article>
         {posts.map((post, index) => (
             <div key={index} className="my-3 py-3 border bg-sand">
-
-            <h3 className="text-start p-2">{ post.text }</h3>
+                <a className="text-decoration-none text-dark" href={`/community/${post.subspace_section.id}/${post.subspace_section.name.replace(/\s/g, '')}/${post.id}`}>
+                    <h3 className="text-start p-2">{ post.text }</h3>
+                </a>
             </div>
         ))}
         </article>
