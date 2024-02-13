@@ -36,6 +36,9 @@ import React from 'react';
             sessionStorage.setItem('profileInfo', JSON.stringify(ProfileInfo));
             navigate("/");
           }
+          else {
+            navigate("/profile");
+          }
         }
         catch(error) {
           navigate("/profile");
@@ -50,9 +53,9 @@ import React from 'react';
       <div className="container">
           <PageTitle title="Keplr Wallet" />
           <div className="d-grid gap-5">
-            <button type="button" className="btn bg-sand w-25 m-auto p-4" onClick={handleClickKeplr}>
+            <button type="button" className="btn bg-sand custom-btn w-25 m-auto p-4" onClick={handleClickKeplr}>
               <img className="m-3" src={KeplrLogo} alt="" height="122" width="163" />
-              <p className="m-auto w-75 bg-purple text-white rounded py-2">Connect</p>
+              <p className="m-auto w-75 bg-purple text-dark rounded py-2">Connect</p>
             </button>
             <a className="d-flex w-25 text-start text-decoration-none text-dark" href="" onClick={handleClickPreviousPage}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi my-auto bi-caret-left-fill" viewBox="0 0 16 16">
