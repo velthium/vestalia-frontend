@@ -1,25 +1,17 @@
 @import 'bootstrap/scss/bootstrap';
 
-$sand_color: #F2EFEA;
+$light-green: #D9EEE5;
 
-.bg-sand {
-  background-color: #F2EFEA;
-}
-
-.custom-btn:hover {
-  background-color: #F2EFEA;
-}
-
-header {
-  background-color: $sand_color;
+.custom-btn:hover, .custom-btn, body {
+  background-color: $light-green;
 }
 
 footer {
+  text-align: center;
   position: fixed;
   width: 100%;
   bottom: 0;
-  left: 0;background-color: $sand_color;
-  text-align: center;
+  left: 0;
 }
 
 #vestalia-logo {
@@ -35,4 +27,12 @@ footer {
   background-repeat: no-repeat;
   background-position: 15px;
   padding-left: 45px;
+}
+
+.h7 {
+  font-size: 0.9rem;
+}
+
+.h8 {
+  font-size: 0.8rem;
 }

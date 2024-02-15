@@ -19,7 +19,7 @@ function App() {
       <BrowserRouter>
           <AuthProvider>
               <Header />
-                <div className="App container">
+                <main className="App container">
                   <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/auth" element={<Auth />} />
@@ -32,7 +32,7 @@ function App() {
                       <Route path="/community/:communityid/:communityname/:postid" element={<ReadPost />} />
                       <Route path="/community/:communityid/:communityname/create-post" element={<CreatePost />} />
                   </Routes>
-                </div>
+                </main>
               <Footer />
           </AuthProvider>
       </BrowserRouter>

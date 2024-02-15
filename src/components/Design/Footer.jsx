@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
     return(
-        <footer>
+        <footer className="bg-white">
             <p>Site created by Velthium.</p>
         </footer>
     )

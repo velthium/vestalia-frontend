@@ -74,9 +74,9 @@ function Community() {
             )}
         <article>
         {posts.map((post, index) => (
-            <div key={index} className="my-3 py-3 border bg-sand">
+            <div key={index} className="my-3 py-3 border bg-white px-2">
                 <a className="text-decoration-none text-dark" href={`/community/${post.subspace_section.id}/${post.subspace_section.name.replace(/\s/g, '')}/${post.id}`}>
-                    <h3 className="text-start p-2">{ post.text }</h3>
+                    <h2 className="text-start h7 text-black">{post.text}</h2>
                 </a>
             </div>
         ))}

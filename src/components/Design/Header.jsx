@@ -1,3 +1,4 @@
+import PageTitle from "@/components/Design/PageTitle";
 import logo from "@/assets/images/VestaliaLogo.webp";
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/Auth';
@@ -20,11 +21,13 @@ function Header() {
   }, [authData]);
 
   return (
-    <header>
+    <header className="bg-white">
       <nav className="mx-5 navbar navbar-expand-lg navbar-light d-flex justify-content-between">
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <img className="rounded" src={logo} alt="Vestalia Logo" id="vestalia-logo" />
+          <PageTitle title="Vestalia Network" />
         </Link>
+        
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -50,7 +53,7 @@ function Header() {
             </li>
           ) : (
             <li className="nav-item">
-              <Link className="btn btn-success bg-dark" to="/auth">Connect</Link>
+              <Link className="btn btn-success bg-green h7" to="/auth">Connect</Link>
             </li>
           )}
         </ul>

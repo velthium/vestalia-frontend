@@ -1,4 +1,3 @@
-import PageTitle from "@/components/Design/PageTitle";
 import React, { useState, useEffect } from "react";
 
 function HomePage() {
@@ -58,14 +57,12 @@ function HomePage() {
 
   return (
     <div className="container">
-      <PageTitle title="Vestalia Network" />
-
       <article className="d-flex overflow-x-scroll">
         {communities.map((community, index) => (
-          <div key={index} className="card w-25 m-2 flex-shrink-0">
+          <div key={index} className="card m-2 flex-shrink-0">
             <a className="text-decoration-none" href={`/community/${community.id}/${community.name.replace(/\s/g, '')}`}>
-              <div className="card-body">
-                <h5 className="card-title">{community.name}</h5>
+              <div className="card-body py-1">
+                <h1 className="h7 card-title text-success">{community.name}</h1>
               </div>
             </a>
           </div>
@@ -73,10 +70,10 @@ function HomePage() {
       </article>
       <article>
           {posts.map((post, index) => (
-              <div key={index} className="my-3 border bg-sand text-start p-2">
-                  <a className="text-decoration-none text-dark" href={`/community/${post.subspace_section.id}/${post.subspace_section.name.replace(/\s/g, '')}/${post.id}`}>
-                    <p>{post.subspace_section.name}</p>
-                    <h5>{post.text}</h5>
+              <div key={index} className="my-2 border bg-white text-start px-2">
+                  <a className="text-decoration-none text-success" href={`/community/${post.subspace_section.id}/${post.subspace_section.name.replace(/\s/g, '')}/${post.id}`}>
+                    <p className="h8 my-1">{post.subspace_section.name}</p>
+                    <h2 className="h7 text-black">{post.text}</h2>
                   </a>
               </div>
           ))}

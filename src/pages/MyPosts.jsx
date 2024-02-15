@@ -61,10 +61,10 @@ const MyPosts = () => {
   return (
     <div>
       <h1>My posts</h1>
-      <ul className='list-unstyled'>
+      <ul className="list-unstyled">
         {subspaces.map((post) => (
-            <li key={post.id} className='m-1 border border-3 p-2 text-start'>
-              <a href={`/edit-post/${post.id}`}>
+            <li key={post.id} className="m-1 border border-3 p-2 text-start bg-white">
+              <a className="text-decoration-none" href={`/edit-post/${post.id}`}>
                 <strong>{post.text}</strong>
               </a>
             </li>

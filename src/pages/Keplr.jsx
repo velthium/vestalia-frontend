@@ -53,7 +53,7 @@ import React from 'react';
       <div className="container">
           <PageTitle title="Keplr Wallet" />
           <div className="d-grid gap-5">
-            <button type="button" className="btn bg-sand custom-btn w-25 m-auto p-4" onClick={handleClickKeplr}>
+            <button type="button" className="btn bg-white custom-btn w-25 mx-auto my-5 p-4" onClick={handleClickKeplr}>
               <img className="m-3" src={KeplrLogo} alt="" height="122" width="163" />
               <p className="m-auto w-75 bg-purple text-dark rounded py-2">Connect</p>
             </button>
