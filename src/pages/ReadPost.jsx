@@ -1,6 +1,7 @@
 import PageTitle from "@/components/Design/PageTitle";
-import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Post from "@/components/Design/Post"
 
 function ReadPost() {
     const [loading, setLoading] = useState(true);
@@ -55,7 +56,15 @@ function ReadPost() {
       }, []);
 
     return(
-      <PageTitle title={post.text} />
+      <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : post.id ? (
+        <Post post={post} index="0" />
+      ) : (
+        <p>No post found</p>
+      )}
+    </div>
     )
 }
 

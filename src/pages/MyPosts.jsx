@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
+import Post from "@/components/Design/Post"
 
 const MyPosts = () => {
   const [subspaces, setSubspaces] = useState([]);
@@ -24,6 +25,10 @@ const MyPosts = () => {
                 post(where: { author_address: { _eq: $authorAddress } }) {
                   text
                   id
+                  subspace_section {
+                    name
+                    id
+                  }
                 }
               }
             `,
@@ -62,12 +67,8 @@ const MyPosts = () => {
     <div>
       <h1>My posts</h1>
       <ul className="list-unstyled">
-        {subspaces.map((post) => (
-            <li key={post.id} className="m-1 border border-3 p-2 text-start bg-white">
-              <a className="text-decoration-none" href={`/edit-post/${post.id}`}>
-                <strong>{post.text}</strong>
-              </a>
-            </li>
+        {subspaces.map((post, index) => (
+            <Post post={post} index={index} />
         ))}
       </ul>
     </div>

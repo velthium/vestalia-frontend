@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Post from "@/components/Design/Post"
 
 function HomePage() {
   const [communities, setCommunities] = useState([]);
@@ -70,12 +71,7 @@ function HomePage() {
       </article>
       <article>
           {posts.map((post, index) => (
-              <div key={index} className="my-2 border bg-white text-start px-2">
-                  <a className="text-decoration-none text-success" href={`/community/${post.subspace_section.id}/${post.subspace_section.name.replace(/\s/g, '')}/${post.id}`}>
-                    <p className="h8 my-1">{post.subspace_section.name}</p>
-                    <h2 className="h7 text-black">{post.text}</h2>
-                  </a>
-              </div>
+            <Post post={post} index={index} />
           ))}
       </article>
     </div>
