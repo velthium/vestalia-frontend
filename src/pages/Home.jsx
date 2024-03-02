@@ -57,8 +57,8 @@ function HomePage() {
 
 
   return (
-    <div className="container">
-      <article className="d-flex overflow-x-scroll">
+    <div className="container p-0 p-lg-1">
+      <article className="d-flex overflow-x-scroll mb-4">
         {communities.map((community, index) => (
           <div key={index} className="card m-2 flex-shrink-0">
             <a className="text-decoration-none" href={`/community/${community.id}/${community.name.replace(/\s/g, '')}`}>

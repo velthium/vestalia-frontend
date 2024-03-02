@@ -2,6 +2,7 @@ import PageTitle from "@/components/Design/PageTitle";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import Post from "@/components/Design/Post"
 import { useAuth } from '@/context/Auth';
 
 function Community() {
@@ -74,11 +75,7 @@ function Community() {
             )}
         <article>
         {posts.map((post, index) => (
-            <div key={index} className="my-3 py-3 border bg-white px-2">
-                <a className="text-decoration-none text-dark" href={`/community/${post.subspace_section.id}/${post.subspace_section.name.replace(/\s/g, '')}/${post.id}`}>
-                    <h2 className="text-start h7 text-black">{post.text}</h2>
-                </a>
-            </div>
+            <Post post={post} index={index} />
         ))}
         </article>
          </div>

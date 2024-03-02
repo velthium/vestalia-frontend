@@ -4,8 +4,8 @@ import Header from "@/components/Design/Header";
 import Footer from "@/components/Design/Footer";
 import { AuthProvider } from '@/context/Auth'
 import CreatePost from '@/pages/CreatePost'
-import ReadPost from '@/pages/ReadPost'
 import Community from '@/pages/Community'
+import ReadPost from '@/pages/ReadPost'
 import EditPost from '@/pages/EditPost'
 import MyPosts from '@/pages/MyPosts'
 import Profile from '@/pages/Profile'
@@ -19,7 +19,7 @@ function App() {
       <BrowserRouter>
           <AuthProvider>
               <Header />
-                <main className="App container">
+                <main className="App container mb-5 p-0 p-lg-1">
                   <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/auth" element={<Auth />} />

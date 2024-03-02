@@ -1,10 +1,11 @@
-import PageTitle from "@/components/Design/PageTitle";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Post from "@/components/Design/Post"
+import { useAuth } from '@/context/Auth';
 
 function ReadPost() {
     const [loading, setLoading] = useState(true);
+    const { authData, setAuthData } = useAuth();
     const [post, setPost] = useState({});
     const { postid } = useParams();
 
@@ -63,6 +64,9 @@ function ReadPost() {
         <Post post={post} index="0" />
       ) : (
         <p>No post found</p>
+      )}
+      {authData.isConnected && (
+      <input className="form-control my-3" placeholder="Reply" onClick=""/>
       )}
     </div>
     )

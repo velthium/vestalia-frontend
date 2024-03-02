@@ -1,3 +1,4 @@
+import PageTitle from "@/components/Design/PageTitle";
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import Post from "@/components/Design/Post"
@@ -65,7 +66,7 @@ const MyPosts = () => {
 
   return (
     <div>
-      <h1>My posts</h1>
+      <PageTitle title="My posts" />
       <ul className="list-unstyled">
         {subspaces.map((post, index) => (
             <Post post={post} index={index} />
