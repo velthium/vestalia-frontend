@@ -20,7 +20,6 @@ const Post = ({ status }) => {
   const { postid } = useParams();
 
   const handleCreatePost = async (e) => {
-    const formData = new FormData(e.target);
     setIsSaving(true);
     setError(null);
 
