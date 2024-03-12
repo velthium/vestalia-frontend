@@ -71,7 +71,7 @@ function HomePage() {
       </article>
       <article>
           {posts.map((post, index) => (
-            <Post post={post} index={index} />
+            <Post key={post.id} post={post} index={index} />
           ))}
       </article>
     </div>
