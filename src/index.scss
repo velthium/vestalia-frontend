@@ -1,9 +1,21 @@
 @import 'bootstrap/scss/bootstrap';
 
-$light-green: #D9EEE5;
+.bg-custom-gray, body {
+  background-color: #FDFDFD;
+}
 
-.custom-btn:hover, .custom-btn, body {
-  background-color: $light-green;
+.custom-btn:hover, .custom-btn {
+  background-color: white;
+}
+
+header {
+  border-bottom: solid 1px;
+  border-color: darkseagreen;
+}
+
+footer {
+  border-top: solid 1px;
+  border-color: darkseagreen;
 }
 
 footer {

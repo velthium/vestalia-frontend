@@ -1,6 +1,7 @@
 import { MsgCreatePost, MsgDeletePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
 import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
+import UploadIpfs from "@/components/Desmos/UploadIpfs";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
 import { useNavigate } from "react-router-dom";
 import Keplr from "@/components/Wallet/Keplr";
@@ -30,14 +31,24 @@ const Post = ({ status }) => {
 
       const keplrData = await Keplr();
 
+      const uploadResponse = await UploadIpfs(formData.get('post-content'));
+
       const createPost = {
         typeUrl: Posts.v3.MsgCreatePostTypeUrl,
         value: MsgCreatePost.fromPartial({
             subspaceId: Long.fromNumber(21),
             sectionId: communityid,
             author: keplrData.signer.accountData.address,
-            text: formData.get('textpost'),
-            replySettings: ReplySetting.REPLY_SETTING_EVERYONE
+            text: formData.get('post-title'),
+            replySettings: ReplySetting.REPLY_SETTING_EVERYONE,
+            entities: {
+              urls: {
+                "start": "0",
+                "end": "1",
+                "url": "https://scripta.infura-ipfs.io/ipfs/" + uploadResponse.Name,
+                "display_url": "IPFS"
+              }
+            }
         })
       };
 
@@ -86,11 +97,15 @@ const Post = ({ status }) => {
   };
 
   return (
-    <div>
+    <div className="p-5 bg-white">
       <form className='align-left' onSubmit={handleCreatePost}>
         <div className='mb-3'>
           <label className="form-label" htmlFor="fname">Post title:</label>
-          <textarea className="form-control" type="text" name="textpost" placeholder="I'm a superhero!" />
+          <input className="form-control" type="text" name="post-title" placeholder="Post title" />
+        </div>
+        <div className='mb-3'>
+          <label className="form-label" htmlFor="fname">Post content:</label>
+          <textarea className="form-control" type="text" name="post-content" placeholder="Post content" />
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>

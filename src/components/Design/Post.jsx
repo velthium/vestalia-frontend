@@ -6,9 +6,9 @@ import React from "react";
 function Post(props) {
 
     return(
-        <div key={props.index} className="border bg-white p-2 text-start">
+        <div key={props.index} className="border p-2 m-2 bg-white text-start">
             <a className="text-decoration-none text-success" href={`/community/${props.post.subspace_section.id}/${props.post.subspace_section.name.replace(/\s/g, '')}/${props.post.id}`}>
-            <h2 className="h7 text-black">{props.post.text}</h2>
+            <h2 className="h6 text-black">{props.post.text}</h2>
             <p className="h8 my-1">{props.post.subspace_section.name}</p>
             </a>
             <div className="d-flex">
