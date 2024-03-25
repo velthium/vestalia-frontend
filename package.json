@@ -22,7 +22,8 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "eslint . --ext .jsx"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +45,12 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^14.2.2"
+    "@testing-library/react": "^14.2.2",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.34.1"
   }
 }

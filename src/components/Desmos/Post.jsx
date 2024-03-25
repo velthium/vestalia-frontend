@@ -42,12 +42,12 @@ const Post = ({ status }) => {
             text: formData.get('post-title'),
             replySettings: ReplySetting.REPLY_SETTING_EVERYONE,
             entities: {
-              urls: {
+              urls: [{
                 "start": "0",
                 "end": "1",
                 "url": "https://scripta.infura-ipfs.io/ipfs/" + uploadResponse.Name,
                 "display_url": "IPFS"
-              }
+              }]
             }
         })
       };
