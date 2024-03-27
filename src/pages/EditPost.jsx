@@ -3,12 +3,12 @@ import PostCreator from "@/components/Desmos/Post";
 import React from "react";
 
 function EditPost() {
-    return(
+    return (
         <div>
             <PageTitle title="Edit post" />
             <PostCreator status="edit"/>
         </div>
-    )
+    );
 }
 
 export default EditPost;

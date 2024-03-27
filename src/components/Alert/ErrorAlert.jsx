@@ -1,18 +1,17 @@
-import Swal from 'sweetalert2';
-import React from 'react';
+import PropTypes from "prop-types";
+import Swal from "sweetalert2";
+import React from "react";
 
 const ErrorAlert = ({ error }) => {
   const displayError = () => {
     let errorMessage = "An unexpected error occurred";
 
-    if (typeof error == 'string') {
+    if (typeof error === "string") {
       if (error.includes("has already been created")) {
         errorMessage = "Account with this DTag already exists";
-      }
-      else if (error.includes("it should match the following regEx")) {
+      } else if (error.includes("it should match the following regEx")) {
         errorMessage = "Please enter valid characters";
-      }
-      else if (error.includes("cannot be less")) {
+      } else if (error.includes("cannot be less")) {
         errorMessage = "Profile dtag cannot be less than 6 characters";
       }
     }
@@ -32,6 +31,10 @@ const ErrorAlert = ({ error }) => {
   }, [error]);
 
   return null;
+};
+
+ErrorAlert.propTypes = {
+  error: PropTypes.object.isRequired
 };
 
 export default ErrorAlert;

@@ -1,11 +1,9 @@
 import PageTitle from "@/components/Design/PageTitle";
-import KeplrLogo from "@/assets/images/Keplr.svg"
+import KeplrLogo from "@/assets/images/Keplr.svg";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 
 function AuthPage() {
-    const [pagination, setPagination] = useState({});
-    const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
     const handleClick = () => {

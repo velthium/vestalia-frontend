@@ -1,12 +1,10 @@
 import PageTitle from "@/components/Design/PageTitle";
-import KeplrLogo from "@/assets/images/Keplr.svg"
+import KeplrLogo from "@/assets/images/Keplr.svg";
 import { useNavigate } from "react-router-dom";
-import Keplr from "@/components/Wallet/Keplr"
-import { useAuth } from "@/context/Auth"
-import React from 'react';
+import Keplr from "@/components/Wallet/Keplr";
+import React from "react";
 
   function KeplrPage() {
-    const { authData } = useAuth();
     const navigate = useNavigate();
 
     const handleClickPreviousPage = () => {
@@ -17,9 +15,9 @@ import React from 'react';
     try {
         const keplrData = await Keplr();
 
-        sessionStorage.setItem('walletSigner', JSON.stringify(keplrData));
-        sessionStorage.setItem('isConnected', 'true');
-        window.dispatchEvent( new Event('storage') )
+        sessionStorage.setItem("walletSigner", JSON.stringify(keplrData));
+        sessionStorage.setItem("isConnected", "true");
+        window.dispatchEvent(new Event("storage"));
 
         try {
           const response = await fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${keplrData.signer.accountData.address}`);
@@ -33,20 +31,17 @@ import React from 'react';
               bio: data.profile.bio
             };
 
-            sessionStorage.setItem('profileInfo', JSON.stringify(ProfileInfo));
+            sessionStorage.setItem("profileInfo", JSON.stringify(ProfileInfo));
             navigate("/");
-          }
-          else {
+          } else {
             navigate("/profile");
           }
-        }
-        catch(error) {
+        } catch (error) {
           navigate("/profile");
         }
-    }
-    catch(error) {
-      console.error("Error connecting Keplr wallet:", error.message);
-    }
+      } catch (error) {
+        console.error("Error connecting Keplr wallet:", error.message);
+      }
   }
 
     return (

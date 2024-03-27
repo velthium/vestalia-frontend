@@ -6,13 +6,13 @@ import ErrorAlert from "@/components/Alert/ErrorAlert";
 import { useNavigate } from "react-router-dom";
 import Keplr from "@/components/Wallet/Keplr";
 import { useParams } from "react-router-dom";
-import { Posts } from '@desmoslabs/desmjs';
-import React, { useState } from 'react';
+import { Posts } from "@desmoslabs/desmjs";
+import React, { useState } from "react";
 import Long from "long";
 
 const Post = ({ status }) => {
 
-  const Signer = JSON.parse(sessionStorage.getItem('signerData'))
+  const Signer = JSON.parse(sessionStorage.getItem("signerData"));
   const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
@@ -31,7 +31,7 @@ const Post = ({ status }) => {
 
       const keplrData = await Keplr();
 
-      const uploadResponse = await UploadIpfs(formData.get('post-content'));
+      const uploadResponse = await UploadIpfs(formData.get("post-content"));
 
       const createPost = {
         typeUrl: Posts.v3.MsgCreatePostTypeUrl,
@@ -39,14 +39,14 @@ const Post = ({ status }) => {
             subspaceId: Long.fromNumber(21),
             sectionId: communityid,
             author: keplrData.signer.accountData.address,
-            text: formData.get('post-title'),
+            text: formData.get("post-title"),
             replySettings: ReplySetting.REPLY_SETTING_EVERYONE,
             entities: {
               urls: [{
-                "start": "0",
-                "end": "1",
-                "url": "https://scripta.infura-ipfs.io/ipfs/" + uploadResponse.Name,
-                "display_url": "IPFS"
+                start: "0",
+                end: "1",
+                url: "https://scripta.infura-ipfs.io/ipfs/" + uploadResponse.Name,
+                display_url: IPFS
               }]
             }
         })
@@ -55,9 +55,9 @@ const Post = ({ status }) => {
       const result = await keplrData.signAndBroadcast(createPost.value.author, [createPost], "auto");
 
       setSuccess(result);
-      navigate(`/`);
+      navigate("/");
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setError(err.message);
     } finally {
       setIsSaving(false);
@@ -76,18 +76,17 @@ const Post = ({ status }) => {
         value: MsgDeletePost.fromPartial({
           subspaceId: Long.fromNumber(21),
           postId: Long.fromNumber(postid),
-          signer: keplrData.signer.accountData.address,
+          signer: keplrData.signer.accountData.address
         })
       };
 
-      console.log(deletePost.value)
+      console.log(deletePost.value);
 
       const result = await keplrData.signAndBroadcast(deletePost.value.signer, [deletePost], "auto");
 
       setSuccess(result);
 
       navigate(`/user/${keplrData.signer.accountData.address}/posts`);
-
     } catch (err) {
       console.error(err);
       setError(err.message);
@@ -98,12 +97,12 @@ const Post = ({ status }) => {
 
   return (
     <div className="p-5 bg-white">
-      <form className='align-left' onSubmit={handleCreatePost}>
-        <div className='mb-3'>
+      <form className="align-left" onSubmit={handleCreatePost}>
+        <div className="mb-3">
           <label className="form-label" htmlFor="fname">Post title:</label>
           <input className="form-control" type="text" name="post-title" placeholder="Post title" />
         </div>
-        <div className='mb-3'>
+        <div className="mb-3">
           <label className="form-label" htmlFor="fname">Post content:</label>
           <textarea className="form-control" type="text" name="post-content" placeholder="Post content" />
         </div>

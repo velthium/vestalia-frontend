@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Post from "@/components/Design/Post"
+import Post from "@/components/Design/Post";
 
 function HomePage() {
   const [communities, setCommunities] = useState([]);
@@ -10,11 +10,11 @@ function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/v1/graphql', {
-          method: 'POST',
+        const response = await fetch("http://localhost:8080/v1/graphql", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'x-hasura-admin-secret': 'your-admin-secret',
+            "Content-Type": "application/json",
+            "x-hasura-admin-secret": "your-admin-secret"
           },
           body: JSON.stringify({
             query: `
@@ -32,20 +32,20 @@ function HomePage() {
                   id
                 }
               }
-            `,
-          }),
+            `
+          })
         });
 
         const result = await response.json();
 
         if (response.ok) {
-          setPosts(result.data.post)
+          setPosts(result.data.post);
           setCommunities(result.data.subspace_section);
         } else {
           setError(result.errors);
         }
       } catch (err) {
-        console.log(err)
+        console.log(err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -55,13 +55,12 @@ function HomePage() {
     fetchData();
   }, []);
 
-
   return (
     <div className="container p-0 p-lg-1">
       <article className="d-flex overflow-x-scroll mb-4">
         {communities.map((community, index) => (
           <div key={index} className="card m-2 flex-shrink-0">
-            <a className="text-decoration-none" href={`/community/${community.id}/${community.name.replace(/\s/g, '')}`}>
+            <a className="text-decoration-none" href={`/community/${community.id}/${community.name.replace(/\s/g, "")}`}>
               <div className="card-body py-1">
                 <h1 className="h7 card-title text-success">{community.name}</h1>
               </div>

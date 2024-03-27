@@ -1,9 +1,9 @@
 import PageTitle from "@/components/Design/PageTitle";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useParams } from 'react-router-dom';
-import Post from "@/components/Design/Post"
-import { useAuth } from '@/context/Auth';
+import { useParams } from "react-router-dom";
+import Post from "@/components/Design/Post";
+import { useAuth } from "@/context/Auth";
 
 function Community() {
     const [loading, setLoading] = useState(true);
@@ -20,11 +20,11 @@ function Community() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('http://localhost:8080/v1/graphql', {
-              method: 'POST',
+            const response = await fetch("http://localhost:8080/v1/graphql", {
+              method: "POST",
               headers: {
-                'Content-Type': 'application/json',
-                'x-hasura-admin-secret': 'your-admin-secret',
+                "Content-Type": "application/json",
+                "x-hasura-admin-secret": "your-admin-secret"
               },
               body: JSON.stringify({
                 query: `
@@ -44,30 +44,30 @@ function Community() {
                   }
                 `,
                 variables: {
-                    id: communityid,
-                  },
-              }),
+                    id: communityid
+                  }
+              })
             });
-    
+
             const result = await response.json();
-    
+
             if (response.ok) {
-              setPosts(result.data.post)
+              setPosts(result.data.post);
             } else {
               setError(result.errors);
             }
           } catch (err) {
-            console.log(err)
+            console.log(err);
             setError(err.message);
           } finally {
             setLoading(false);
           }
         };
-    
+
         fetchData();
       }, []);
 
-    return(
+    return (
         <div className="container">
             <PageTitle title={communityname} />
             {authData.isConnected && (
@@ -79,7 +79,7 @@ function Community() {
         ))}
         </article>
          </div>
-    )
+    );
 }
 
-export default Community
+export default Community;

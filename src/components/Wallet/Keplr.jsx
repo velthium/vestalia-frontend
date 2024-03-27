@@ -5,18 +5,18 @@ async function Keplr() {
     if (window.keplr === undefined) {
       throw new Error("Veuillez installer l'extension web Keplr");
     }
-  
+
     const signer = new KeplrSigner(window.keplr, {
       signingMode: SigningMode.DIRECT,
-      chainInfo: DesmosChains.mainnet,
+      chainInfo: DesmosChains.mainnet
     });
-  
+
     await signer.connect();
-  
-    const client = await DesmosClient.connectWithSigner('https://rpc.mainnet.desmos.network', signer, {
-      gasPrice: GasPrice.fromString("0.01udsm"),
+
+    const client = await DesmosClient.connectWithSigner("https://rpc.mainnet.desmos.network", signer, {
+      gasPrice: GasPrice.fromString("0.01udsm")
     });
-  
+
     return client;
   }
 

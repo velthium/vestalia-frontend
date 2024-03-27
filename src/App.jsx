@@ -2,20 +2,21 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateCommunity from "@/pages/CreateCommunity";
 import Header from "@/components/Design/Header";
 import Footer from "@/components/Design/Footer";
-import { AuthProvider } from '@/context/Auth'
-import CreatePost from '@/pages/CreatePost'
-import Community from '@/pages/Community'
-import ReadPost from '@/pages/ReadPost'
-import EditPost from '@/pages/EditPost'
-import MyPosts from '@/pages/MyPosts'
-import Profile from '@/pages/Profile'
-import Keplr from '@/pages/Keplr'
-import Home from '@/pages/Home'
-import Auth from '@/pages/Auth'
-import '@/App.css';
+import { AuthProvider } from "@/context/Auth";
+import CreatePost from "@/pages/CreatePost";
+import Community from "@/pages/Community";
+import ReadPost from "@/pages/ReadPost";
+import EditPost from "@/pages/EditPost";
+import MyPosts from "@/pages/MyPosts";
+import Profile from "@/pages/Profile";
+import Keplr from "@/pages/Keplr";
+import Home from "@/pages/Home";
+import Auth from "@/pages/Auth";
+import React from "react";
+import "@/App.css";
 
 function App() {
-  return(
+  return (
       <BrowserRouter>
           <AuthProvider>
               <Header />
@@ -36,7 +37,7 @@ function App() {
               <Footer />
           </AuthProvider>
       </BrowserRouter>
-  )
+  );
 }
 
 export default App;

@@ -2,10 +2,10 @@ import { RegisteredReactionValue } from "@desmoslabs/desmjs-types/desmos/reactio
 import { MsgAddReaction } from "@desmoslabs/desmjs-types/desmos/reactions/v1/msgs";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
-import { Reactions } from '@desmoslabs/desmjs';
+import { Reactions } from "@desmoslabs/desmjs";
 import Keplr from "@/components/Wallet/Keplr";
-import React, { useState } from 'react';
-import Long from "long";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Like = ({ postId }) => {
   const [isLiking, setIsLiking] = useState(false);
@@ -19,32 +19,30 @@ const Like = ({ postId }) => {
     setSuccess(null);
 
     try {
-
-
       if (liked) {
-        reactionValueAny.packString('unlike');
+        reactionValueAny.packString("unlike");
       }
 
       else {
         const keplrData = await Keplr();
-        
+
         const addReaction = {
           typeUrl: Reactions.v1.MsgAddReactionTypeUrl,
           value: MsgAddReaction.fromPartial({
             user: keplrData.signer.accountData.address,
             subspaceId: 21,
-            postId: postId,
+            postId,
             value: {
               typeUrl: "/desmos.reactions.v1.RegisteredReactionValue",
               value: RegisteredReactionValue.encode({
-                registeredReactionId: 1,
+                registeredReactionId: 1
               })
-            },
-          }),
+            }
+          })
         };
 
         const result = await keplrData.signAndBroadcast(addReaction.value.user, [addReaction], "auto");
-        console.log(result)
+        console.log(result);
 
         setSuccess(response);
 
@@ -52,7 +50,7 @@ const Like = ({ postId }) => {
       }
 
       } catch (err) {
-        console.log(err)
+        console.log(err);
         setError(err);
       } finally {
         setIsLiking(false);
@@ -74,5 +72,9 @@ const Like = ({ postId }) => {
     </div>
   );
 };
+
+Like.prototype = {
+  postId: PropTypes.number.isRequired
+}
 
 export default Like;

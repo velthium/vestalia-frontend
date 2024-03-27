@@ -1,14 +1,14 @@
 import DesmosProfile from "@/components/Desmos/Profile";
 import PageTitle from "@/components/Design/PageTitle";
-import React, { useEffect, useState }  from "react"
-import { useAuth } from '@/context/Auth';
+import React, { useEffect, useState } from "react";
+import { useAuth } from "@/context/Auth";
 
 function ProfilePage() {
-    const { authData, setAuthData } = useAuth();
+    const { authData } = useAuth();
     const [profileInfo, setProfileInfo] = useState({
-        dtag: '',
-        nickname: '',
-        bio: ''
+        dtag: "",
+        nickname: "",
+        bio: ""
       });
     const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -21,19 +21,19 @@ function ProfilePage() {
                     nickname: data.profile.nickname,
                     bio: data.profile.bio
                 });
-                setDataLoaded(true)
+                setDataLoaded(true);
             })
             .catch(error => console.error(error));
     }, []);
 
-    return(
+    return (
         <div>
             {dataLoaded ? (
                 <div>
                     <PageTitle title="Modify your profile" />
                     <DesmosProfile dtag={profileInfo.dtag} nickname={profileInfo.nickname} bio={profileInfo.bio} wallet={authData.walletSigner.signer.accountData.address}/>
                 </div>
-            ): (
+            ) : (
                 <div>
                     <PageTitle title="Create your profile" />
                     <DesmosProfile dtag="" nickname="" bio="" />

@@ -3,12 +3,12 @@ import Community from "@/components/Desmos/Community";
 import React from "react";
 
 function CreateCommunity() {
-    return(
+    return (
         <div>
             <PageTitle title="Create community" />
             <Community />
         </div>
-    )
+    );
 }
 
-export default CreateCommunity
+export default CreateCommunity;

@@ -1,8 +1,8 @@
 import SuccessAlert from "@/components/Alert/SuccessAlert";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Profiles } from '@desmoslabs/desmjs';
+import { Profiles } from "@desmoslabs/desmjs";
 import Keplr from "@/components/Wallet/Keplr";
 
 const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio, wallet: initialWallet }) => {
@@ -12,16 +12,16 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
   const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
-    username: initialNickname || '',
-    dtag: initialDtag || '',
-    bio: initialBio || '',
+    username: initialNickname || "",
+    dtag: initialDtag || "",
+    bio: initialBio || ""
   });
 
   useEffect(() => {
     setFormValues({
-      username: initialNickname || '',
-      dtag: initialDtag || '',
-      bio: initialBio || '',
+      username: initialNickname || "",
+      dtag: initialDtag || "",
+      bio: initialBio || ""
     });
   }, [initialNickname, initialDtag, initialBio]);
 
@@ -40,11 +40,11 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
         typeUrl: Profiles.v3.MsgSaveProfileTypeUrl,
         value: {
           creator: keplrData.signer.accountData.address,
-          bio: formData.get('bio'),
-          dtag: formData.get('dtag'),
-          nickname: formData.get('username'),
+          bio: formData.get("bio"),
+          dtag: formData.get("dtag"),
+          nickname: formData.get("username"),
           coverPicture: "https://ipfs.io/ipfs/<CID>",
-          profilePicture: "https://ipfs.io/ipfs/<CID>",
+          profilePicture: "https://ipfs.io/ipfs/<CID>"
         }
       };
 
@@ -59,7 +59,7 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
 
   const handleClearSessionStorage = () => {
     sessionStorage.clear();
-    window.dispatchEvent(new Event('storage'));
+    window.dispatchEvent(new Event("storage"));
     navigate("/");
   };
 
@@ -71,14 +71,14 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
     const { name, value } = e.target;
     setFormValues((prevValues) => ({
       ...prevValues,
-      [name]: value,
+      [name]: value
     }));
   };
 
   return (
     <div>
-      <form className='align-left' onSubmit={handleSaveProfile}>
-        <div className='mb-3'>
+      <form className="align-left" onSubmit={handleSaveProfile}>
+        <div className="mb-3">
           <label className="form-label" htmlFor="username">Username:</label>
           <input
             className="form-control"
@@ -87,10 +87,10 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
             id="username"
             value={formValues.username}
             onChange={handleInputChange}
-            placeholder='Enter a username'
+            placeholder="Enter a username"
           />
         </div>
-        <div className='mb-3'>
+        <div className="mb-3">
           <label className="form-label" htmlFor="dtag">Dtag:</label>
           <input
             className="form-control"
@@ -99,10 +99,10 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
             id="dtag"
             value={formValues.dtag}
             onChange={handleInputChange}
-            placeholder='Enter a dtag'
+            placeholder="Enter a dtag"
           />
         </div>
-        <div className='mb-3'>
+        <div className="mb-3">
           <label className="form-label" htmlFor="bio">Bio:</label>
           <textarea
             className="form-control"

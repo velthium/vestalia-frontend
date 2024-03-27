@@ -1,7 +1,7 @@
 import PageTitle from "@/components/Design/PageTitle";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Post from "@/components/Design/Post"
+import Post from "@/components/Design/Post";
 
 const MyPosts = () => {
   const [subspaces, setSubspaces] = useState([]);
@@ -9,16 +9,16 @@ const MyPosts = () => {
   const [error, setError] = useState(null);
 
   const { address } = useParams();
-  const authorAddress = "desmos1px9u048n0xz4k7qchkha4wyku2wy2dkhj4thg6";
+  const authorAddress = address;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/v1/graphql', {
-          method: 'POST',
+        const response = await fetch("http://localhost:8080/v1/graphql", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'x-hasura-admin-secret': 'your-admin-secret',
+            "Content-Type": "application/json",
+            "x-hasura-admin-secret": "your-admin-secret"
           },
           body: JSON.stringify({
             query: `
@@ -34,9 +34,9 @@ const MyPosts = () => {
               }
             `,
             variables: {
-              authorAddress: authorAddress,
-            },
-          }),
+              authorAddress
+            }
+          })
         });
 
         const result = await response.json();

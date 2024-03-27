@@ -1,5 +1,6 @@
-import Swal from 'sweetalert2';
-import React from 'react';
+import PropTypes from "prop-types";
+import Swal from "sweetalert2";
+import React from "react";
 
 const SuccessAlert = ({ success }) => {
   const displaySuccess = () => {
@@ -25,5 +26,9 @@ const SuccessAlert = ({ success }) => {
 
   return null;
 };
+
+SuccessAlert.propTypes = {
+  success: PropTypes.object.isRequired
+}
 
 export default SuccessAlert;

@@ -1,21 +1,18 @@
 import logo from "@/assets/images/VestaliaLogo.webp";
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '@/context/Auth';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useAuth } from "@/context/Auth";
+import { Link } from "react-router-dom";
 
 function Header() {
-  const { authData, setAuthData } = useAuth();
-  const [ userData, setUserData ] = useState({});
+  const { authData } = useAuth();
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
-
     if (authData.walletSigner !== null) {
-
-        fetch('https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/' + authData.walletSigner.signer.accountData.address)
+        fetch("https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/" + authData.walletSigner.signer.accountData.address)
         .then(response => response.json())
         .then(data => setUserData(data))
         .catch(error => console.error(error));
-
     }
   }, [authData]);
 
@@ -36,10 +33,10 @@ function Header() {
                   aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
           </button>
-          
+
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mx-auto mt-3 mt-lg-0">
-              <input className="form-control icon-search-bar" type="search" id="site-search" name="q" size="60" placeholder='Search for topics' title='Search bar'/>
+              <input className="form-control icon-search-bar" type="search" id="site-search" name="q" size="60" placeholder="Search for topics" title="Search bar"/>
             </ul>
             <ul className="list-unstyled navbar-nav">
               {authData.isConnected && (
