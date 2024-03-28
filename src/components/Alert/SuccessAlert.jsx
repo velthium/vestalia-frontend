@@ -29,6 +29,6 @@ const SuccessAlert = ({ success }) => {
 
 SuccessAlert.propTypes = {
   success: PropTypes.object.isRequired
-}
+};
 
 export default SuccessAlert;

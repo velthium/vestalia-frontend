@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import React from "react";
 
 function Post(props) {
-
     return (
         <div key={props.index} className="border p-2 m-2 bg-white text-start">
             <a className="text-decoration-none text-success" href={`/community/${props.post.subspace_section.id}/${props.post.subspace_section.name.replace(/\s/g, "")}/${props.post.id}`}>
@@ -31,8 +30,16 @@ function Post(props) {
     );
 }
 
-Post.PropTypes = {
-    props: PropTypes.object.isRequired
+Post.propTypes = {
+    index: PropTypes.number.isRequired,
+    post: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired,
+        subspace_section: PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired
+        }).isRequired
+    }).isRequired
 };
 
 export default Post;

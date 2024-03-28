@@ -1,24 +1,16 @@
 import { MsgCreateSection } from "@desmoslabs/desmjs-types/desmos/subspaces/v3/msgs";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
-import { useNavigate } from "react-router-dom";
 import { Subspaces } from "@desmoslabs/desmjs";
 import Keplr from "@/components/Wallet/Keplr";
-import { useParams } from "react-router-dom";
 import React, { useState } from "react";
 import Long from "long";
 
 const Community = () => {
-  const Signer = JSON.parse(sessionStorage.getItem("signerData"));
-  const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const { postid } = useParams();
 
   const handleSaveProfile = async (e) => {
-    const formData = new FormData(e.target);
-    setIsSaving(true);
     setError(null);
 
     try {
@@ -44,8 +36,6 @@ const Community = () => {
     } catch (err) {
       console.log(err);
       setError(err.message);
-    } finally {
-      setIsSaving(false);
     }
   };
 

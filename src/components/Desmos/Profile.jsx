@@ -4,9 +4,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Profiles } from "@desmoslabs/desmjs";
 import Keplr from "@/components/Wallet/Keplr";
+import PropTypes from "prop-types";
 
 const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio, wallet: initialWallet }) => {
-  const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -28,7 +28,6 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
   const handleSaveProfile = async (e) => {
     e.preventDefault();
 
-    setIsSaving(true);
     setError(null);
     setSuccess(null);
 
@@ -53,7 +52,7 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
     } catch (err) {
       setError(err);
     } finally {
-      setIsSaving(false);
+      console.log(null);
     }
   };
 
@@ -122,6 +121,13 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
       <button className="btn btn-danger text-light m-2" onClick={handleClearSessionStorage}>Logout</button>
     </div>
   );
+};
+
+Profile.propTypes = {
+    dtag: PropTypes.string,
+    nickname: PropTypes.string,
+    bio: PropTypes.string,
+    wallet: PropTypes.string
 };
 
 export default Profile;

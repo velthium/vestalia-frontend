@@ -19,11 +19,6 @@ const Like = ({ postId }) => {
     setSuccess(null);
 
     try {
-      if (liked) {
-        reactionValueAny.packString("unlike");
-      }
-
-      else {
         const keplrData = await Keplr();
 
         const addReaction = {
@@ -42,13 +37,10 @@ const Like = ({ postId }) => {
         };
 
         const result = await keplrData.signAndBroadcast(addReaction.value.user, [addReaction], "auto");
-        console.log(result);
 
-        setSuccess(response);
+        setSuccess(result);
 
         setLiked(!liked);
-      }
-
       } catch (err) {
         console.log(err);
         setError(err);
@@ -73,8 +65,8 @@ const Like = ({ postId }) => {
   );
 };
 
-Like.prototype = {
+Like.propTypes = {
   postId: PropTypes.number.isRequired
-}
+};
 
 export default Like;

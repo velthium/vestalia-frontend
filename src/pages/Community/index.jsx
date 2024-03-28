@@ -1,13 +1,13 @@
+import ErrorAlert from "@/components/Alert/ErrorAlert";
 import PageTitle from "@/components/Design/PageTitle";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Post from "@/components/Design/Post";
 import { useAuth } from "@/context/Auth";
 
 function Community() {
-    const [loading, setLoading] = useState(true);
-    const { authData, setAuthData } = useAuth();
+    const { authData } = useAuth();
+    const [error, setError] = useState(null);
     const [posts, setPosts] = useState([]);
     const { communityname } = useParams();
     const { communityid } = useParams();
@@ -60,7 +60,7 @@ function Community() {
             console.log(err);
             setError(err.message);
           } finally {
-            setLoading(false);
+            console.log("loading");
           }
         };
 
@@ -73,11 +73,12 @@ function Community() {
             {authData.isConnected && (
             <input className="form-control" placeholder="Create post" onClick={handleInputClick}/>
             )}
-        <article>
-        {posts.map((post, index) => (
-            <Post post={post} index={index} />
-        ))}
-        </article>
+          <article>
+          {posts.map((post, index) => (
+              <Post post={post} index={index} key={index} />
+          ))}
+          </article>
+          <ErrorAlert error={error} />
          </div>
     );
 }

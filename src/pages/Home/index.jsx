@@ -1,9 +1,9 @@
+import ErrorAlert from "@/components/Alert/ErrorAlert";
 import React, { useState, useEffect } from "react";
 import Post from "@/components/Design/Post";
 
 function HomePage() {
   const [communities, setCommunities] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
 
@@ -48,7 +48,7 @@ function HomePage() {
         console.log(err);
         setError(err.message);
       } finally {
-        setLoading(false);
+        console.log("finally");
       }
     };
 
@@ -73,6 +73,7 @@ function HomePage() {
             <Post key={post.id} post={post} index={index} />
           ))}
       </article>
+      <ErrorAlert error={error} />
     </div>
   );
 }

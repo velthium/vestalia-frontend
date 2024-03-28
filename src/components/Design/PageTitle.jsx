@@ -7,8 +7,8 @@ function PageTitle(props) {
     );
 }
 
-PageTitle.prototypes = {
-    props: PropTypes.object.isRequired
+PageTitle.propTypes = {
+    title: PropTypes.object.isRequired
 };
 
 export default PageTitle;

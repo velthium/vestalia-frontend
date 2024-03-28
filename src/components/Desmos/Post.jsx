@@ -3,17 +3,14 @@ import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
 import UploadIpfs from "@/components/Desmos/UploadIpfs";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Keplr from "@/components/Wallet/Keplr";
-import { useParams } from "react-router-dom";
 import { Posts } from "@desmoslabs/desmjs";
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Long from "long";
 
 const Post = ({ status }) => {
-
-  const Signer = JSON.parse(sessionStorage.getItem("signerData"));
-  const [isSaving, setIsSaving] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const { communityid } = useParams();
@@ -21,7 +18,6 @@ const Post = ({ status }) => {
   const { postid } = useParams();
 
   const handleCreatePost = async (e) => {
-    setIsSaving(true);
     setError(null);
 
     try {
@@ -46,7 +42,7 @@ const Post = ({ status }) => {
                 start: "0",
                 end: "1",
                 url: "https://scripta.infura-ipfs.io/ipfs/" + uploadResponse.Name,
-                display_url: IPFS
+                display_url: "IPFS"
               }]
             }
         })
@@ -59,13 +55,10 @@ const Post = ({ status }) => {
     } catch (err) {
       console.log(err);
       setError(err.message);
-    } finally {
-      setIsSaving(false);
     }
   };
 
   const handleDeletePost = async () => {
-    setIsSaving(true);
     setError(null);
 
     try {
@@ -90,8 +83,6 @@ const Post = ({ status }) => {
     } catch (err) {
       console.error(err);
       setError(err.message);
-    } finally {
-      setIsSaving(false);
     }
   };
 
@@ -115,6 +106,10 @@ const Post = ({ status }) => {
       <ErrorAlert error={error} />
     </div>
   );
+};
+
+Post.propTypes = {
+  status: PropTypes.object.isRequired
 };
 
 export default Post;

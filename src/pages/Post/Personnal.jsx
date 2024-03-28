@@ -69,7 +69,7 @@ const MyPosts = () => {
       <PageTitle title="My posts" />
       <ul className="list-unstyled">
         {subspaces.map((post, index) => (
-            <Post post={post} index={index} />
+            <Post post={post} index={index} key={index} />
         ))}
       </ul>
     </div>
