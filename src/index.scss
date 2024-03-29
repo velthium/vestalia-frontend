@@ -1,7 +1,11 @@
 @import 'bootstrap/scss/bootstrap';
 
-.bg-custom-gray, body {
-  background-color: #FDFDFD;
+.bg-light-green, .bg-light-green:hover {
+  background-color: darkseagreen;
+}
+
+.bg-sand, .bg-sand:hover {
+  background-color: #fcf4e8;
 }
 
 .custom-btn:hover, .custom-btn {
