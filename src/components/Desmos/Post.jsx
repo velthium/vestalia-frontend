@@ -41,7 +41,7 @@ const Post = ({ status }) => {
               urls: [{
                 start: "0",
                 end: "1",
-                url: "https://scripta.infura-ipfs.io/ipfs/" + uploadResponse.Name,
+                url: "https://ipfs.desmos.network/ipfs/" + uploadResponse.Name,
                 display_url: "IPFS"
               }]
             }
@@ -54,34 +54,6 @@ const Post = ({ status }) => {
       navigate("/");
     } catch (err) {
       console.log(err);
-      setError(err.message);
-    }
-  };
-
-  const handleDeletePost = async () => {
-    setError(null);
-
-    try {
-      const keplrData = await Keplr();
-
-      const deletePost = {
-        typeUrl: Posts.v3.MsgDeletePostTypeUrl,
-        value: MsgDeletePost.fromPartial({
-          subspaceId: Long.fromNumber(21),
-          postId: Long.fromNumber(postid),
-          signer: keplrData.signer.accountData.address
-        })
-      };
-
-      console.log(deletePost.value);
-
-      const result = await keplrData.signAndBroadcast(deletePost.value.signer, [deletePost], "auto");
-
-      setSuccess(result);
-
-      navigate(`/user/${keplrData.signer.accountData.address}/posts`);
-    } catch (err) {
-      console.error(err);
       setError(err.message);
     }
   };
