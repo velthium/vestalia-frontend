@@ -1,8 +1,8 @@
 import { MsgDeletePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
-import { useNavigate, useParams } from "react-router-dom";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
-import Keplr from "@/components/Wallet/Keplr";
+import Keplr from "@/components/Main/Wallet/Keplr";
+import { useNavigate } from "react-router-dom";
 import { Posts } from "@desmoslabs/desmjs";
 import React, { useState } from "react";
 import PropTypes from "prop-types";

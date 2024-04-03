@@ -1,6 +1,6 @@
 import ErrorAlert from "@/components/Alert/ErrorAlert";
 import React, { useState, useEffect } from "react";
-import Post from "@/components/Design/Post";
+import Post from "@/components/Main/Post/Index";
 
 function HomePage() {
   const [communities, setCommunities] = useState([]);

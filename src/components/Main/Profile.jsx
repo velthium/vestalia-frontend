@@ -3,7 +3,7 @@ import ErrorAlert from "@/components/Alert/ErrorAlert";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Profiles } from "@desmoslabs/desmjs";
-import Keplr from "@/components/Wallet/Keplr";
+import Keplr from "@/components/Main/Wallet/Keplr";
 import PropTypes from "prop-types";
 
 const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio, wallet: initialWallet }) => {

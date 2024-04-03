@@ -1,4 +1,4 @@
-import PageTitle from "@/components/Design/PageTitle";
+import PageTitle from "@/components/Ui/Title";
 import KeplrLogo from "@/assets/images/Keplr.svg";
 import { useNavigate } from "react-router-dom";
 import React from "react";

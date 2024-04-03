@@ -1,5 +1,5 @@
-import DesmosProfile from "@/components/Desmos/Profile";
-import PageTitle from "@/components/Design/PageTitle";
+import DesmosProfile from "@/components/Main/Profile";
+import PageTitle from "@/components/Ui/Title";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/Auth";
 

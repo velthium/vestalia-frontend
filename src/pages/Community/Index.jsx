@@ -1,8 +1,8 @@
-import ErrorAlert from "@/components/Alert/ErrorAlert";
-import PageTitle from "@/components/Design/PageTitle";
-import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Post from "@/components/Design/Post";
+import ErrorAlert from "@/components/Alert/ErrorAlert";
+import PageTitle from "@/components/Ui/Title";
+import React, { useState, useEffect } from "react";
+import Post from "@/components/Main/Post/Index";
 import { useAuth } from "@/context/Auth";
 
 function Community() {

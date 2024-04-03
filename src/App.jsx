@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateCommunity from "@/pages/Community/Create";
-import Header from "@/components/Design/Header";
-import Footer from "@/components/Design/Footer";
+import Community from "@/pages/Community/Index";
 import { AuthProvider } from "@/context/Auth";
-import CreatePost from "@/pages/Post/Create";
-import Community from "@/pages/Community/index";
-import ReadPost from "@/pages/Post/index";
-import EditPost from "@/pages/Post/Edit";
 import MyPosts from "@/pages/Post/Personnal";
-import Profile from "@/pages/Profile/index";
+import CreatePost from "@/pages/Post/Create";
+import Profile from "@/pages/Profile/Index";
+import Header from "@/components/Ui/Header";
+import Footer from "@/components/Ui/Footer";
+import ReadPost from "@/pages/Post/Index";
+import EditPost from "@/pages/Post/Edit";
 import Keplr from "@/pages/Auth/Keplr";
-import Home from "@/pages/Home/index";
-import Auth from "@/pages/Auth/index";
+import Home from "@/pages/Home/Index";
+import Auth from "@/pages/Auth/Index";
 import React from "react";
 import "@/App.css";
 

@@ -1,5 +1,5 @@
-import PageTitle from "@/components/Design/PageTitle";
-import Community from "@/components/Desmos/Community";
+import PageTitle from "@/components/Ui/Title";
+import Community from "@/components/Main/Community/Create";
 import React from "react";
 
 function CreateCommunity() {

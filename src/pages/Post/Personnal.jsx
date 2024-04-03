@@ -1,7 +1,7 @@
-import PageTitle from "@/components/Design/PageTitle";
+import PageTitle from "@/components/Ui/Title";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Post from "@/components/Design/Post";
+import Post from "@/components/Main/Post/Index";
 
 const MyPosts = () => {
   const [subspaces, setSubspaces] = useState([]);

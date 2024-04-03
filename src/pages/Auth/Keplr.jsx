@@ -1,7 +1,7 @@
-import PageTitle from "@/components/Design/PageTitle";
+import PageTitle from "@/components/Ui/Title";
 import KeplrLogo from "@/assets/images/Keplr.svg";
 import { useNavigate } from "react-router-dom";
-import Keplr from "@/components/Wallet/Keplr";
+import Keplr from "@/components/Main/Wallet/Keplr";
 import React from "react";
 
   function KeplrPage() {

@@ -1,8 +1,8 @@
 import { MsgCreateSection } from "@desmoslabs/desmjs-types/desmos/subspaces/v3/msgs";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
+import Keplr from "@/components/Main/Wallet/Keplr";
 import { Subspaces } from "@desmoslabs/desmjs";
-import Keplr from "@/components/Wallet/Keplr";
 import React, { useState } from "react";
 import Long from "long";
 

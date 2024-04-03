@@ -1,7 +1,7 @@
 import ErrorAlert from "@/components/Alert/ErrorAlert";
 import React, { useEffect, useState } from "react";
+import Post from "@/components/Main/Post/Index";
 import { useParams } from "react-router-dom";
-import Post from "@/components/Design/Post";
 import { useAuth } from "@/context/Auth";
 
 function ReadPost() {

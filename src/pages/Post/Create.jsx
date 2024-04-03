@@ -1,5 +1,5 @@
-import PageTitle from "@/components/Design/PageTitle";
-import PostCreator from "@/components/Desmos/Post";
+import PageTitle from "@/components/Ui/Title";
+import PostCreator from "@/components/Main/Post/Create";
 import React from "react";
 
 function CreatePostPage() {

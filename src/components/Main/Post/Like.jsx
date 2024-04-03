@@ -2,8 +2,8 @@ import { RegisteredReactionValue } from "@desmoslabs/desmjs-types/desmos/reactio
 import { MsgAddReaction } from "@desmoslabs/desmjs-types/desmos/reactions/v1/msgs";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
 import ErrorAlert from "@/components/Alert/ErrorAlert";
+import Keplr from "@/components/Main/Wallet/Keplr";
 import { Reactions } from "@desmoslabs/desmjs";
-import Keplr from "@/components/Wallet/Keplr";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 

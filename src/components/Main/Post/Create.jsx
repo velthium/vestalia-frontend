@@ -1,21 +1,20 @@
-import { MsgCreatePost, MsgDeletePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
+import { MsgCreatePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
 import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
-import UploadIpfs from "@/components/Desmos/UploadIpfs";
-import ErrorAlert from "@/components/Alert/ErrorAlert";
 import { useNavigate, useParams } from "react-router-dom";
-import Keplr from "@/components/Wallet/Keplr";
+import UploadIpfs from "@/components/Main/Ipfs/Upload";
+import ErrorAlert from "@/components/Alert/ErrorAlert";
+import Keplr from "@/components/Main/Wallet/Keplr";
 import { Posts } from "@desmoslabs/desmjs";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Long from "long";
 
-const Post = ({ status }) => {
+const Post = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const { communityid } = useParams();
   const navigate = useNavigate();
-  const { postid } = useParams();
 
   const handleCreatePost = async (e) => {
     setError(null);
@@ -71,9 +70,6 @@ const Post = ({ status }) => {
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
-      {status === "edit" && (
-        <button className="btn btn-info text-light" onClick={handleDeletePost}>Delete post</button>
-      )}
       <SuccessAlert success={success} />
       <ErrorAlert error={error} />
     </div>
