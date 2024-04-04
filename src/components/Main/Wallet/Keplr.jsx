@@ -3,7 +3,7 @@ import { KeplrSigner } from "@desmoslabs/desmjs-keplr";
 
 async function Keplr() {
     if (window.keplr === undefined) {
-      throw new Error("Veuillez installer l'extension web Keplr");
+      throw new Error("Please install the Keplr extention");
     }
 
     const signer = new KeplrSigner(window.keplr, {

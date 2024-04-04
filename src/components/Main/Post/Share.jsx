@@ -1,8 +1,8 @@
-import SuccessAlert from "@/components/Alert/SuccessAlert";
-import ErrorAlert from "@/components/Alert/ErrorAlert";
+import SuccessAlert from "@/components/Alert/Success";
+import ErrorAlert from "@/components/Alert/Error";
 import React from "react";
 
-function Dislike({ postId }) {
+function Share(props) {
     return (
         <div className="align-self-center">
             <button className="d-flex py-0 btn">
@@ -16,4 +16,4 @@ function Dislike({ postId }) {
     );
 }
 
-export default Dislike;
+export default Share;

@@ -1,5 +1,5 @@
-import ErrorAlert from "@/components/Alert/ErrorAlert";
 import React, { useEffect, useState } from "react";
+import ErrorAlert from "@/components/Alert/Error";
 import Post from "@/components/Main/Post/Index";
 import { useParams } from "react-router-dom";
 import { useAuth } from "@/context/Auth";

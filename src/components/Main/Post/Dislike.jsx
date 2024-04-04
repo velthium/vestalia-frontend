@@ -1,8 +1,8 @@
-import SuccessAlert from "@/components/Alert/SuccessAlert";
-import ErrorAlert from "@/components/Alert/ErrorAlert";
+import SuccessAlert from "@/components/Alert/Success";
+import ErrorAlert from "@/components/Alert/Error";
 import React from "react";
 
-function Dislike({ postId }) {
+function Dislike(props) {
     return (
         <div className="">
         <button className="d-flex p-0 btn">

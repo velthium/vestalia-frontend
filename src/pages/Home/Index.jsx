@@ -1,5 +1,5 @@
-import ErrorAlert from "@/components/Alert/ErrorAlert";
 import React, { useState, useEffect } from "react";
+import ErrorAlert from "@/components/Alert/Error";
 import Post from "@/components/Main/Post/Index";
 
 function HomePage() {
@@ -70,7 +70,7 @@ function HomePage() {
       </article>
       <article>
           {posts.map((post, index) => (
-            <Post key={post.id} post={post} index={index} />
+            <Post key={post.id} post={post} index={index} clickable={false} />
           ))}
       </article>
       <ErrorAlert error={error} />

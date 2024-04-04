@@ -1,8 +1,8 @@
-import SuccessAlert from "@/components/Alert/SuccessAlert";
-import ErrorAlert from "@/components/Alert/ErrorAlert";
+import SuccessAlert from "@/components/Alert/Success";
+import ErrorAlert from "@/components/Alert/Error";
 import React from "react";
 
-function Comment({ postId }) {
+function Comment(props) {
     return (
         <div className="align-self-center">
             <button className="d-flex py-0 btn">

@@ -1,6 +1,6 @@
 import { MsgDeletePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
-import SuccessAlert from "@/components/Alert/SuccessAlert";
-import ErrorAlert from "@/components/Alert/ErrorAlert";
+import SuccessAlert from "@/components/Alert/Success";
+import ErrorAlert from "@/components/Alert/Error";
 import Keplr from "@/components/Main/Wallet/Keplr";
 import { useNavigate } from "react-router-dom";
 import { Posts } from "@desmoslabs/desmjs";
@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Long from "long";
 
-function Delete({ postId }) {
+function Delete(props) {
     const [success, setSuccess] = useState(null);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -18,12 +18,12 @@ function Delete({ postId }) {
         try {
           const keplrData = await Keplr();
 
-          console.log(postId);
+          console.log(props.postId);
           const deletePost = {
             typeUrl: Posts.v3.MsgDeletePostTypeUrl,
             value: MsgDeletePost.fromPartial({
               subspaceId: Long.fromNumber(21),
-              postId: Long.fromNumber(postId),
+              postId: Long.fromNumber(props.postId),
               signer: keplrData.signer.accountData.address
             })
           };

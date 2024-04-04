@@ -1,6 +1,6 @@
-async function UploadIpfs(content) {
+async function UploadIpfs(props) {
     const formData = new FormData();
-    formData.append("file", content);
+    formData.append("file", props.content);
     try {
       const params = new URLSearchParams({
         quiet: true

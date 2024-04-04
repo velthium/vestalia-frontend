@@ -1,10 +1,10 @@
 import { MsgCreatePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
 import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
-import SuccessAlert from "@/components/Alert/SuccessAlert";
 import { useNavigate, useParams } from "react-router-dom";
 import UploadIpfs from "@/components/Main/Ipfs/Upload";
-import ErrorAlert from "@/components/Alert/ErrorAlert";
+import SuccessAlert from "@/components/Alert/Success";
 import Keplr from "@/components/Main/Wallet/Keplr";
+import ErrorAlert from "@/components/Alert/Error";
 import { Posts } from "@desmoslabs/desmjs";
 import React, { useState } from "react";
 import PropTypes from "prop-types";

@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import React from "react";
 
-const SuccessAlert = ({ success }) => {
+const Success = (props) => {
   const displaySuccess = () => {
     let successMessage = "";
 
-    if (success.code === 0) {
-      successMessage = "Successful transaction. Hash: " + success.transactionHash;
+    if (props.success.code === 0) {
+      successMessage = "Successful transaction. Hash: " + props.success.transactionHash;
     }
 
     Swal.fire({
@@ -19,16 +19,16 @@ const SuccessAlert = ({ success }) => {
   };
 
   React.useEffect(() => {
-    if (success) {
+    if (props.success) {
       displaySuccess();
     }
-  }, [success]);
+  }, [props.success]);
 
   return null;
 };
 
-SuccessAlert.propTypes = {
+Success.propTypes = {
   success: PropTypes.object.isRequired
 };
 
-export default SuccessAlert;
+export default Success;

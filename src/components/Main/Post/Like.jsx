@@ -1,17 +1,19 @@
 import { RegisteredReactionValue } from "@desmoslabs/desmjs-types/desmos/reactions/v1/models";
 import { MsgAddReaction } from "@desmoslabs/desmjs-types/desmos/reactions/v1/msgs";
-import SuccessAlert from "@/components/Alert/SuccessAlert";
-import ErrorAlert from "@/components/Alert/ErrorAlert";
+import SuccessAlert from "@/components/Alert/Success";
 import Keplr from "@/components/Main/Wallet/Keplr";
+import ErrorAlert from "@/components/Alert/Error";
 import { Reactions } from "@desmoslabs/desmjs";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const Like = ({ postId }) => {
+const Like = (props) => {
   const [isLiking, setIsLiking] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const [liked, setLiked] = useState(false);
+
+  const postId = props.postId;
 
   const handleToggleLike = async () => {
     setIsLiking(true);

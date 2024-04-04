@@ -1,29 +1,29 @@
-import SuccessAlert from "@/components/Alert/SuccessAlert";
-import ErrorAlert from "@/components/Alert/ErrorAlert";
+import SuccessAlert from "@/components/Alert/Success";
 import React, { useState, useEffect } from "react";
+import Keplr from "@/components/Main/Wallet/Keplr";
+import ErrorAlert from "@/components/Alert/Error";
 import { useNavigate } from "react-router-dom";
 import { Profiles } from "@desmoslabs/desmjs";
-import Keplr from "@/components/Main/Wallet/Keplr";
 import PropTypes from "prop-types";
 
-const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio, wallet: initialWallet }) => {
+const Profile = (props) => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
-    username: initialNickname || "",
-    dtag: initialDtag || "",
-    bio: initialBio || ""
+    username: props.nickname || "",
+    dtag: props.dtag || "",
+    bio: props.bio || ""
   });
 
   useEffect(() => {
     setFormValues({
-      username: initialNickname || "",
-      dtag: initialDtag || "",
-      bio: initialBio || ""
+      username: props.nickname || "",
+      dtag: props.dtag || "",
+      bio: props.bio || ""
     });
-  }, [initialNickname, initialDtag, initialBio]);
+  }, [props.nickname, props.dtag, props.bio]);
 
   const handleSaveProfile = async (e) => {
     e.preventDefault();
@@ -63,7 +63,7 @@ const Profile = ({ dtag: initialDtag, nickname: initialNickname, bio: initialBio
   };
 
   const MyPostsPage = () => {
-    navigate(`/user/${initialWallet}/posts`);
+    navigate(`/user/${props.wallet}/posts`);
   };
 
   const handleInputChange = (e) => {
