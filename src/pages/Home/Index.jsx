@@ -70,7 +70,7 @@ function HomePage() {
       </article>
       <article>
           {posts.map((post, index) => (
-            <Post key={post.id} post={post} index={index} clickable={false} />
+            <Post key={post.id} post={post} index={index} clickable={true} />
           ))}
       </article>
       <ErrorAlert error={error} />
