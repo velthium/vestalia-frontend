@@ -61,8 +61,8 @@ const Like = (props) => {
         <p className="mx-2 mb-0">0</p>
       </button>
 
-      <SuccessAlert success={success} />
-      <ErrorAlert error={error} />
+      {success && <SuccessAlert success={success} />}
+      {error && <ErrorAlert error={error} />}
     </div>
   );
 };

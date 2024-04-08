@@ -1,8 +1,11 @@
 import SuccessAlert from "@/components/Alert/Success";
 import ErrorAlert from "@/components/Alert/Error";
-import React from "react";
+import React, { useState } from "react";
 
 function Dislike(props) {
+    const [success, setSuccess] = useState(null);
+    const [error, setError] = useState(null);
+
     return (
         <div className="">
         <button className="d-flex p-0 btn">
@@ -13,8 +16,8 @@ function Dislike(props) {
             <p className="mx-2 mb-0">0</p>
         </button>
 
-        <SuccessAlert success="" />
-        <ErrorAlert error="" />
+        {success && <SuccessAlert success={success} />}
+        {error && <ErrorAlert error={error} />}
       </div>
     );
 }

@@ -26,6 +26,9 @@ function HomePage() {
                     name
                     id
                   }
+                  post_url {
+                    url
+                  }
                 }
                 subspace_section {
                   name
@@ -47,8 +50,6 @@ function HomePage() {
       } catch (err) {
         console.log(err);
         setError(err.message);
-      } finally {
-        console.log("finally");
       }
     };
 
@@ -70,10 +71,10 @@ function HomePage() {
       </article>
       <article>
           {posts.map((post, index) => (
-            <Post key={post.id} post={post} index={index} clickable={true} />
+            <Post key={post.id} post={post} index={index} post_page={false} />
           ))}
       </article>
-      <ErrorAlert error={error} />
+      {error && <ErrorAlert error={error} />}
     </div>
   );
 }

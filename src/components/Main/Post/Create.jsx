@@ -1,7 +1,7 @@
 import { MsgCreatePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
 import { ReplySetting } from "@desmoslabs/desmjs-types/desmos/posts/v3/models";
 import { useNavigate, useParams } from "react-router-dom";
-import UploadIpfs from "@/components/Main/Ipfs/Upload";
+import IpfsAdd from "@/utils/Ipfs/Add";
 import SuccessAlert from "@/components/Alert/Success";
 import Keplr from "@/components/Main/Wallet/Keplr";
 import ErrorAlert from "@/components/Alert/Error";
@@ -26,7 +26,7 @@ const Post = () => {
 
       const keplrData = await Keplr();
 
-      const uploadResponse = await UploadIpfs(formData.get("post-content"));
+      const uploadResponse = await IpfsAdd(formData.get("post-content"));
 
       const createPost = {
         typeUrl: Posts.v3.MsgCreatePostTypeUrl,
@@ -70,8 +70,8 @@ const Post = () => {
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
-      <SuccessAlert success={success} />
-      <ErrorAlert error={error} />
+      {success && <SuccessAlert success={success} />}
+      {error && <ErrorAlert error={error} />}
     </div>
   );
 };

@@ -52,8 +52,8 @@ const Community = () => {
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
-      <SuccessAlert success={success} />
-      <ErrorAlert error={error} />
+      {success && <SuccessAlert success={success} />}
+      {error && <ErrorAlert error={error} />}
     </div>
   );
 };

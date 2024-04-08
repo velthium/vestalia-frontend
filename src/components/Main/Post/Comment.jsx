@@ -1,8 +1,11 @@
 import SuccessAlert from "@/components/Alert/Success";
 import ErrorAlert from "@/components/Alert/Error";
-import React from "react";
+import React, { useState } from "react";
 
 function Comment(props) {
+    const [success, setSuccess] = useState(null);
+    const [error, setError] = useState(null);
+
     return (
         <div className="align-self-center">
             <button className="d-flex py-0 btn">
@@ -12,8 +15,8 @@ function Comment(props) {
                 </svg>
                 <p className="ms-1 mb-0">0 Comments</p>
             </button>
-            <SuccessAlert success="" />
-            <ErrorAlert error="" />
+            {success && <SuccessAlert success={success} />}
+            {error && <ErrorAlert error={error} />}
         </div>
     );
 }

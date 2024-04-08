@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = (props) => {
   const [authData, setAuthData] = useState({
     isConnected: sessionStorage.getItem("isConnected"),
     walletSigner: JSON.parse(sessionStorage.getItem("walletSigner"))
@@ -17,22 +17,22 @@ export const AuthProvider = ({ children }) => {
       });
     };
 
-    window.addEventListener("storage", handleStorageChange);
+      window.addEventListener("storage", handleStorageChange);
 
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
+      return () => {
+        window.removeEventListener("storage", handleStorageChange);
+      };
   }, []);
 
   return (
     <AuthContext.Provider value={{ authData }}>
-      {children}
+      {props.children}
     </AuthContext.Provider>
   );
 };
 
 AuthProvider.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.array.isRequired
 };
 
 export const useAuth = () => useContext(AuthContext);

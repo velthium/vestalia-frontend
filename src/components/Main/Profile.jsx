@@ -115,8 +115,8 @@ const Profile = (props) => {
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>
-      <SuccessAlert success={success} />
-      <ErrorAlert error={error} />
+      {success && <SuccessAlert success={success} />}
+      {error && <ErrorAlert error={error} />}
       <button className="btn btn-secondary text-light m-2" onClick={MyPostsPage}>Your posts</button>
       <button className="btn btn-danger text-light m-2" onClick={handleClearSessionStorage}>Logout</button>
     </div>

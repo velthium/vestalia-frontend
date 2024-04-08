@@ -78,7 +78,7 @@ function Community() {
               <Post post={post} index={index} key={index} />
           ))}
           </article>
-          <ErrorAlert error={error} />
+          {error && <ErrorAlert error={error} />}
          </div>
     );
 }

@@ -22,16 +22,16 @@ function App() {
               <Header />
                 <main className="App container mb-5 p-0 p-lg-1">
                   <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/auth" element={<Auth />} />
+                      <Route path="/community/:communityid/:communityname/create-post" element={<CreatePost />} />
+                      <Route path="/community/:communityid/:communityname/:postid" element={<ReadPost />} />
+                      <Route path="/community/:communityid/:communityname" element={<Community />} />
+                      <Route path="/create-community" element={<CreateCommunity />} />
+                      <Route path="/user/:address/posts" element={<MyPosts />} />
+                      <Route path="/edit-post/:postid" element={<EditPost />} />
                       <Route path="/auth/keplr" element={<Keplr />} />
                       <Route path="/profile" element={<Profile />} />
-                      <Route path="/edit-post/:postid" element={<EditPost />} />
-                      <Route path="/user/:address/posts" element={<MyPosts />} />
-                      <Route path="/create-community" element={<CreateCommunity />} />
-                      <Route path="/community/:communityid/:communityname" element={<Community />} />
-                      <Route path="/community/:communityid/:communityname/:postid" element={<ReadPost />} />
-                      <Route path="/community/:communityid/:communityname/create-post" element={<CreatePost />} />
+                      <Route path="/auth" element={<Auth />} />
+                      <Route path="/" element={<Home />} />
                   </Routes>
                 </main>
               <Footer />

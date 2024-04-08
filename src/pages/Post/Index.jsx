@@ -30,6 +30,9 @@ function ReadPost() {
                         name
                         id
                       }
+                      post_url {
+                        url
+                      }
                     }
                   }
                 `,
@@ -59,11 +62,11 @@ function ReadPost() {
 
     return (
       <div>
-        {loading ? (<p>Loading...</p>) : post.id ? (<Post post={post} index="0" />) : (<p>No post found</p>)}
+        {loading ? (<p>Loading...</p>) : post.id ? (<Post post={post} index={0} post_page={true} />) : (<p>No post found</p>)}
         {authData.isConnected && (
-        <input className="form-control my-3" placeholder="Reply" onClick=""/>
+        <input className="form-control my-3" placeholder="Reply" />
         )}
-        <ErrorAlert error={error} />
+        {error && <ErrorAlert error={error} />}
       </div>
     );
 }
