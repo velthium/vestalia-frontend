@@ -66,7 +66,7 @@ const Post = () => {
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="fname">Post content:</label>
-          <textarea className="form-control" type="text" name="post-content" placeholder="Post content" />
+          <textarea className="form-control" type="text" name="post-content" placeholder="Post content" rows="8" />
         </div>
         <button className="btn btn-info text-light" type="submit">Submit</button>
       </form>

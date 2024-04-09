@@ -36,6 +36,9 @@ function Community() {
                         name
                         id
                       }
+                      post_url {
+                        url
+                      }
                     }
                     subspace_section {
                       name

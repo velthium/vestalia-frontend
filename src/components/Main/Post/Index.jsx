@@ -40,6 +40,7 @@ import PropTypes from "prop-types";
                     {textpost}
                 </a>
             )}
+            <hr />
             <div className="d-flex">
                 <Like postId={props.post.id} />
                 <Dislike postId={props.post.id} />

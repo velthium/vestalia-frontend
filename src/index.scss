@@ -1,5 +1,9 @@
 @import 'bootstrap/scss/bootstrap';
 
+main {
+  white-space: pre-line;
+}
+
 .bg-light-green, .bg-light-green:hover {
   background-color: darkseagreen;
 }
