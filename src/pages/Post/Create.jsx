@@ -6,7 +6,7 @@ function CreatePostPage() {
     return (
         <div>
             <PageTitle title="Create Post" />
-            <PostCreator status="creation" />
+            <PostCreator />
         </div>
     );
 }

@@ -7,7 +7,6 @@ import Keplr from "@/components/Main/Wallet/Keplr";
 import ErrorAlert from "@/components/Alert/Error";
 import { Posts } from "@desmoslabs/desmjs";
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import Long from "long";
 
 const Post = () => {
@@ -52,8 +51,7 @@ const Post = () => {
       setSuccess(result);
       navigate("/");
     } catch (err) {
-      console.log(err);
-      setError(err.message);
+      setError(err);
     }
   };
 
@@ -74,10 +72,6 @@ const Post = () => {
       {error && <ErrorAlert error={error} />}
     </div>
   );
-};
-
-Post.propTypes = {
-  status: PropTypes.object.isRequired
 };
 
 export default Post;

@@ -29,13 +29,13 @@ import PropTypes from "prop-types";
         <div key={props.index} className="border p-2 m-2 bg-white text-start">
             {props.post_page ? (
                 <React.Fragment>
-                    <h2 className="h6 text-black">{props.post.text}</h2>
+                    <h2 className="h6 fw-bold">{props.post.text}</h2>
                     <p className="h8 my-1">{props.post.subspace_section.name}</p>
                     {textpost}
                 </React.Fragment>
             ) : (
-                <a className="text-decoration-none text-success" href={`/community/${props.post.subspace_section.id}/${props.post.subspace_section.name.replace(/\s/g, "")}/${props.post.id}`}>
-                    <h2 className="h6 text-black">{props.post.text}</h2>
+                <a className="text-decoration-none" href={`/community/${props.post.subspace_section.id}/${props.post.subspace_section.name.replace(/\s/g, "")}/${props.post.id}`}>
+                    <h2 className="h6 fw-bold">{props.post.text}</h2>
                     <p className="h8 my-1">{props.post.subspace_section.name}</p>
                     {textpost}
                 </a>
