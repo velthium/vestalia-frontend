@@ -63,7 +63,7 @@ function HomePage() {
           <div key={index} className="card m-2 flex-shrink-0">
             <a className="text-decoration-none" href={`/community/${community.id}/${community.name.replace(/\s/g, "")}`}>
               <div className="card-body py-1">
-                <h1 className="h7 card-title text-success">{community.name}</h1>
+                <h1 className="h7 card-title custom-orange fw-bold">{community.name}</h1>
               </div>
             </a>
           </div>

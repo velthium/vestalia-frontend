@@ -34,8 +34,7 @@ const Community = () => {
 
       setSuccess(result);
     } catch (err) {
-      console.log(err);
-      setError(err.message);
+      setError(err);
     }
   };
 

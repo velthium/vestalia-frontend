@@ -57,13 +57,10 @@ function Community() {
             if (response.ok) {
               setPosts(result.data.post);
             } else {
-              setError(result.errors);
+              setError(result);
             }
           } catch (err) {
-            console.log(err);
-            setError(err.message);
-          } finally {
-            console.log("loading");
+            setError(err);
           }
         };
 

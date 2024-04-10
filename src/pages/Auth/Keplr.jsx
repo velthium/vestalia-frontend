@@ -1,54 +1,56 @@
-import PageTitle from "@/components/Ui/Title";
-import KeplrLogo from "@/assets/images/Keplr.svg";
-import { useNavigate } from "react-router-dom";
 import Keplr from "@/components/Main/Wallet/Keplr";
-import React from "react";
+import KeplrLogo from "@/assets/images/Keplr.svg";
+import ErrorAlert from "@/components/Alert/Error";
+import PageTitle from "@/components/Ui/Title";
+import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 
-  function KeplrPage() {
-    const navigate = useNavigate();
+function KeplrPage() {
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-    const handleClickPreviousPage = () => {
-      navigate("/auth");
-  };
+  const handleClickPreviousPage = () => {
+    navigate("/auth");
+};
 
-  async function handleClickKeplr() {
-    try {
-        const keplrData = await Keplr();
+    async function handleClickKeplr() {
+      try {
+          const keplrData = await Keplr();
 
-        sessionStorage.setItem("walletSigner", JSON.stringify(keplrData));
-        sessionStorage.setItem("isConnected", "true");
-        window.dispatchEvent(new Event("storage"));
+          sessionStorage.setItem("walletSigner", JSON.stringify(keplrData));
+          sessionStorage.setItem("isConnected", "true");
+          window.dispatchEvent(new Event("storage"));
 
-        try {
-          const response = await fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${keplrData.signer.accountData.address}`);
+          try {
+            const response = await fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${keplrData.signer.accountData.address}`);
 
-          if (response.ok) {
-            const data = await response.json();
+            if (response.ok) {
+              const data = await response.json();
 
-            const ProfileInfo = {
-              dtag: data.profile.dtag,
-              nickname: data.profile.nickname,
-              bio: data.profile.bio
-            };
+              const ProfileInfo = {
+                dtag: data.profile.dtag,
+                nickname: data.profile.nickname,
+                bio: data.profile.bio
+              };
 
-            sessionStorage.setItem("profileInfo", JSON.stringify(ProfileInfo));
-            navigate("/");
-          } else {
+              sessionStorage.setItem("profileInfo", JSON.stringify(ProfileInfo));
+              navigate("/");
+            } else {
+              navigate("/profile");
+            }
+          } catch (error) {
             navigate("/profile");
           }
         } catch (error) {
-          navigate("/profile");
+            setError(error);
         }
-      } catch (error) {
-        console.error("Error connecting Keplr wallet:", error.message);
-      }
-  }
+    }
 
     return (
       <div className="container">
           <PageTitle title="Keplr Wallet" />
           <div className="d-grid gap-5">
-            <button type="button" className="btn bg-sand w-25 rounded-5 mx-auto my-5 p-4" onClick={handleClickKeplr}>
+            <button type="button" className="btn bg-light-green w-25 rounded-5 mx-auto my-5 p-4" onClick={handleClickKeplr}>
               <img className="m-3" src={KeplrLogo} alt="" height="122" width="163" />
               <p className="m-auto w-75 bg-purple text-dark rounded h6 py-2">Connect</p>
             </button>
@@ -59,8 +61,9 @@ import React from "react";
               <p className="my-auto">Back</p>
             </a>
           </div>
+          {error && <ErrorAlert error={error} />}
     </div>
   );
-  }
+}
 
   export default KeplrPage;

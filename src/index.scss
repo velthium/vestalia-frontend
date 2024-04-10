@@ -1,29 +1,27 @@
 @import 'bootstrap/scss/bootstrap';
 
+$light-grey: #f1f2f2;
+$custom-orange: #dd6c00;
+
 main {
   white-space: pre-line;
 }
 
-.bg-light-green, .bg-light-green:hover {
-  background-color: darkseagreen;
+.custom-orange {
+  color: $custom-orange;
 }
 
-.bg-sand, .bg-sand:hover {
-  background-color: #fcf4e8;
+.bg-light-green, .bg-light-green:hover {
+  background-color: $light-grey;
 }
 
 .custom-btn:hover, .custom-btn {
-  background-color: white;
+  background-color: #f1f2f2;
 }
 
-header {
+header, footer {
   border-bottom: solid 1px;
-  border-color: darkseagreen;
-}
-
-footer {
-  border-top: solid 1px;
-  border-color: darkseagreen;
+  border-color: $light-grey;
 }
 
 footer {
@@ -59,4 +57,10 @@ a {
 
 .h8 {
   font-size: 0.8rem;
+}
+
+.post-buttons, .post-buttons:hover {
+  background-color: $light-grey;
+  border: solid $light-grey;
+  border-radius: 100px;
 }

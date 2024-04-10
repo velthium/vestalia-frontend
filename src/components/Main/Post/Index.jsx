@@ -40,15 +40,16 @@ import PropTypes from "prop-types";
                     {textpost}
                 </a>
             )}
-            <hr />
-            <div className="d-flex">
-                <Like postId={props.post.id} />
-                <Dislike postId={props.post.id} />
+            <div className="d-flex flex-wrap">
+                <div className="d-flex post-buttons my-1">
+                    <Like postId={props.post.id} />
+                    <Dislike postId={props.post.id} />
+                </div>
                 <Comment postId={props.post.id} />
+                <Share postId={props.post.id} />
                 {authData.isConnected && (
                     <Delete postId={props.post.id} />
                 )}
-                <Share postId={props.post.id} />
             </div>
         </div>
     );
