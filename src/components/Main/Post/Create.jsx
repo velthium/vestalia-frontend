@@ -30,19 +30,19 @@ const Post = () => {
       const createPost = {
         typeUrl: Posts.v3.MsgCreatePostTypeUrl,
         value: MsgCreatePost.fromPartial({
-            subspaceId: Long.fromNumber(21),
-            sectionId: communityid,
-            author: keplrData.signer.accountData.address,
-            text: formData.get("post-title"),
-            replySettings: ReplySetting.REPLY_SETTING_EVERYONE,
-            entities: {
-              urls: [{
-                start: "0",
-                end: "1",
-                url: "https://ipfs.desmos.network/ipfs/" + uploadResponse.Name,
-                display_url: "IPFS"
-              }]
-            }
+          subspaceId: Long.fromNumber(21),
+          sectionId: communityid,
+          author: keplrData.signer.accountData.address,
+          text: formData.get("post-title"),
+          replySettings: ReplySetting.REPLY_SETTING_EVERYONE,
+          entities: {
+            urls: [{
+              start: "0",
+              end: "1",
+              url: "https://ipfs.desmos.network/ipfs/" + uploadResponse.Name,
+              display_url: "IPFS"
+            }]
+          }
         })
       };
 

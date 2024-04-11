@@ -3,12 +3,12 @@ import Community from "@/components/Main/Community/Create";
 import React from "react";
 
 function CreateCommunity() {
-    return (
-        <div>
-            <PageTitle title="Create community" />
-            <Community />
-        </div>
-    );
+  return (
+      <div>
+          <PageTitle title="Create community" />
+          <Community />
+      </div>
+  );
 }
 
 export default CreateCommunity;

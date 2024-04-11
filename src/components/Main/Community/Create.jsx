@@ -23,10 +23,10 @@ const Community = () => {
       const createSection = {
         typeUrl: Subspaces.v3.MsgCreateSectionTypeUrl,
         value: MsgCreateSection.fromPartial({
-            subspaceId: Long.fromNumber(21),
-            name: formData.get("community-name"),
-            description: formData.get("community-description"),
-            creator: keplrData.signer.accountData.address
+          subspaceId: Long.fromNumber(21),
+          name: formData.get("community-name"),
+          description: formData.get("community-description"),
+          creator: keplrData.signer.accountData.address
         })
       };
 

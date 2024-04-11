@@ -17,11 +17,11 @@ export const AuthProvider = (props) => {
       });
     };
 
-      window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("storage", handleStorageChange);
 
-      return () => {
-        window.removeEventListener("storage", handleStorageChange);
-      };
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
   }, []);
 
   return (

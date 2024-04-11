@@ -9,7 +9,7 @@ function Header() {
 
   useEffect(() => {
     if (authData.walletSigner !== null) {
-        fetch("https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/" + authData.walletSigner.signer.accountData.address)
+      fetch("https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/" + authData.walletSigner.signer.accountData.address)
         .then(response => response.json())
         .then(data => setUserData(data))
         .catch(error => console.error(error));
@@ -48,9 +48,9 @@ function Header() {
                 <li className="nav-item mt-3 mt-lg-0">
                 {userData.profile ? (
                   <Link className="btn btn-warning bg-orange" to="/profile">{userData.profile.dtag}</Link>
-              ) : (
-                <Link className="btn btn-warning bg-orange" to="/profile">Profil</Link>
-              )}
+                ) : (
+                  <Link className="btn btn-warning bg-orange" to="/profile">Profil</Link>
+                )}
                 </li>
               ) : (
                 <li className="nav-item mt-3 mt-lg-0">

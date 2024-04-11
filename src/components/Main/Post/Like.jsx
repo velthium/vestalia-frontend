@@ -21,34 +21,34 @@ const Like = (props) => {
     setSuccess(null);
 
     try {
-        const keplrData = await Keplr();
+      const keplrData = await Keplr();
 
-        const addReaction = {
-          typeUrl: Reactions.v1.MsgAddReactionTypeUrl,
-          value: MsgAddReaction.fromPartial({
-            user: keplrData.signer.accountData.address,
-            subspaceId: 21,
-            postId,
-            value: {
-              typeUrl: "/desmos.reactions.v1.RegisteredReactionValue",
-              value: RegisteredReactionValue.encode({
-                registeredReactionId: 1
-              })
-            }
-          })
-        };
+      const addReaction = {
+        typeUrl: Reactions.v1.MsgAddReactionTypeUrl,
+        value: MsgAddReaction.fromPartial({
+          user: keplrData.signer.accountData.address,
+          subspaceId: 21,
+          postId,
+          value: {
+            typeUrl: "/desmos.reactions.v1.RegisteredReactionValue",
+            value: RegisteredReactionValue.encode({
+              registeredReactionId: 1
+            })
+          }
+        })
+      };
 
-        const result = await keplrData.signAndBroadcast(addReaction.value.user, [addReaction], "auto");
+      const result = await keplrData.signAndBroadcast(addReaction.value.user, [addReaction], "auto");
 
-        setSuccess(result);
+      setSuccess(result);
 
-        setLiked(!liked);
-      } catch (err) {
-        console.log(err);
-        setError(err);
-      } finally {
-        setIsLiking(false);
-      }
+      setLiked(!liked);
+    } catch (err) {
+      console.log(err);
+      setError(err);
+    } finally {
+      setIsLiking(false);
+    }
   };
 
   return (

@@ -8,24 +8,24 @@ import { useAuth } from "@/context/Auth";
 import GetIpfs from "@/utils/Ipfs/Get";
 import PropTypes from "prop-types";
 
- function Post(props) {
-    const { authData } = useAuth();
-    const [textpost, setTextpost] = useState();
+function Post(props) {
+  const { authData } = useAuth();
+  const [textpost, setTextpost] = useState();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const ipfsContent = await GetIpfs(props.post.post_url.url);
-                setTextpost(ipfsContent);
-            } catch (error) {
-                console.error("Erreur lors de la récupération des données depuis IPFS :", error);
-            }
-        };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const ipfsContent = await GetIpfs(props.post.post_url.url);
+        setTextpost(ipfsContent);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données depuis IPFS :", error);
+      }
+    };
 
-        fetchData();
-    }, []);
+    fetchData();
+  }, []);
 
-    return (
+  return (
         <div key={props.index} className="border p-2 m-2 bg-white text-start">
             {props.post_page ? (
                 <React.Fragment>
@@ -52,23 +52,23 @@ import PropTypes from "prop-types";
                 )}
             </div>
         </div>
-    );
+  );
 }
 
 Post.propTypes = {
-    index: PropTypes.number.isRequired,
-    post_page: PropTypes.bool.isRequired,
-    post: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired,
-        subspace_section: PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired
-        }).isRequired,
-        post_url: PropTypes.shape({
-            url: PropTypes.string.isRequired
-        }).isRequired
+  index: PropTypes.number.isRequired,
+  post_page: PropTypes.bool.isRequired,
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    subspace_section: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired
+    }).isRequired,
+    post_url: PropTypes.shape({
+      url: PropTypes.string.isRequired
     }).isRequired
+  }).isRequired
 };
 
 export default Post;

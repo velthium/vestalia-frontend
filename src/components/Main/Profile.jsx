@@ -124,10 +124,10 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
-    dtag: PropTypes.string,
-    nickname: PropTypes.string,
-    bio: PropTypes.string,
-    wallet: PropTypes.string
+  dtag: PropTypes.string,
+  nickname: PropTypes.string,
+  bio: PropTypes.string,
+  wallet: PropTypes.string
 };
 
 export default Profile;
