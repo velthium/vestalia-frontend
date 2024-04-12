@@ -70,7 +70,7 @@ function Community() {
   return (
       <div className="container">
           <PageTitle title={communityname} />
-          {authData.isConnected && (
+          {authData.desmosProfile && (
           <input className="form-control" placeholder="Create post" onClick={handleInputClick}/>
           )}
         <article>

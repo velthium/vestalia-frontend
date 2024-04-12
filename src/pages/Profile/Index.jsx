@@ -1,11 +1,11 @@
-import DesmosProfile from "@/components/Main/Profile";
+import Profile from "@/components/Main/Profile";
 import PageTitle from "@/components/Ui/Title";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/Auth";
 
 function ProfilePage() {
   const { authData } = useAuth();
-  const [profileInfo, setProfileInfo] = useState({
+  const [DesmosProfile, setDesmosProfile] = useState({
     dtag: "",
     nickname: "",
     bio: ""
@@ -16,7 +16,7 @@ function ProfilePage() {
     fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${authData.walletSigner.signer.accountData.address}`)
       .then(response => response.json())
       .then(data => {
-        setProfileInfo({
+        setDesmosProfile({
           dtag: data.profile.dtag,
           nickname: data.profile.nickname,
           bio: data.profile.bio
@@ -31,12 +31,12 @@ function ProfilePage() {
           {dataLoaded ? (
               <div>
                   <PageTitle title="Modify your profile" />
-                  <DesmosProfile dtag={profileInfo.dtag} nickname={profileInfo.nickname} bio={profileInfo.bio} wallet={authData.walletSigner.signer.accountData.address}/>
+                  <Profile dtag={DesmosProfile.dtag} nickname={DesmosProfile.nickname} bio={DesmosProfile.bio} wallet={authData.walletSigner.signer.accountData.address}/>
               </div>
           ) : (
               <div>
                   <PageTitle title="Create your profile" />
-                  <DesmosProfile dtag="" nickname="" bio="" />
+                  <Profile dtag="" nickname="" bio="" />
               </div>
           )}
       </div>

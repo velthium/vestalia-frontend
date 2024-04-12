@@ -5,22 +5,22 @@ const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
   const [authData, setAuthData] = useState({
-    isConnected: sessionStorage.getItem("isConnected"),
+    desmosProfile: JSON.parse(sessionStorage.getItem("desmosProfile")),
     walletSigner: JSON.parse(sessionStorage.getItem("walletSigner"))
   });
 
   useEffect(() => {
-    const handleStorageChange = () => {
+    const handleKeplrChange = () => {
       setAuthData({
-        isConnected: sessionStorage.getItem("isConnected"),
+        desmosProfile: JSON.parse(sessionStorage.getItem("desmosProfile")),
         walletSigner: JSON.parse(sessionStorage.getItem("walletSigner"))
       });
     };
 
-    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("storage", handleKeplrChange);
 
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("storage", handleKeplrChange);
     };
   }, []);
 

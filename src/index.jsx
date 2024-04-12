@@ -1,3 +1,4 @@
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import reportWebVitals from "./reportWebVitals";
 import ReactDOM from "react-dom/client";
 import React from "react";

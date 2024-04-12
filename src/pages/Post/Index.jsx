@@ -63,7 +63,7 @@ function ReadPost() {
   return (
     <div>
       {loading ? (<p>Loading...</p>) : post.id ? (<Post post={post} index={0} post_page={true} />) : (<p>No post found</p>)}
-      {authData.isConnected && (
+      {authData.desmosProfile && (
       <input className="form-control my-3" placeholder="Reply" />
       )}
       {error && <ErrorAlert error={error} />}

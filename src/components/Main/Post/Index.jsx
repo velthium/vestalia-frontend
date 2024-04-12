@@ -47,7 +47,7 @@ function Post(props) {
                 </div>
                 <Comment postId={props.post.id} />
                 <Share postId={props.post.id} />
-                {authData.isConnected && (
+                {authData.walletSigner && (
                     <Delete postId={props.post.id} />
                 )}
             </div>

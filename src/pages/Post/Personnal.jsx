@@ -30,6 +30,9 @@ const MyPosts = () => {
                     name
                     id
                   }
+                  post_url {
+                    url
+                  }
                 }
               }
             `,
@@ -69,7 +72,7 @@ const MyPosts = () => {
       <PageTitle title="My posts" />
       <ul className="list-unstyled">
         {subspaces.map((post, index) => (
-            <Post post={post} index={index} key={index} />
+            <Post post={post} post_page={false} index={index} key={index} />
         ))}
       </ul>
     </div>

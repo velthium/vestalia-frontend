@@ -25,7 +25,7 @@
             "named": "never",
             "anonymous": "always"
           }],
-  "indent": 2,
+        "indent": 2,
         "quotes": ["error", "double"],
         "multiline-ternary": "off"
     }

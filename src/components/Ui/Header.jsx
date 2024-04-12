@@ -1,20 +1,10 @@
 import logo from "@/assets/images/VestaliaLogo.webp";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useAuth } from "@/context/Auth";
 import { Link } from "react-router-dom";
 
 function Header() {
   const { authData } = useAuth();
-  const [userData, setUserData] = useState({});
-
-  useEffect(() => {
-    if (authData.walletSigner !== null) {
-      fetch("https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/" + authData.walletSigner.signer.accountData.address)
-        .then(response => response.json())
-        .then(data => setUserData(data))
-        .catch(error => console.error(error));
-    }
-  }, [authData]);
 
   return (
     <header className="bg-white">
@@ -39,15 +29,15 @@ function Header() {
               <input className="form-control icon-search-bar" type="search" id="site-search" name="q" size="60" placeholder="Search for topics" title="Search bar"/>
             </ul>
             <ul className="list-unstyled navbar-nav">
-              {authData.isConnected && (
+              {authData.walletSigner && (
                 <li className="nav-item mt-3 mt-lg-0">
                   <Link className="nav-link" to="/create-community">Create Community</Link>
                 </li>
               )}
-              {authData.isConnected ? (
+              {authData.walletSigner ? (
                 <li className="nav-item mt-3 mt-lg-0">
-                {userData.profile ? (
-                  <Link className="btn btn-warning bg-orange" to="/profile">{userData.profile.dtag}</Link>
+                {authData.desmosProfile ? (
+                  <Link className="btn btn-warning bg-orange" to="/profile">{authData.desmosProfile.dtag}</Link>
                 ) : (
                   <Link className="btn btn-warning bg-orange" to="/profile">Profil</Link>
                 )}
