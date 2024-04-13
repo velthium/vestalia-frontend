@@ -7,14 +7,22 @@ const Error = (props) => {
     let errorMessage = "An unexpected error occurred";
 
     if (typeof props.error.message === "string") {
-      if (props.error.message.includes("has already been created")) {
-        errorMessage = "Account with this DTag already exists";
-      } else if (props.error.message.includes("it should match the following regEx")) {
-        errorMessage = "Please enter valid characters";
-      } else if (props.error.message.includes("cannot be less")) {
-        errorMessage = "Profile dtag cannot be less than 6 characters";
-      } else if (props.error.message.includes("Request rejected")) {
-        errorMessage = "Error: Request rejected by the user";
+      switch (true) {
+        case props.error.message.includes("has already been created"):
+          errorMessage = "Account with this DTag already exists";
+          break;
+        case props.error.message.includes("it should match the following regEx"):
+          errorMessage = "Please enter valid characters";
+          break;
+        case props.error.message.includes("cannot be less"):
+          errorMessage = "Profile dtag cannot be less than 6 characters";
+          break;
+        case props.error.message.includes("Request rejected"):
+          errorMessage = "Error: Request rejected by the user";
+          break;
+        case props.error.message.includes("Keplr + Ledger is currently not supported"):
+          errorMessage = "Keplr + Ledger is currently not supported";
+          break;
       }
     }
 

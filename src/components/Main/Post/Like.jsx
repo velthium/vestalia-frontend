@@ -17,9 +17,6 @@ const Like = (props) => {
 
   const handleToggleLike = async () => {
     setIsLiking(true);
-    setError(null);
-    setSuccess(null);
-
     try {
       const keplrData = await Keplr();
 

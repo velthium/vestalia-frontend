@@ -51,7 +51,7 @@ function ReadPost() {
         }
       } catch (err) {
         console.log(err);
-        setError(err.message);
+        setError(err);
       } finally {
         setLoading(false);
       }

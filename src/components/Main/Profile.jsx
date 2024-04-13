@@ -28,9 +28,6 @@ const Profile = (props) => {
   const handleSaveProfile = async (e) => {
     e.preventDefault();
 
-    setError(null);
-    setSuccess(null);
-
     try {
       const formData = new FormData(e.target);
       const keplrData = await Keplr();

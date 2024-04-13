@@ -11,8 +11,6 @@ const Community = () => {
   const [error, setError] = useState(null);
 
   const handleSaveProfile = async (e) => {
-    setError(null);
-
     try {
       e.preventDefault();
 

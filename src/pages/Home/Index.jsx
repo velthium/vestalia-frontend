@@ -49,7 +49,7 @@ function HomePage() {
         }
       } catch (err) {
         console.log(err);
-        setError(err.message);
+        setError(err);
       }
     };
 

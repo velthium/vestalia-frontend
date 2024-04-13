@@ -50,7 +50,7 @@ const MyPosts = () => {
           setError(result.errors);
         }
       } catch (err) {
-        setError(err.message);
+        setError(err);
       } finally {
         setLoading(false);
       }

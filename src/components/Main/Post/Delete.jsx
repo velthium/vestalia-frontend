@@ -13,8 +13,6 @@ function Delete(props) {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const handleDeletePost = async () => {
-    setError(null);
-
     try {
       const keplrData = await Keplr();
 

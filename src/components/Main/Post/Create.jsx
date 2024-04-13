@@ -16,8 +16,6 @@ const Post = () => {
   const navigate = useNavigate();
 
   const handleCreatePost = async (e) => {
-    setError(null);
-
     try {
       e.preventDefault();
 
