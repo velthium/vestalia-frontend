@@ -1,10 +1,10 @@
 import Profile from "@/components/Main/Profile";
 import PageTitle from "@/components/Ui/Title";
-import React, { useEffect, useState } from "react";
-import { useAuth } from "@/context/Auth";
+import React, { useEffect, useState, useContext } from "react";
+import { AuthContext } from "@/context/Auth";
 
 function ProfilePage() {
-  const { authData } = useAuth();
+  const { authData } = useContext(AuthContext);
   const [DesmosProfile, setDesmosProfile] = useState({
     dtag: "",
     nickname: "",

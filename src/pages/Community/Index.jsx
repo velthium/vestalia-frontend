@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ErrorAlert from "@/components/Alert/Error";
 import Post from "@/components/Main/Post/Index";
 import PageTitle from "@/components/Ui/Title";
-import { useAuth } from "@/context/Auth";
+import { AuthContext } from "@/context/Auth";
 
 function Community() {
-  const { authData } = useAuth();
+  const { authData } = useContext(AuthContext);
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
   const { communityname } = useParams();

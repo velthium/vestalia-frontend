@@ -1,13 +1,15 @@
+import React, { useState, useEffect, useContext } from "react";
 import SuccessAlert from "@/components/Alert/Success";
-import React, { useState, useEffect } from "react";
 import Keplr from "@/components/Main/Wallet/Keplr";
 import ErrorAlert from "@/components/Alert/Error";
 import { useNavigate } from "react-router-dom";
 import { Profiles } from "@desmoslabs/desmjs";
+import { AuthContext } from "@/context/Auth";
 import PropTypes from "prop-types";
 
 const Profile = (props) => {
   const [success, setSuccess] = useState(null);
+  const { authData, setAuthData } = useContext(AuthContext);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -55,7 +57,7 @@ const Profile = (props) => {
 
   const handleClearSessionStorage = () => {
     sessionStorage.clear();
-    window.dispatchEvent(new Event("storage"));
+    setAuthData({});
     navigate("/");
   };
 

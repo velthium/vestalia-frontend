@@ -1,10 +1,10 @@
 import logo from "@/assets/images/VestaliaLogo.webp";
-import React from "react";
-import { useAuth } from "@/context/Auth";
+import { AuthContext } from "@/context/Auth";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 function Header() {
-  const { authData } = useAuth();
+  const { authData } = useContext(AuthContext);
 
   return (
     <header className="bg-white">

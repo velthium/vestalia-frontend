@@ -1,15 +1,15 @@
+import React, { useContext, useEffect, useState } from "react";
 import Dislike from "@/components/Main/Post/Dislike";
 import Comment from "@/components/Main/Post/Comment";
-import React, { useEffect, useState } from "react";
 import Delete from "@/components/Main/Post/Delete";
 import Share from "@/components/Main/Post/Share";
 import Like from "@/components/Main/Post/Like";
-import { useAuth } from "@/context/Auth";
+import { AuthContext } from "@/context/Auth";
 import GetIpfs from "@/utils/Ipfs/Get";
 import PropTypes from "prop-types";
 
 function Post(props) {
-  const { authData } = useAuth();
+  const { authData } = useContext(AuthContext);
   const [textpost, setTextpost] = useState();
 
   useEffect(() => {

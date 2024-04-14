@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ErrorAlert from "@/components/Alert/Error";
 import Post from "@/components/Main/Post/Index";
 import { useParams } from "react-router-dom";
-import { useAuth } from "@/context/Auth";
+import { AuthContext } from "@/context/Auth";
 
 function ReadPost() {
+  const { authData } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-  const { authData } = useAuth();
   const [error, setError] = useState(null);
   const [post, setPost] = useState({});
   const { postid } = useParams();
