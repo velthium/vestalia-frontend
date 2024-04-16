@@ -1,6 +1,7 @@
 import { DesmosClient, DesmosChains, SigningMode, GasPrice } from "@desmoslabs/desmjs";
 import { KeplrSigner } from "@desmoslabs/desmjs-keplr";
 
+// Connection to Keplr, return the wallet informations
 async function Keplr() {
   if (window.keplr === undefined) {
     throw new Error("Please install the Keplr extention");

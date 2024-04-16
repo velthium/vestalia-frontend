@@ -7,6 +7,7 @@ function HomePage() {
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
 
+  // Fetch all posts and sections in the blockchain for the subspace number 21 (Vestalia Network)
   useEffect(() => {
     const fetchData = async () => {
       try {

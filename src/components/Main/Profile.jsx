@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 
 const Profile = (props) => {
   const [success, setSuccess] = useState(null);
-  const { authData, setAuthData } = useContext(AuthContext);
+  const { setAuthData } = useContext(AuthContext);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -19,6 +19,7 @@ const Profile = (props) => {
     bio: props.bio || ""
   });
 
+  // Save the profile on the blockchain
   useEffect(() => {
     setFormValues({
       username: props.nickname || "",

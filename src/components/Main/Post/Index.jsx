@@ -26,32 +26,32 @@ function Post(props) {
   }, []);
 
   return (
-        <div key={props.index} className="border p-2 m-2 bg-white text-start">
-            {props.post_page ? (
-                <React.Fragment>
-                    <h2 className="h6 fw-bold">{props.post.text}</h2>
-                    <p className="h8 my-1">{props.post.subspace_section.name}</p>
-                    {textpost}
-                </React.Fragment>
-            ) : (
-                <a className="text-decoration-none" href={`/community/${props.post.subspace_section.id}/${props.post.subspace_section.name.replace(/\s/g, "")}/${props.post.id}`}>
-                    <h2 className="h6 fw-bold">{props.post.text}</h2>
-                    <p className="h8 my-1">{props.post.subspace_section.name}</p>
-                    {textpost}
-                </a>
-            )}
-            <div className="d-flex flex-wrap">
-                <div className="d-flex post-buttons my-1">
-                    <Like postId={props.post.id} />
-                    <Dislike postId={props.post.id} />
-                </div>
-                <Comment postId={props.post.id} />
-                <Share postId={props.post.id} />
-                {authData.walletSigner && (
-                    <Delete postId={props.post.id} />
-                )}
+    <div key={props.index} className="border p-2 m-2 bg-white text-start">
+        {props.post_page ? (
+            <React.Fragment>
+                <h2 className="h6 fw-bold">{props.post.text}</h2>
+                <p className="h8 my-1">{props.post.subspace_section.name}</p>
+                {textpost}
+            </React.Fragment>
+        ) : (
+            <a className="text-decoration-none" href={`/community/${props.post.subspace_section.id}/${props.post.subspace_section.name.replace(/\s/g, "")}/${props.post.id}`}>
+                <h2 className="h6 fw-bold">{props.post.text}</h2>
+                <p className="h8 my-1">{props.post.subspace_section.name}</p>
+                {textpost}
+            </a>
+        )}
+        <div className="d-flex flex-wrap">
+            <div className="d-flex post-buttons my-1">
+                <Like postId={props.post.id} />
+                <Dislike postId={props.post.id} />
             </div>
+            <Comment postId={props.post.id} />
+            <Share postId={props.post.id} />
+            {authData.walletSigner && (
+                <Delete postId={props.post.id} />
+            )}
         </div>
+    </div>
   );
 }
 

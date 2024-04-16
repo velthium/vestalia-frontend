@@ -11,6 +11,7 @@ function ReadPost() {
   const [post, setPost] = useState({});
   const { postid } = useParams();
 
+  // Fetch specific post with its id
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,7 +51,6 @@ function ReadPost() {
           setError(result.errors);
         }
       } catch (err) {
-        console.log(err);
         setError(err);
       } finally {
         setLoading(false);

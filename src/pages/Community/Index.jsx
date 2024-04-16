@@ -1,5 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom";
+import AlexandriaLibrary from "@/assets/images/AlexandriaLibrary.webp";
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import ErrorAlert from "@/components/Alert/Error";
 import Post from "@/components/Main/Post/Index";
 import PageTitle from "@/components/Ui/Title";
@@ -71,12 +72,21 @@ function Community() {
       <div className="container">
           <PageTitle title={communityname} />
           {authData.desmosProfile && (
-          <input className="form-control" placeholder="Create post" onClick={handleInputClick}/>
+          <input className="form-control w-50 m-auto" placeholder="Create post" onClick={handleInputClick}/>
           )}
         <article>
-        {posts.map((post, index) => (
-            <Post post={post} index={index} key={index} />
-        ))}
+        {posts.length > 0 ? (
+          posts.map((post, index) => (
+              <Post post={post} index={index} key={index} />
+          ))
+        ) : (
+          <div className="h-100 d-flex flex-column align-items-center justify-content-center">
+            <div className="">
+              <p className="h2 p-5">No posts found on this community.</p>
+              <img src={AlexandriaLibrary} alt="Library of Alexandria" />
+              </div>
+          </div>
+        )}
         </article>
         {error && <ErrorAlert error={error} />}
         </div>

@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateCommunity from "@/pages/Community/Create";
 import Community from "@/pages/Community/Index";
 import { AuthProvider } from "@/context/Auth";
-import MyPosts from "@/pages/Post/Personnal";
+import NotFound from "@/pages/Error/NotFound";
+import MyPosts from "@/pages/Post/Personal";
 import CreatePost from "@/pages/Post/Create";
 import Profile from "@/pages/Profile/Index";
 import Header from "@/components/Ui/Header";
@@ -31,6 +32,7 @@ function App() {
                       <Route path="/auth/keplr" element={<Keplr />} />
                       <Route path="/profile" element={<Profile />} />
                       <Route path="/auth" element={<Auth />} />
+                      <Route path='*' element={<NotFound />}/>
                       <Route path="/" element={<Home />} />
                   </Routes>
                 </main>

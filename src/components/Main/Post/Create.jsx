@@ -15,6 +15,7 @@ const Post = () => {
   const { communityid } = useParams();
   const navigate = useNavigate();
 
+  // Create a new post on the blockchain
   const handleCreatePost = async (e) => {
     try {
       e.preventDefault();

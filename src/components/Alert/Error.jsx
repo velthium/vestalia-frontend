@@ -9,19 +9,22 @@ const Error = (props) => {
     if (typeof props.error.message === "string") {
       switch (true) {
         case props.error.message.includes("has already been created"):
-          errorMessage = "Account with this DTag already exists";
+          errorMessage = "Account with this DTag already exists.";
           break;
-        case props.error.message.includes("it should match the following regEx"):
-          errorMessage = "Please enter valid characters";
+        case props.error.message.includes("it should match the following regEx."):
+          errorMessage = "Please enter valid characters.";
           break;
         case props.error.message.includes("cannot be less"):
-          errorMessage = "Profile dtag cannot be less than 6 characters";
+          errorMessage = "Profile dtag cannot be less than 6 characters.";
           break;
         case props.error.message.includes("Request rejected"):
-          errorMessage = "Error: Request rejected by the user";
+          errorMessage = "Error: Request rejected by the user.";
           break;
         case props.error.message.includes("Keplr + Ledger is currently not supported"):
-          errorMessage = "Keplr + Ledger is currently not supported";
+          errorMessage = "Keplr + Ledger is currently not supported.";
+          break;
+        case props.error.message.includes("Cannot read properties of undefined (reading 'post')"):
+          errorMessage = "Post not found.";
           break;
       }
     }

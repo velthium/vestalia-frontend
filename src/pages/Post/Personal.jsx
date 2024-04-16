@@ -11,6 +11,7 @@ const MyPosts = () => {
   const { address } = useParams();
   const authorAddress = address;
 
+  // Fetch user personal posts in order to display them on his profile
   useEffect(() => {
     const fetchData = async () => {
       try {

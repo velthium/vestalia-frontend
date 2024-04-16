@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 export const AuthContext = createContext();
 
+// Initialize the context with the sessionStorage values
 export const AuthProvider = (props) => {
   const [authData, setAuthData] = useState({
     desmosProfile: JSON.parse(sessionStorage.getItem("desmosProfile")),

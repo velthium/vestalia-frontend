@@ -3,11 +3,11 @@ import Keplr from "@/components/Main/Wallet/Keplr";
 import KeplrLogo from "@/assets/images/Keplr.svg";
 import ErrorAlert from "@/components/Alert/Error";
 import PageTitle from "@/components/Ui/Title";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { AuthContext } from "@/context/Auth";
 
 function KeplrPage() {
-  const { authData, setAuthData } = useContext(AuthContext);
+  const { setAuthData } = useContext(AuthContext);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -21,6 +21,7 @@ function KeplrPage() {
 
   window.addEventListener("keplr_keystorechange", handleClick);
 
+  // Connection to Keplr, fetch also the Desmos profile, fill the sessionStorage and then the AuthContext with the values.
   async function handleClickKeplr() {
     try {
       const keplrData = await Keplr();
