@@ -8,6 +8,7 @@ import { AuthContext } from "@/context/Auth";
 
 function Community() {
   const { authData } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
   const { communityname } = useParams();
@@ -62,6 +63,8 @@ function Community() {
         }
       } catch (err) {
         setError(err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -75,7 +78,9 @@ function Community() {
           <input className="form-control w-50 m-auto" placeholder="Create post" onClick={handleInputClick}/>
           )}
         <article>
-        {posts.length > 0 ? (
+        {isLoading ? (
+          <div></div>
+        ) : posts.length > 0 ? (
           posts.map((post, index) => (
               <Post post={post} index={index} key={index} />
           ))

@@ -12,7 +12,7 @@ function Header() {
         <div className="container">
           <Link to="/" className="navbar-brand m-0 d-flex align-items-center">
             <img className="rounded" src={logo} alt="Vestalia Logo" id="vestalia-logo" />
-            <h1 className="ms-3 h4 my-auto custom-orange fw-bold">Vestalia Network</h1>
+            <h1 className="mx-3 fs-lg-3 fs-4 my-auto custom-orange fw-bold">Vestalia Network</h1>
           </Link>
           <button className="navbar-toggler"
                   type="button"
@@ -35,7 +35,7 @@ function Header() {
                 </li>
               )}
               {authData.walletSigner ? (
-                <li className="nav-item mt-3 mt-lg-0">
+                <li className="nav-item mt-3 mt-lg-0 justify-content-between align-self-center">
                 {authData.desmosProfile ? (
                   <Link className="btn btn-warning bg-orange" to="/profile">{authData.desmosProfile.dtag}</Link>
                 ) : (
