@@ -15,9 +15,7 @@ function CreateCommunity() {
   const handleSaveProfile = async (e) => {
     try {
       e.preventDefault();
-
       const formData = new FormData(e.target);
-
       const keplrData = await Keplr();
 
       const createSection = {
@@ -31,7 +29,6 @@ function CreateCommunity() {
       };
 
       const result = await keplrData.signAndBroadcast(createSection.value.creator, [createSection], "auto");
-
       setSuccess(result);
     } catch (err) {
       setError(err);

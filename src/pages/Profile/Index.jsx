@@ -1,44 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import Profile from "@/components/Main/Profile";
 import PageTitle from "@/components/Ui/Title";
-import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "@/context/Auth";
+import React, { useContext } from "react";
+import Error from "@/components/Ui/Error";
 
 function ProfilePage() {
   const { authData } = useContext(AuthContext);
-  const [DesmosProfile, setDesmosProfile] = useState({
-    dtag: "",
-    nickname: "",
-    bio: ""
+
+  const { data: desmosProfile, isLoading, isError } = useQuery({
+    queryKey: ["desmosProfile"],
+    queryFn: async () => {
+      const response = await fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${authData.walletSigner.signer.accountData.address}`)
+        .then(res => (res.json()).then(res => (res.profile)));
+
+      return response;
+    }
   });
-  const [dataLoaded, setDataLoaded] = useState(false);
 
-  useEffect(() => {
-    fetch(`https://api.mainnet.desmos.network/desmos/profiles/v3/profiles/${authData.walletSigner.signer.accountData.address}`)
-      .then(response => response.json())
-      .then(data => {
-        setDesmosProfile({
-          dtag: data.profile.dtag,
-          nickname: data.profile.nickname,
-          bio: data.profile.bio
-        });
-        setDataLoaded(true);
-      })
-      .catch(error => console.error(error));
-  }, []);
-
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <Error message="Error fetching profile data." />;
   return (
       <div>
-          {dataLoaded ? (
-              <div>
-                  <PageTitle title="Modify your profile" />
-                  <Profile dtag={DesmosProfile.dtag} nickname={DesmosProfile.nickname} bio={DesmosProfile.bio} wallet={authData.walletSigner.signer.accountData.address}/>
-              </div>
-          ) : (
-              <div>
-                  <PageTitle title="Create your profile" />
-                  <Profile dtag="" nickname="" bio="" />
-              </div>
-          )}
+          <PageTitle title="Modify your profile" />
+          <Profile dtag={desmosProfile.dtag} nickname={desmosProfile.nickname} bio={desmosProfile.bio} wallet={authData.walletSigner.signer.accountData.address}/>
       </div>
   );
 }
