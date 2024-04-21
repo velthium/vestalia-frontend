@@ -1,6 +1,4 @@
 async function Add(content) {
-  console.log(content);
-
   const jsonData = {
     content
   };
@@ -18,14 +16,14 @@ async function Add(content) {
     });
 
     if (!response.ok) {
-      throw new Error(`Erreur lors de la demande: ${response.statusText}`);
+      throw new Error(`Error during the demand: ${response.statusText}`);
     }
 
     const responseData = await response.json();
 
     return responseData;
   } catch (error) {
-    console.error("Erreur lors du téléchargement du fichier :", error);
+    console.error("Error during the download of the file :", error);
   }
 };
 

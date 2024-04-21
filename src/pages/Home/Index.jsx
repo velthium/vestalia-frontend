@@ -1,43 +1,33 @@
 import { useQuery } from "@tanstack/react-query";
 import Post from "@/components/Main/Post/Index";
+import { request, gql } from "graphql-request";
 import Error from "@/components/Ui/Error";
 import React from "react";
 
 function HomePage() {
+  const POSTS_AND_SSECTIONS_QUERY = gql`
+      query GetPostsAndSections {
+        post {
+          id
+          text
+          subspace_section {
+            name
+            id
+          }
+          post_url {
+            url
+          }
+        }
+        subspace_section {
+          name
+          id
+        }
+      }
+  `;
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ["postHomepage"],
-    queryFn: async () => {
-      const response = await fetch("http://localhost:8080/v1/graphql", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-hasura-admin-secret": "your-admin-secret"
-        },
-        body: JSON.stringify({
-          query: `
-            query getPostsAndSections {
-              post {
-                id
-                text
-                subspace_section {
-                  name
-                  id
-                }
-                post_url {
-                  url
-                }
-              }
-              subspace_section {
-                name
-                id
-              }
-            }
-          `
-        })
-      }).then(res => (res.json()).then(res => res.data));
-
-      return response;
-    }
+    queryFn: async () => request("http://localhost:8080/v1/graphql/", POSTS_AND_SSECTIONS_QUERY)
   });
 
   if (isLoading) return <div>Loading...</div>;

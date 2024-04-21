@@ -26,6 +26,12 @@ const Error = (props) => {
         case props.error.message.includes("Cannot read properties of undefined (reading 'post')"):
           errorMessage = "Post not found.";
           break;
+        case props.error.message.includes("section: permissions denied"):
+          errorMessage = "Permissions denied";
+          break;
+        case props.error.message.includes("Cannot read properties of undefined (reading 'Name')"):
+          errorMessage = "IPFS upload error";
+          break;
       }
     }
 
