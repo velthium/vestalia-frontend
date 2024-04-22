@@ -4,7 +4,6 @@ import Keplr from "@/components/Main/Wallet/Keplr";
 import ErrorAlert from "@/components/Alert/Error";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "@/components/Ui/Title";
-import { Profiles } from "@desmoslabs/desmjs";
 import { AuthContext } from "@/context/Auth";
 
 function ProfilePage() {
@@ -36,7 +35,7 @@ function ProfilePage() {
       const keplrData = await Keplr();
 
       const saveProfile = {
-        typeUrl: Profiles.v3.MsgSaveProfileTypeUrl,
+        typeUrl: "/desmos.profiles.v3.MsgSaveProfile",
         value: {
           creator: keplrData.signer.accountData.address,
           bio: formData.get("bio"),

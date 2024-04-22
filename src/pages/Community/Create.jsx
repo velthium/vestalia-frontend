@@ -1,8 +1,6 @@
-import { MsgCreateSection } from "@desmoslabs/desmjs-types/desmos/subspaces/v3/msgs";
 import SuccessAlert from "@/components/Alert/Success";
 import Keplr from "@/components/Main/Wallet/Keplr";
 import ErrorAlert from "@/components/Alert/Error";
-import { Subspaces } from "@desmoslabs/desmjs";
 import PageTitle from "@/components/Ui/Title";
 import React, { useState } from "react";
 import Long from "long";
@@ -19,13 +17,13 @@ function CreateCommunity() {
       const keplrData = await Keplr();
 
       const createSection = {
-        typeUrl: Subspaces.v3.MsgCreateSectionTypeUrl,
-        value: MsgCreateSection.fromPartial({
+        typeUrl: "/desmos.subspaces.v3.MsgCreateSection",
+        value: {
           subspaceId: Long.fromNumber(21),
           name: formData.get("community-name"),
           description: formData.get("community-description"),
           creator: keplrData.signer.accountData.address
-        })
+        }
       };
 
       const result = await keplrData.signAndBroadcast(createSection.value.creator, [createSection], "auto");

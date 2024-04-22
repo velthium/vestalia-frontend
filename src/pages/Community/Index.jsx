@@ -25,6 +25,11 @@ function Community() {
         post_url {
           url
         }
+        reactions {
+          id
+          value
+          post_row_id
+        }
       }
       subspace_section {
         name

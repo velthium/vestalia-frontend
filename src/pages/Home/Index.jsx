@@ -14,6 +14,11 @@ function HomePage() {
             name
             id
           }
+          reactions {
+            id
+            value
+            post_row_id
+          }
           post_url {
             url
           }

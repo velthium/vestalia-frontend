@@ -1,9 +1,7 @@
-import { MsgDeletePost } from "@desmoslabs/desmjs-types/desmos/posts/v3/msgs";
 import SuccessAlert from "@/components/Alert/Success";
 import ErrorAlert from "@/components/Alert/Error";
 import Keplr from "@/components/Main/Wallet/Keplr";
 import { useNavigate } from "react-router-dom";
-import { Posts } from "@desmoslabs/desmjs";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Long from "long";
@@ -17,12 +15,12 @@ function Delete(props) {
       const keplrData = await Keplr();
 
       const deletePost = {
-        typeUrl: Posts.v3.MsgDeletePostTypeUrl,
-        value: MsgDeletePost.fromPartial({
+        typeUrl: "/desmos.posts.v3.MsgDeletePost",
+        value: {
           subspaceId: Long.fromNumber(21),
           postId: Long.fromNumber(props.postId),
           signer: keplrData.signer.accountData.address
-        })
+        }
       };
 
       const result = await keplrData.signAndBroadcast(deletePost.value.signer, [deletePost], "auto");

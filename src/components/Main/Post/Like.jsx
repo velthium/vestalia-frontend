@@ -1,5 +1,4 @@
 import { RegisteredReactionValue } from "@desmoslabs/desmjs-types/desmos/reactions/v1/models";
-import { MsgAddReaction } from "@desmoslabs/desmjs-types/desmos/reactions/v1/msgs";
 import SuccessAlert from "@/components/Alert/Success";
 import Keplr from "@/components/Main/Wallet/Keplr";
 import ErrorAlert from "@/components/Alert/Error";
@@ -20,19 +19,21 @@ const Like = (props) => {
     try {
       const keplrData = await Keplr();
 
+      const likeReaction = {
+        typeUrl: "/desmos.reactions.v1.RegisteredReactionValue",
+        value: RegisteredReactionValue.encode({
+          registeredReactionId: 4
+        }).finish()
+      };
+
       const addReaction = {
-        typeUrl: Reactions.v1.MsgAddReactionTypeUrl,
-        value: MsgAddReaction.fromPartial({
+        typeUrl: "/desmos.reactions.v1.MsgAddReaction",
+        value: {
           user: keplrData.signer.accountData.address,
           subspaceId: 21,
           postId,
-          value: {
-            typeUrl: "/desmos.reactions.v1.RegisteredReactionValue",
-            value: RegisteredReactionValue.encode({
-              registeredReactionId: 1
-            })
-          }
-        })
+          value: likeReaction
+        }
       };
 
       const result = await keplrData.signAndBroadcast(addReaction.value.user, [addReaction], "auto");
