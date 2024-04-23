@@ -31,7 +31,7 @@ function Header() {
             <ul className="list-unstyled navbar-nav">
               {authData.walletSigner && (
                 <li className="nav-item mt-3 mt-lg-0">
-                  <Link className="nav-link" to="/create-community">Create Community</Link>
+                  <Link className="nav-link text-center" to="/create-community">Create Community</Link>
                 </li>
               )}
               {authData.walletSigner ? (
@@ -43,7 +43,7 @@ function Header() {
                 )}
                 </li>
               ) : (
-                <li className="nav-item mt-3 mt-lg-0">
+                <li className="nav-item text-center mt-3 mt-lg-0">
                   <Link className="btn btn-warning bg-green h7" to="/auth">Connect</Link>
                 </li>
               )}

@@ -63,7 +63,7 @@ function KeplrPage() {
     <div className="container">
         <PageTitle title="Keplr Wallet" />
         <div className="d-grid gap-5">
-          <button type="button" className="btn bg-light-green w-25 rounded-5 mx-auto my-5 p-4" onClick={handleClickKeplr}>
+          <button type="button" className="btn bg-light-green mw-25 rounded-5 mx-auto my-5 p-4" onClick={handleClickKeplr}>
             <img className="m-3" src={KeplrLogo} alt="" height="122" width="163" />
             <p className="m-auto w-75 bg-purple text-dark rounded h6 py-2">Connect</p>
           </button>

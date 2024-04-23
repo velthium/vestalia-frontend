@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import Dislike from "@/components/Main/Post/Dislike";
+import Downvote from "@/components/Main/Post/Downvote";
 import Comment from "@/components/Main/Post/Comment";
 import Delete from "@/components/Main/Post/Delete";
 import Share from "@/components/Main/Post/Share";
-import Like from "@/components/Main/Post/Like";
+import Upvote from "@/components/Main/Post/Upvote";
 import { AuthContext } from "@/context/Auth";
 import GetIpfs from "@/utils/Ipfs/Get";
 import PropTypes from "prop-types";
@@ -42,8 +42,8 @@ function Post(props) {
         )}
         <div className="d-flex flex-wrap">
             <div className="d-flex post-buttons my-1">
-                <Like postId={props.post.id} />
-                <Dislike postId={props.post.id} />
+                <Upvote postId={props.post.id} postReactions={props.post.reactions} />
+                <Downvote postId={props.post.id} postReactions={props.post.reactions} />
             </div>
             <Comment postId={props.post.id} />
             <Share postId={props.post.id} />
@@ -66,6 +66,9 @@ Post.propTypes = {
       name: PropTypes.string.isRequired
     }).isRequired,
     post_url: PropTypes.shape({
+      url: PropTypes.string.isRequired
+    }).isRequired,
+    reactions: PropTypes.shape({
       url: PropTypes.string.isRequired
     }).isRequired
   }).isRequired

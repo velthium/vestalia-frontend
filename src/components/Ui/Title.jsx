@@ -3,7 +3,7 @@ import React from "react";
 
 function Title(props) {
   return (
-      <h1 className="ms-3 h4 my-3 pb-5 custom-orange">{props.title}</h1>
+      <h1 className="m-3 h4 my-3 pb-5 custom-orange">{props.title}</h1>
   );
 }
 
