@@ -5,9 +5,9 @@ import Error from "@/components/Ui/Error";
 import React from "react";
 
 function HomePage() {
-  const POSTS_AND_SSECTIONS_QUERY = gql`
+  const POSTS_AND_SECTIONS_QUERY = gql`
       query GetPostsAndSections {
-        post {
+        post(where: { text: { _is_null: false } }) {
           id
           text
           subspace_section {
@@ -32,7 +32,7 @@ function HomePage() {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["postHomepage"],
-    queryFn: async () => request("http://localhost:8080/v1/graphql/", POSTS_AND_SSECTIONS_QUERY)
+    queryFn: async () => request("http://localhost:8080/v1/graphql/", POSTS_AND_SECTIONS_QUERY)
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -53,7 +53,7 @@ function HomePage() {
       </article>
       <article>
           {data.post.map((post, index) => (
-            <Post key={post.id} post={post} index={index} post_page={false} />
+            <Post key={post.id} post={post} index={index} from_page="home_page" />
           ))}
       </article>
     </div>

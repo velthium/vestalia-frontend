@@ -1,19 +1,19 @@
+import Reply from "@/components/Main/Post/Reply";
 import { useQuery } from "@tanstack/react-query";
 import Post from "@/components/Main/Post/Index";
 import { request, gql } from "graphql-request";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "@/context/Auth";
-import React, { useContext } from "react";
 import Error from "@/components/Ui/Error";
+import React from "react";
 
 function ReadPost() {
-  const { authData } = useContext(AuthContext);
   const { postid } = useParams();
   const CONTENT_POST = gql`
   query getPost($id: bigint!) {
-    post(where: { id: { _eq: $id } }) {
+    post(where: { id: { _eq: $id }, text: { _is_null: false } }) {
       id
       text
+      owner_address
       subspace_section {
         name
         id
@@ -41,10 +41,8 @@ function ReadPost() {
 
   return (
     <div>
-      <Post post={specificPost} index={0} post_page={true} />
-      {authData.desmosProfile && (
-      <input className="form-control my-3" placeholder="Reply" />
-      )}
+      <Post post={specificPost} index={0} from_page="post_page" />
+      <Reply postId={postid} />
     </div>
   );
 }
