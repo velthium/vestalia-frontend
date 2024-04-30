@@ -4,10 +4,10 @@ import React from "react";
 
 function EditPost() {
   return (
-      <div>
-          <PageTitle title="Edit post" />
-          <PostCreator status="edit"/>
-      </div>
+    <div>
+      <PageTitle title="Edit post" />
+      <PostCreator status="edit"/>
+    </div>
   );
 }
 

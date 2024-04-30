@@ -13,19 +13,19 @@ function ProfilePage() {
   const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
-    username: authData.desmosProfile.nickname || "",
-    dtag: authData.desmosProfile.dtag || "",
-    bio: authData.desmosProfile.bio || ""
+    username: authData.desmosProfile?.nickname,
+    dtag: authData.desmosProfile?.dtag,
+    bio: authData.desmosProfile?.bio
   });
 
   // Save the profile on the blockchain
   useEffect(() => {
     setFormValues({
-      username: authData.desmosProfile.nickname || "",
-      dtag: authData.desmosProfile.dtag || "",
-      bio: authData.desmosProfile.bio || ""
+      username: authData.desmosProfile?.nickname,
+      dtag: authData.desmosProfile?.dtag,
+      bio: authData.desmosProfile?.bio
     });
-  }, [authData.desmosProfile.nickname, authData.desmosProfile.dtag, authData.desmosProfile.bio]);
+  }, [authData.desmosProfile?.nickname, authData.desmosProfile?.dtag, authData.desmosProfile?.bio]);
 
   const handleSaveProfile = async (e) => {
     e.preventDefault();
@@ -72,54 +72,74 @@ function ProfilePage() {
   };
 
   return (
-      <div>
-          <PageTitle title="Modify your profile" />
-          <div>
-            <form className="align-left" onSubmit={handleSaveProfile}>
-              <div className="mb-3">
-                <label className="form-label" htmlFor="username">Username:</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="username"
-                  id="username"
-                  value={formValues.username}
-                  onChange={handleInputChange}
-                  placeholder="Enter a username"
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label" htmlFor="dtag">Dtag:</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="dtag"
-                  id="dtag"
-                  value={formValues.dtag}
-                  onChange={handleInputChange}
-                  placeholder="Enter a dtag"
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label" htmlFor="bio">Bio:</label>
-                <textarea
-                  className="form-control"
-                  type="text"
-                  name="bio"
-                  id="bio"
-                  value={formValues.bio}
-                  onChange={handleInputChange}
-                  placeholder="Enter a bio"
-                />
-              </div>
-              <button className="btn btn-info text-light" type="submit">Submit</button>
-            </form>
-            {success && <SuccessAlert success={success} />}
-            {error && <ErrorAlert error={error} />}
-            <button className="btn btn-secondary text-light m-2" onClick={MyPostsPage}>Your posts</button>
-            <button className="btn btn-danger text-light m-2" onClick={handleClearSessionStorage}>Logout</button>
+    <div>
+      <PageTitle title="Modify your profile" />
+      <div className="text-center">
+        <form
+          className="align-left"
+          onSubmit={handleSaveProfile}>
+          <div className="mb-3">
+            <label
+              className="form-label"
+              htmlFor="username">Username:
+            </label>
+            <input
+              className="form-control"
+              type="text"
+              name="username"
+              id="username"
+              value={formValues.username}
+              onChange={handleInputChange}
+              placeholder="Enter a username"
+            />
           </div>
+          <div className="mb-3">
+            <label
+              className="form-label"
+              htmlFor="dtag">Dtag:
+            </label>
+            <input
+              className="form-control"
+              type="text"
+              name="dtag"
+              id="dtag"
+              value={formValues.dtag}
+              onChange={handleInputChange}
+              placeholder="Enter a dtag"
+            />
+          </div>
+          <div className="mb-3">
+            <label
+              className="form-label"
+              htmlFor="bio">Bio:
+            </label>
+            <textarea
+              className="form-control"
+              type="text"
+              name="bio"
+              id="bio"
+              value={formValues.bio}
+              onChange={handleInputChange}
+              placeholder="Enter a bio"
+            />
+          </div>
+          <button
+            className="btn btn-info text-light"
+            type="submit">Submit
+          </button>
+        </form>
+        {success && <SuccessAlert success={success} />}
+        {error && <ErrorAlert error={error} />}
+        <button
+          className="btn btn-secondary text-light"
+          onClick={MyPostsPage}>Your posts
+        </button>
+        <button
+          className="btn btn-danger text-light m-2"
+          onClick={handleClearSessionStorage}>Logout
+        </button>
       </div>
+    </div>
   );
 }
 

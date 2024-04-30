@@ -27,6 +27,13 @@
           }],
         "indent": 2,
         "quotes": ["error", "double"],
-        "multiline-ternary": "off"
+        "multiline-ternary": "off",
+        "react/jsx-key": "error", // Ajout de la règle pour les clés dans les tableaux
+        "react/jsx-indent": ["error", 2], // Ajout de la règle pour l'indentation JSX
+        "react/jsx-indent-props": ["error", 2], // Ajout de la règle pour l'indentation des props JSX
+        "react/jsx-curly-spacing": ["error", "never"], // Espacement des accolades
+        "react/jsx-closing-tag-location": ["error", "line-aligned"], // Emplacement de la balise de fermeture
+        "react/jsx-max-props-per-line": ["error", { "maximum": 1 }], // Nombre maximal de props par ligne
+        "react/jsx-props-no-multi-spaces": "error" // Pas d'espaces multip
     }
 }

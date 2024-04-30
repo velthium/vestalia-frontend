@@ -18,6 +18,7 @@ function Reply(postId) {
         post(where: { text: { _is_null: true } }) {
           id
           text
+          owner_address
           subspace_section {
             name
             id
@@ -96,13 +97,29 @@ function Reply(postId) {
 
   return (
     <div>
-      <h2 id="comments" className="m-3 h4 my-3 pb-5 custom-orange">Comments</h2>
-        {data.post.map((post, index) => (
-            <ReplyDesign key={post.id} post={post} index={index} post_page={false} />
-        ))}
-      <form action="" onSubmit={handleCreateReply}>
-          <input className="form-control my-3" name="post-content" placeholder="Reply" />
-          <button className="btn btn-secondary" type="submit">Submit</button>
+      <h2
+        id="comments"
+        className="m-3 h4 my-3 pt-5 custom-orange">Comments
+      </h2>
+      {data.post.map((post, index) => (
+        <ReplyDesign
+          key={post.id}
+          post={post}
+          index={index}
+          post_page={false} />
+      ))}
+      <form
+        action=""
+        onSubmit={handleCreateReply}>
+        <input
+          className="form-control my-3"
+          name="post-content"
+          placeholder="Reply" />
+        <button
+          className="btn btn-secondary"
+          type="submit">
+          Submit
+        </button>
       </form>
       {success && <SuccessAlert success={success} />}
       {error && <ErrorAlert error={error} />}

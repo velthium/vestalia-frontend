@@ -18,6 +18,7 @@ function Community() {
       post(where: {subspace_section: {id: {_eq: $id}}}) {
         id
         text
+        owner_address
         subspace_section {
           name
           id
@@ -51,21 +52,28 @@ function Community() {
   if (isError) return <div>Error fetching community post</div>;
 
   return (
-      <div className="container">
-          <PageTitle title={communityname} />
-          {authData.desmosProfile && (
-          <input className="form-control w-50 mb-5 m-auto" placeholder="Create post" onClick={handleInputClick} />
-          )}
-        <article>
+    <div className="container">
+      <PageTitle title={communityname} />
+      {authData.desmosProfile && (
+      <input
+        className="form-control w-50 mb-5 m-auto"
+        placeholder="Create post"
+        onClick={handleInputClick} />
+      )}
+      <article>
         {communityPosts.length > 0 ? (
           communityPosts.map((post, index) => (
-                <Post post={post} index={index} key={index} from_page="community_page" />
+            <Post
+              post={post}
+              index={index}
+              key={index}
+              from_page="community_page" />
           ))
         ) : (
-        <Error message="No posts found on this community." />
+          <Error message="No posts found on this community." />
         )}
-        </article>
-        </div>
+      </article>
+    </div>
   );
 }
 

@@ -39,7 +39,11 @@ const MyPosts = () => {
       <PageTitle title="My posts" />
       <ul className="list-unstyled">
         {personalPosts.map((post, index) => (
-            <Post post={post} post_page={false} index={index} key={index} />
+          <Post
+            post={post}
+            post_page={false}
+            index={index}
+            key={index} />
         ))}
       </ul>
     </div>

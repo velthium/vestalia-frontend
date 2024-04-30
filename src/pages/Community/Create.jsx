@@ -36,17 +36,37 @@ function CreateCommunity() {
   return (
     <div>
       <PageTitle title="Create community" />
-        <div>
-        <form className="align-left" onSubmit={handleSaveProfile}>
+      <div>
+        <form
+          className="align-left"
+          onSubmit={handleSaveProfile}>
           <div className="mb-3">
-            <label className="form-label" htmlFor="fname">Community name:</label>
-            <textarea className="form-control" type="text" name="community-name" placeholder="Community name" />
+            <label
+              className="form-label"
+              htmlFor="fname">Community name:
+            </label>
+            <textarea
+              className="form-control"
+              type="text"
+              name="community-name"
+              placeholder="Community name" />
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="fname">Community description:</label>
-            <textarea className="form-control" type="text" name="community-description" placeholder="Community description" />
+            <label
+              className="form-label"
+              htmlFor="fname">
+              Community description:
+            </label>
+            <textarea
+              className="form-control"
+              type="text"
+              name="community-description"
+              placeholder="Community description" />
           </div>
-          <button className="btn btn-info text-light" type="submit">Submit</button>
+          <button
+            className="btn btn-info text-light"
+            type="submit">Submit
+          </button>
         </form>
         {success && <SuccessAlert success={success} />}
         {error && <ErrorAlert error={error} />}

@@ -56,16 +56,36 @@ function CreatePostPage() {
     <div>
       <PageTitle title="Create Post" />
       <div className="bg-white">
-        <form className="align-left" onSubmit={handleCreatePost}>
+        <form
+          className="align-left"
+          onSubmit={handleCreatePost}>
           <div className="mb-3">
-            <label className="form-label" htmlFor="fname">Post title:</label>
-            <input className="form-control" type="text" name="post-title" placeholder="Post title" />
+            <label
+              className="form-label"
+              htmlFor="fname">Post title:
+            </label>
+            <input
+              className="form-control"
+              type="text"
+              name="post-title"
+              placeholder="Post title" />
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="fname">Post content:</label>
-            <textarea className="form-control" type="text" name="post-content" placeholder="Post content" rows="8" />
+            <label
+              className="form-label"
+              htmlFor="fname">Post content:
+            </label>
+            <textarea
+              className="form-control"
+              type="text"
+              name="post-content"
+              placeholder="Post content"
+              rows="8" />
           </div>
-          <button className="btn btn-info text-light" type="submit">Submit</button>
+          <button
+            className="btn btn-info text-light"
+            type="submit">Submit
+          </button>
         </form>
         {success && <SuccessAlert success={success} />}
         {error && <ErrorAlert error={error} />}

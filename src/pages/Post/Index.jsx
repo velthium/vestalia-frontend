@@ -41,7 +41,10 @@ function ReadPost() {
 
   return (
     <div>
-      <Post post={specificPost} index={0} from_page="post_page" />
+      <Post
+        post={specificPost}
+        index={0}
+        from_page="post_page" />
       <Reply postId={postid} />
     </div>
   );
