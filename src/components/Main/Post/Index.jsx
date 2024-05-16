@@ -44,8 +44,7 @@ function Post(props) {
       className="border p-2 m-2 bg-white text-start">
       {props.from_page === "post_page" ? (
         <React.Fragment>
-          <p className="h8 my-1">s/{props.post.subspace_section.name}</p>
-          <p className="h8 my-1">u/{userNickname}</p>
+          <p className="h8 my-1">@{userNickname} on s/{props.post.subspace_section.name}</p>
           <h2 className="h5 fw-bold">{props.post.text}</h2>
           {textpost}
         </React.Fragment>
@@ -53,10 +52,9 @@ function Post(props) {
         <a
           className="text-decoration-none"
           href={`/community/${props.post.subspace_section.id}/${props.post.subspace_section.name.replace(/\s/g, "")}/${props.post.id}`}>
-          {props.from_page !== "community_page" && (
-          <p className="h8 my-1">s/{props.post.subspace_section.name}</p>
-          )}
-          <p>u/{userNickname}</p>
+          {props.from_page !== "community_page" ? (
+            <p className="h8 my-1">@{userNickname} on <span className="custom-orange">s/{props.post.subspace_section.name}</span></p>
+          ) : <p className="h8 my-1">u/{userNickname}</p>}
           <h2 className="h5 fw-bold">{props.post.text}</h2>
           {textpost}
         </a>

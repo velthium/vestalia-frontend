@@ -44,7 +44,7 @@ function ReplyDesign(props) {
       {props.post_page ? (
         <React.Fragment>
           <h2 className="h6 fw-bold">{props.post.text}</h2>
-          <p className="h8 my-1">u/{userNickname}</p>
+          <p className="h8 my-1">@{userNickname}</p>
           <p className="h8 my-1">{props.post.subspace_section.name}</p>
           {textpost}
         </React.Fragment>
@@ -52,7 +52,7 @@ function ReplyDesign(props) {
         <a
           className="text-decoration-none"
           href={`/community/${props.post.subspace_section.id}/${props.post.subspace_section.name.replace(/\s/g, "")}/${props.post.id}`}>
-          <p className="h8 my-1">u/{userNickname}</p>
+          <p className="h8 my-1">@{userNickname}</p>
           <h2 className="h6 fw-bold">{props.post.text}</h2>
           {textpost}
         </a>
